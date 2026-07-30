@@ -111,7 +111,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="ml-2 btn-primary text-[13.5px] !py-2.5 !px-5"
+                    className="ml-2 btn-primary nav-cta text-[13.5px] !py-2.5 !px-5"
                   >
                     {link.label}
                   </Link>
