@@ -5,7 +5,7 @@
 import { Link } from "wouter";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
-import { CITY_PAGES, CONTACT } from "@/lib/siteData";
+import { CITY_PAGES, CONTACT, PRODUCT_CARDS } from "@/lib/siteData";
 import { ChevronRight, MapPin, Phone } from "lucide-react";
 
 export default function ServiceAreas() {
@@ -91,6 +91,48 @@ export default function ServiceAreas() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ── Popular Services strip ── */}
+      <section className="py-12 bg-white border-t border-slate-100">
+        <div className="container">
+          <span className="eyebrow">Popular Services</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+            {PRODUCT_CARDS.slice(0, 4).map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="inline-flex items-center gap-1 text-[14.5px] font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+              >
+                <ChevronRight size={14} />
+                {card.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Map embed ── */}
+      <section className="py-12" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+        <div className="container">
+          <span className="eyebrow">Visit Our Showroom</span>
+          <h2 className="section-heading mb-6">Orange Beach, Alabama</h2>
+          <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(15,23,42,0.08)" }}>
+            <iframe
+              title="Sky Window Design & More showroom location map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.0!2d-87.58!3d30.26!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDE1JzM2LjAiTiA4N8KwMzQnNDguMCJX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              width="100%"
+              height="360"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <p className="text-[14px] text-slate-500 mt-4">
+            {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state} {CONTACT.address.zip}
+          </p>
         </div>
       </section>
 

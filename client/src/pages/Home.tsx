@@ -363,7 +363,7 @@ export default function Home() {
           </RevealDiv>
           <RevealDiv delay={60} className="flex flex-wrap gap-3">
             {[
-              { label: "Orange Beach, AL", href: "/" },
+              { label: "Orange Beach, AL", href: "" },
               { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
               { label: "Foley, AL", href: "/locations/foley-al" },
               { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -371,13 +371,23 @@ export default function Home() {
               { label: "Gulf Breeze, FL", href: "/locations/gulf-breeze-fl" },
               { label: "Navarre, FL", href: "/locations/navarre-fl" },
             ].map((city) => (
-              <Link
-                key={city.label}
-                href={city.href}
-                className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all"
-              >
-                {city.label}
-              </Link>
+              city.href ? (
+                <Link
+                  key={city.label}
+                  href={city.href}
+                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all"
+                >
+                  {city.label}
+                </Link>
+              ) : (
+                <span
+                  key={city.label}
+                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-400 cursor-default"
+                  title="Our home base — no separate page"
+                >
+                  {city.label}
+                </span>
+              )
             ))}
           </RevealDiv>
         </div>

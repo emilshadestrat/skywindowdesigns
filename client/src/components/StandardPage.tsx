@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, type PageData } from "@/lib/siteData";
+import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, CITY_PAGES, type PageData } from "@/lib/siteData";
 import {
   Phone, ChevronRight, CheckCircle2, Star, Award, Ruler, Wrench, MapPin,
   Sun, EyeOff, Layers, Zap, Shield, Home,
@@ -64,6 +64,27 @@ const PAGE_IMG: Record<string, string> = {
   "visualizer":                IMAGES.cellularShades,
   "about":                     IMAGES.hero,
 };
+
+// ── Secondary image map ("What It Is" section right-side image) ─────────────
+// Uses a different product image than the hero for visual variety
+const PAGE_IMG_SECONDARY: Record<string, string> = {
+  "roller-shades":             IMAGES.cellularShades,
+  "motorized-shades":          IMAGES.rollerShades,
+  "draperies-curtains":        IMAGES.romanShades,
+  "plantation-shutters":       IMAGES.rollerShades,
+  "cellular-honeycomb-shades": IMAGES.romanShades,
+  "roman-shades":              IMAGES.draperies,
+  "blinds":                    IMAGES.plantationShutters,
+  "window-treatments":         IMAGES.rollerShades,
+  "wallpaper-interior-design": IMAGES.romanShades,
+  "commercial-window-treatments": IMAGES.plantationShutters,
+  "window-treatment-repairs":  IMAGES.rollerShades,
+  "visualizer":                IMAGES.romanShades,
+  "about":                     IMAGES.draperies,
+};
+
+// ── Editorial section images (rotates through available product images) ──────
+const EDITORIAL_IMGS = [IMAGES.cellularShades, IMAGES.romanShades, IMAGES.draperies, IMAGES.plantationShutters];
 
 // ── Per-page bullet points (hero left column) ──────────────────────────────
 const PAGE_BULLETS: Record<string, string[]> = {
@@ -139,11 +160,31 @@ const DEFAULT_FEATURES = [
 // ── Inline consultation card (hero right column) ───────────────────────────
 function ConsultCard() {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const inputCls = "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow";
+  const errCls = "text-[12px] text-red-600 mt-1";
   const labelCls = "block text-[12.5px] font-semibold text-slate-700 mb-1";
+
+  function validate(form: HTMLFormElement): boolean {
+    const fd = new FormData(form);
+    const errs: Record<string, string> = {};
+    const first = (fd.get("firstName") as string)?.trim();
+    const last = (fd.get("lastName") as string)?.trim();
+    const phone = (fd.get("phone") as string)?.trim();
+    const email = (fd.get("email") as string)?.trim();
+    if (!first) errs.firstName = "First name is required";
+    if (!last) errs.lastName = "Last name is required";
+    if (!phone) errs.phone = "Phone is required";
+    else if (phone.replace(/[^0-9]/g, "").length < 10) errs.phone = "Enter a valid phone number";
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Enter a valid email address";
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (!validate(form)) return;
     setSubmitted(true);
   }
 
@@ -166,20 +207,24 @@ function ConsultCard() {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className={labelCls} htmlFor="sc-first">First Name <span className="text-red-500">*</span></label>
-                <input id="sc-first" name="firstName" type="text" required autoComplete="given-name" className={inputCls} />
+                <input id="sc-first" name="firstName" type="text" required autoComplete="given-name" aria-invalid={!!errors.firstName} className={inputCls} />
+                {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
               </div>
               <div>
                 <label className={labelCls} htmlFor="sc-last">Last Name <span className="text-red-500">*</span></label>
-                <input id="sc-last" name="lastName" type="text" required autoComplete="family-name" className={inputCls} />
+                <input id="sc-last" name="lastName" type="text" required autoComplete="family-name" aria-invalid={!!errors.lastName} className={inputCls} />
+                {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
               </div>
             </div>
             <div>
               <label className={labelCls} htmlFor="sc-phone">Phone <span className="text-red-500">*</span></label>
-              <input id="sc-phone" name="phone" type="tel" required autoComplete="tel" className={inputCls} placeholder="(251) 000-0000" />
+              <input id="sc-phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" aria-invalid={!!errors.phone} className={inputCls} placeholder="(251) 000-0000" />
+              {errors.phone && <p className={errCls}>{errors.phone}</p>}
             </div>
             <div>
               <label className={labelCls} htmlFor="sc-email">Email</label>
-              <input id="sc-email" name="email" type="email" autoComplete="email" className={inputCls} placeholder="you@example.com" />
+              <input id="sc-email" name="email" type="email" inputMode="email" autoComplete="email" aria-invalid={!!errors.email} className={inputCls} placeholder="you@example.com" />
+              {errors.email && <p className={errCls}>{errors.email}</p>}
             </div>
             <div>
               <label className={labelCls} htmlFor="sc-project">Project Details</label>
@@ -234,6 +279,8 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
   const relatedCards = PRODUCT_CARDS.filter((c) => relatedSlugs.includes(c.href.replace("/", "")));
   const textLinks = data.relatedLinks ?? [];
   const heroImg = PAGE_IMG[pageKey] ?? IMAGES.hero;
+  const secondaryImg = PAGE_IMG_SECONDARY[pageKey] ?? IMAGES.cellularShades;
+  const cityKeys = Object.keys(CITY_PAGES);
   const bullets = PAGE_BULLETS[pageKey] ?? [];
   const features = PAGE_FEATURES[pageKey] ?? DEFAULT_FEATURES;
 
@@ -382,11 +429,11 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                   </Link>
                 </div>
               </RevealDiv>
-              {/* Right: product image */}
+              {/* Right: product image (different from hero for variety) */}
               <RevealDiv delay={120}>
                 <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 40px rgba(15,23,42,0.12)" }}>
                   <img
-                    src={heroImg}
+                    src={secondaryImg}
                     alt={data.schemaName}
                     className="w-full aspect-[4/3] object-cover"
                   />
@@ -403,7 +450,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           ══════════════════════════════════════════════════════════ */}
       <section className="relative py-20 overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
         <div className="absolute inset-0 z-0">
-          <img src={heroImg} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ opacity: 0.12 }} />
+          <img src={secondaryImg} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ opacity: 0.12 }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(8,12,35,0.92) 0%, rgba(8,12,35,0.88) 100%)" }} />
         </div>
         <div className="container relative z-10">
@@ -464,10 +511,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                       </p>
                     ))}
                   </div>
-                  {/* Image side */}
+                  {/* Image side (rotates through different product images) */}
                   <div className="rounded-xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(15,23,42,0.08)" }}>
                     <img
-                      src={heroImg}
+                      src={EDITORIAL_IMGS[i % EDITORIAL_IMGS.length]}
                       alt={section.heading}
                       className="w-full aspect-[4/3] object-cover"
                     />
@@ -587,6 +634,30 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           </div>
         </section>
       )}
+
+      {/* ══════════════════════════════════════════════════════════
+          9b. AVAILABLE IN YOUR AREA — city cross-links strip
+          ══════════════════════════════════════════════════════════ */}
+      <section className="py-12 bg-white border-t border-slate-100">
+        <div className="container">
+          <span className="eyebrow">Available in Your Area</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+            {cityKeys.map((key) => {
+              const city = CITY_PAGES[key];
+              return (
+                <Link
+                  key={key}
+                  href={`/locations/${key}`}
+                  className="inline-flex items-center gap-1 text-[14.5px] font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                >
+                  <MapPin size={14} />
+                  {city.area}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════════
           10. FINAL CTA BAND — dark blue

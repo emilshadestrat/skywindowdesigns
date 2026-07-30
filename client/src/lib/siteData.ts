@@ -112,6 +112,7 @@ export const MOBILE_NAV_GROUPS = [
     label: "Company",
     items: [
       { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -134,6 +135,7 @@ export const FOOTER_LINKS = {
     { label: "Repairs", href: "/window-treatment-repairs" },
     { label: "Visualizer", href: "/visualizer" },
     { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
   ],
   serviceArea: [
     { label: "All Service Areas", href: "/service-areas" },
@@ -258,7 +260,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "window-treatments",
     title: "Window Treatments Orange Beach, AL | Custom Options",
     meta: "Explore custom window treatments in Orange Beach, Alabama, from roller shades and shutters to draperies, blinds, cellular shades and automation.",
-    canonical: "https://skywindowdesign.com/window-treatments/",
+    canonical: "https://skywindowdesign.com/window-treatments",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments" }],
     h1: "Window Treatments for Orange Beach, Alabama Homes and Businesses",
     sections: [
@@ -287,7 +289,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "roller-shades",
     title: "Roller Shades Orange Beach, AL | Sky Window Design",
     meta: "Explore custom roller shades in Orange Beach, Alabama, with light-filtering, solar, privacy, blackout and motorized options.",
-    canonical: "https://skywindowdesign.com/roller-shades/",
+    canonical: "https://skywindowdesign.com/roller-shades",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Roller Shades" }],
     h1: "Roller Shades for Orange Beach, Alabama Homes and Businesses",
     sections: [
@@ -310,7 +312,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "motorized-shades",
     title: "Motorized Shades Orange Beach, AL | Sky Window Design",
     meta: "Make everyday window control easier with motorized shades in Orange Beach, Alabama, including scheduling and smart-home options where supported.",
-    canonical: "https://skywindowdesign.com/motorized-shades/",
+    canonical: "https://skywindowdesign.com/motorized-shades",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Motorized Shades" }],
     h1: "Motorized Shades for Orange Beach, Alabama Homes and Businesses",
     sections: [
@@ -334,7 +336,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "draperies-curtains",
     title: "Draperies and Curtains Orange Beach, AL | Custom Design",
     meta: "Create a softer room with custom draperies and curtains in Orange Beach, Alabama, with fabric, lining, hardware and privacy options.",
-    canonical: "https://skywindowdesign.com/draperies-curtains/",
+    canonical: "https://skywindowdesign.com/draperies-curtains",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Draperies and Curtains" }],
     h1: "Draperies and Curtains for Orange Beach, Alabama Homes",
     sections: [
@@ -357,7 +359,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "plantation-shutters",
     title: "Plantation Shutters Orange Beach, AL | Custom Design",
     meta: "Add structured style and adjustable light control with custom plantation shutters in Orange Beach, Alabama, designed around your windows.",
-    canonical: "https://skywindowdesign.com/plantation-shutters/",
+    canonical: "https://skywindowdesign.com/plantation-shutters",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Plantation Shutters" }],
     h1: "Plantation Shutters for Orange Beach, Alabama Homes",
     sections: [
@@ -380,7 +382,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "cellular-honeycomb-shades",
     title: "Cellular Shades Orange Beach, AL | Comfort and Light Control",
     meta: "Explore cellular and honeycomb shades in Orange Beach, Alabama, with privacy, light-filtering, room-darkening and flexible operating options.",
-    canonical: "https://skywindowdesign.com/cellular-honeycomb-shades/",
+    canonical: "https://skywindowdesign.com/cellular-honeycomb-shades",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Cellular Shades" }],
     h1: "Cellular and Honeycomb Shades for Orange Beach, Alabama Homes",
     sections: [
@@ -403,7 +405,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "roman-shades",
     title: "Roman Shades Orange Beach, AL | Custom Fabric Options",
     meta: "Bring fabric, texture and tailored style to your windows with custom Roman shades in Orange Beach, Alabama.",
-    canonical: "https://skywindowdesign.com/roman-shades/",
+    canonical: "https://skywindowdesign.com/roman-shades",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Roman Shades" }],
     h1: "Roman Shades for Orange Beach, Alabama Homes",
     sections: [
@@ -426,7 +428,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "blinds",
     title: "Custom Blinds Orange Beach, AL | Light and Privacy Control",
     meta: "Compare custom blinds in Orange Beach, Alabama, with material, color, louver and operating options for homes and offices.",
-    canonical: "https://skywindowdesign.com/blinds/",
+    canonical: "https://skywindowdesign.com/blinds",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments", url: "/window-treatments" }, { label: "Custom Blinds" }],
     h1: "Custom Blinds for Orange Beach, Alabama Homes and Offices",
     sections: [
@@ -449,7 +451,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "wallpaper-interior-design",
     title: "Wallpaper and Interior Design Orange Beach, AL",
     meta: "Coordinate wallpaper, fabrics and window treatments in Orange Beach, Alabama for a more finished, cohesive interior.",
-    canonical: "https://skywindowdesign.com/wallpaper-interior-design/",
+    canonical: "https://skywindowdesign.com/wallpaper-interior-design",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Wallpaper and Interior Design" }],
     h1: "Wallpaper and Interior Design for Orange Beach, Alabama Homes",
     sections: [
@@ -472,7 +474,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "commercial-window-treatments",
     title: "Commercial Window Treatments Orange Beach, AL",
     meta: "Plan commercial window treatments in Orange Beach, Alabama, for offices, hospitality spaces, restaurants, rentals and businesses.",
-    canonical: "https://skywindowdesign.com/commercial-window-treatments/",
+    canonical: "https://skywindowdesign.com/commercial-window-treatments",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Commercial Window Treatments" }],
     h1: "Commercial Window Treatments for Orange Beach, Alabama Businesses",
     sections: [
@@ -495,7 +497,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "about",
     title: "About Sky Window Design and More | Orange Beach, AL",
     meta: "Meet Sky Window Design and More, a local Orange Beach showroom for custom shades, blinds, shutters, draperies and interior design.",
-    canonical: "https://skywindowdesign.com/about/",
+    canonical: "https://skywindowdesign.com/about",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "About" }],
     h1: "About Sky Window Design and More",
     sections: [
@@ -513,7 +515,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "visualizer",
     title: "Window Treatment Visualizer | Orange Beach, AL",
     meta: "Explore window treatment styles, fabrics and operating options before your Orange Beach consultation.",
-    canonical: "https://skywindowdesign.com/visualizer/",
+    canonical: "https://skywindowdesign.com/visualizer",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Visualizer" }],
     h1: "Visualize Your Window Treatments",
     sections: [
@@ -533,7 +535,7 @@ export const PAGES: Record<string, PageData> = {
     slug: "window-treatment-repairs",
     title: "Window Treatment Repairs Orange Beach, AL",
     meta: "Request a consultation for window treatment repairs in Orange Beach, Alabama. Scope, fees and availability depend on the product and location.",
-    canonical: "https://skywindowdesign.com/window-treatment-repairs/",
+    canonical: "https://skywindowdesign.com/window-treatment-repairs",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Repairs" }],
     h1: "Window Treatment Repairs for Orange Beach, Alabama",
     sections: [
@@ -567,7 +569,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "gulf-shores-al",
     title: "Window Treatments in Gulf Shores, AL | Sky Window Design",
     meta: "Find custom window treatments in Gulf Shores, Alabama, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/gulf-shores-al/",
+    canonical: "https://skywindowdesign.com/locations/gulf-shores-al",
     area: "Gulf Shores, AL",
     h1: "Window Treatments for Gulf Shores, Alabama Homes and Businesses",
     sections: [
@@ -585,7 +587,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "foley-al",
     title: "Window Treatments in Foley, AL | Sky Window Design",
     meta: "Find custom window treatments in Foley, Alabama, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/foley-al/",
+    canonical: "https://skywindowdesign.com/locations/foley-al",
     area: "Foley, AL",
     h1: "Window Treatments in Foley, Alabama",
     sections: [
@@ -603,7 +605,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "fairhope-al",
     title: "Window Treatments in Fairhope, AL | Sky Window Design",
     meta: "Find custom window treatments in Fairhope, Alabama, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/fairhope-al/",
+    canonical: "https://skywindowdesign.com/locations/fairhope-al",
     area: "Fairhope, AL",
     h1: "Window Treatments in Fairhope, Alabama",
     sections: [
@@ -621,7 +623,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "pensacola-fl",
     title: "Window Treatments in Pensacola, FL | Sky Window Design",
     meta: "Find custom window treatments in Pensacola, Florida, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/pensacola-fl/",
+    canonical: "https://skywindowdesign.com/locations/pensacola-fl",
     area: "Pensacola, FL",
     h1: "Window Treatments in Pensacola, Florida",
     sections: [
@@ -639,7 +641,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "gulf-breeze-fl",
     title: "Window Treatments in Gulf Breeze, FL | Sky Window Design",
     meta: "Find custom window treatments in Gulf Breeze, Florida, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/gulf-breeze-fl/",
+    canonical: "https://skywindowdesign.com/locations/gulf-breeze-fl",
     area: "Gulf Breeze, FL",
     h1: "Window Treatments in Gulf Breeze, Florida",
     sections: [
@@ -657,7 +659,7 @@ export const CITY_PAGES: Record<string, CityPageData> = {
     slug: "navarre-fl",
     title: "Window Treatments in Navarre, FL | Sky Window Design",
     meta: "Find custom window treatments in Navarre, Florida, including shades, blinds, shutters, draperies, motorized options and consultation support.",
-    canonical: "https://skywindowdesign.com/locations/navarre-fl/",
+    canonical: "https://skywindowdesign.com/locations/navarre-fl",
     area: "Navarre, FL",
     h1: "Window Treatments in Navarre, Florida",
     sections: [

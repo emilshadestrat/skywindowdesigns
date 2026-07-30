@@ -12,6 +12,7 @@ import { StandardPage } from "@/components/StandardPage";
 import { CityPage } from "@/components/CityPage";
 import ServiceAreas from "@/pages/ServiceAreas";
 import DesignServices from "@/pages/DesignServices";
+import Blog from "@/pages/Blog";
 
 function Router() {
   return (
@@ -41,6 +42,7 @@ function Router() {
       {/* Hub pages */}
       <Route path="/service-areas" component={ServiceAreas} />
       <Route path="/design-services" component={DesignServices} />
+      <Route path="/blog" component={Blog} />
 
       {/* Phase 3: City pages */}
       <Route path="/locations/gulf-shores-al">{() => <CityPage pageKey="gulf-shores-al" />}</Route>

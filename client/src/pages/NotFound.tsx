@@ -9,7 +9,7 @@ export default function NotFound() {
       <Seo
         title="Page Not Found | Sky Window Design and More"
         description="The page you are looking for could not be found. Browse our window treatments or contact us for help."
-        canonical="https://skywindowdesign.com/404/"
+        canonical="https://skywindowdesign.com/404"
       />
       <section className="pt-8 pb-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container max-w-[640px] text-center">
@@ -41,8 +41,17 @@ export default function NotFound() {
             <Link href="/roller-shades" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
               Roller Shades
             </Link>
+            <Link href="/motorized-shades" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Motorized Shades
+            </Link>
             <Link href="/plantation-shutters" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
               Plantation Shutters
+            </Link>
+            <Link href="/design-services" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Design Services
+            </Link>
+            <Link href="/about" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              About
             </Link>
             <Link href="/contact" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
               Contact

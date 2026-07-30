@@ -308,6 +308,23 @@
     outline: 2px solid var(--color-brand);
     outline-offset: -2px;
   }
+
+  /* ── Nav links and footer links — focus-visible rings ── */
+  .nav-link:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .footer-link:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .mobile-nav-link:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
   @media (prefers-reduced-motion: reduce) {
     .dropdown-item,
     .dropdown-item:hover {

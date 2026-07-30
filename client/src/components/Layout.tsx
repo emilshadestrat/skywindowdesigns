@@ -92,7 +92,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                     {link.href ? (
                       <Link
                         href={link.href}
-                        className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                        className="nav-link inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
                         aria-haspopup="menu"
                         aria-expanded={openDropdown === link.label}
                       >
@@ -101,7 +101,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                       </Link>
                     ) : (
                       <button
-                        className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                        className="nav-link inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
                         aria-haspopup="menu"
                         aria-expanded={openDropdown === link.label}
                         onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
@@ -138,7 +138,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                    className="nav-link px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -149,7 +149,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
             {/* Desktop phone (always visible) */}
             <a
               href={CONTACT.phoneHref}
-              className={`hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors ${isPill ? "" : ""}`}
+              className={`nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors ${isPill ? "" : ""}`}
             >
               <Phone size={15} />
               {CONTACT.phone}
@@ -241,7 +241,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
+                  className="footer-link block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -255,7 +255,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
+                  className="footer-link block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -269,7 +269,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
+                  className="footer-link block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -282,14 +282,14 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               <div className="space-y-3">
                 <a
                   href={CONTACT.phoneHref}
-                  className="flex items-start gap-3 text-[14.5px] text-slate-300 hover:text-white transition-colors"
+                  className="footer-link flex items-start gap-3 text-[14.5px] text-slate-300 hover:text-white transition-colors"
                 >
                   <Phone size={15} className="mt-0.5 flex-shrink-0 text-blue-400" />
                   {CONTACT.phone}
                 </a>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="flex items-start gap-3 text-[14.5px] text-slate-300 hover:text-white transition-colors"
+                  className="footer-link flex items-start gap-3 text-[14.5px] text-slate-300 hover:text-white transition-colors"
                 >
                   <Mail size={15} className="mt-0.5 flex-shrink-0 text-blue-400" />
                   {CONTACT.email}
@@ -387,7 +387,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="py-2.5 text-[15px] font-medium text-slate-600 hover:text-blue-700 transition-colors"
+                          className="mobile-nav-link py-2.5 text-[15px] font-medium text-slate-600 hover:text-blue-700 transition-colors"
                           onClick={() => setMobileNavOpen(false)}
                         >
                           {item.label}

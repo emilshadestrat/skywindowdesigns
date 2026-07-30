@@ -38,9 +38,30 @@ const labelCls = "block text-[13.5px] font-semibold text-slate-700 mb-1.5";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const errCls = "text-[12.5px] text-red-600 mt-1";
+
+  function validate(form: HTMLFormElement): boolean {
+    const fd = new FormData(form);
+    const errs: Record<string, string> = {};
+    const first = (fd.get("firstName") as string)?.trim();
+    const last = (fd.get("lastName") as string)?.trim();
+    const phone = (fd.get("phone") as string)?.trim();
+    const email = (fd.get("email") as string)?.trim();
+    if (!first) errs.firstName = "First name is required";
+    if (!last) errs.lastName = "Last name is required";
+    if (!phone) errs.phone = "Phone is required";
+    else if (phone.replace(/[^0-9]/g, "").length < 10) errs.phone = "Enter a valid phone number";
+    if (!email) errs.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Enter a valid email address";
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (!validate(form)) return;
     // GHL integration placeholder — wire to GoHighLevel webhook before launch
     setSubmitted(true);
   }
@@ -160,6 +181,20 @@ export default function ContactPage() {
                   ))}
                 </ul>
               </div>
+
+              {/* Map embed */}
+              <div className="rounded-2xl overflow-hidden border border-slate-100" style={{ boxShadow: "0 4px 24px rgba(15,23,42,0.08)" }}>
+                <iframe
+                  title="Sky Window Design & More showroom location map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.0!2d-87.58!3d30.26!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDE1JzM2LjAiTiA4N8KwMzQnNDguMCJX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
 
             {/* ── Right: Consultation form ── */}
@@ -192,20 +227,24 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className={labelCls} htmlFor="firstName">First Name <span className="text-red-500">*</span></label>
-                        <input id="firstName" name="firstName" type="text" required autoComplete="given-name" className={inputCls} />
+                        <input id="firstName" name="firstName" type="text" required autoComplete="given-name" aria-invalid={!!errors.firstName} className={inputCls} />
+                        {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
                       </div>
                       <div>
                         <label className={labelCls} htmlFor="lastName">Last Name <span className="text-red-500">*</span></label>
-                        <input id="lastName" name="lastName" type="text" required autoComplete="family-name" className={inputCls} />
+                        <input id="lastName" name="lastName" type="text" required autoComplete="family-name" aria-invalid={!!errors.lastName} className={inputCls} />
+                        {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
                       </div>
                     </div>
                     <div>
                       <label className={labelCls} htmlFor="phone">Phone <span className="text-red-500">*</span></label>
-                      <input id="phone" name="phone" type="tel" required autoComplete="tel" className={inputCls} placeholder="(251) 000-0000" />
+                      <input id="phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" aria-invalid={!!errors.phone} className={inputCls} placeholder="(251) 000-0000" />
+                      {errors.phone && <p className={errCls}>{errors.phone}</p>}
                     </div>
                     <div>
                       <label className={labelCls} htmlFor="email">Email <span className="text-red-500">*</span></label>
-                      <input id="email" name="email" type="email" required autoComplete="email" className={inputCls} placeholder="you@example.com" />
+                      <input id="email" name="email" type="email" inputMode="email" required autoComplete="email" aria-invalid={!!errors.email} className={inputCls} placeholder="you@example.com" />
+                      {errors.email && <p className={errCls}>{errors.email}</p>}
                     </div>
                     <div>
                       <label className={labelCls} htmlFor="project">Project Details</label>
