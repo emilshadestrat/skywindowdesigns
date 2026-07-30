@@ -10,6 +10,7 @@ import Privacy from "@/pages/Privacy";
 import Accessibility from "@/pages/Accessibility";
 import { StandardPage } from "@/components/StandardPage";
 import { CityPage } from "@/components/CityPage";
+import ServiceAreas from "@/pages/ServiceAreas";
 
 function Router() {
   return (
@@ -35,6 +36,9 @@ function Router() {
       <Route path="/about">{() => <StandardPage pageKey="about" />}</Route>
       <Route path="/visualizer">{() => <StandardPage pageKey="visualizer" />}</Route>
       <Route path="/window-treatment-repairs">{() => <StandardPage pageKey="window-treatment-repairs" />}</Route>
+
+      {/* Service Areas hub */}
+      <Route path="/service-areas" component={ServiceAreas} />
 
       {/* Phase 3: City pages */}
       <Route path="/locations/gulf-shores-al">{() => <CityPage pageKey="gulf-shores-al" />}</Route>

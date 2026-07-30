@@ -9,6 +9,9 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { CITY_PAGES, PRODUCT_CARDS, CONTACT, type CityPageData } from "@/lib/siteData";
 import { Phone, MapPin, CheckCircle2, ChevronRight } from "lucide-react";
 
+// All city page keys for cross-linking
+const ALL_CITY_KEYS = Object.keys(CITY_PAGES);
+
 export function CityPage({ pageKey }: { pageKey: string }) {
   const data: CityPageData | undefined = CITY_PAGES[pageKey];
   if (!data) return null;
@@ -178,6 +181,30 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Other Service Areas cross-link strip ── */}
+      <section className="py-12 bg-white border-t border-slate-100">
+        <div className="container">
+          <span className="eyebrow">Other Service Areas</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+            {ALL_CITY_KEYS
+              .filter((key) => key !== pageKey)
+              .map((key) => {
+                const city = CITY_PAGES[key];
+                return (
+                  <Link
+                    key={key}
+                    href={`/locations/${key}`}
+                    className="inline-flex items-center gap-1 text-[14.5px] font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                  >
+                    <ChevronRight size={14} />
+                    {city.area}
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </section>

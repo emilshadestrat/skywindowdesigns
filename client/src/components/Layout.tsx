@@ -98,7 +98,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                             <Link
                               key={item.href}
                               href={item.href}
-                              className="block px-5 py-2.5 text-[14px] font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-colors"
+                              className="dropdown-item block px-5 py-2.5 text-[14px] font-medium text-slate-700"
                             >
                               {item.label}
                             </Link>
@@ -279,7 +279,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               </div>
               <Link
                 href="/contact"
-                className="btn-primary mt-5 !text-[13.5px] !py-2.5 !px-5 inline-flex"
+                className="btn-primary footer-cta mt-5 !text-[13.5px] !py-2.5 !px-5 inline-flex"
               >
                 Free Consultation
               </Link>

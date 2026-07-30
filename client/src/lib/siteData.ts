@@ -58,6 +58,7 @@ export const NAV_LINKS = [
     label: "Service Areas",
     href: null,
     dropdown: [
+      { label: "All Service Areas", href: "/service-areas" },
       { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
       { label: "Foley, AL", href: "/locations/foley-al" },
       { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -132,6 +133,7 @@ export const FOOTER_LINKS = {
     { label: "About", href: "/about" },
   ],
   serviceArea: [
+    { label: "All Service Areas", href: "/service-areas" },
     { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
     { label: "Foley, AL", href: "/locations/foley-al" },
     { label: "Fairhope, AL", href: "/locations/fairhope-al" },
