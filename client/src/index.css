@@ -303,14 +303,14 @@
   /* ── Sky watermark for hero ── */
   .sky-watermark {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -45%);
+    bottom: 2%;
+    left: 0;
+    transform: translateX(-8%);
     font-family: 'Petrona', Georgia, serif;
     font-size: clamp(10rem, 8rem + 18vw, 28rem);
     font-weight: 700;
-    color: rgba(100, 140, 220, 0.12);
-    line-height: 1;
+    color: rgba(100, 140, 220, 0.10);
+    line-height: 0.85;
     letter-spacing: -0.04em;
     pointer-events: none;
     user-select: none;

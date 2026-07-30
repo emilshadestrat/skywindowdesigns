@@ -100,7 +100,7 @@ export default function Home() {
           {/* White fade at bottom — image dissolves into white page */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0) 55%, rgba(255,255,255,0.85) 80%, #ffffff 100%)" }}
+            style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0) 35%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.95) 80%, #ffffff 100%)" }}
           />
         </div>
 
