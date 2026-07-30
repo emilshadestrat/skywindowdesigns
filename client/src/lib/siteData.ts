@@ -223,6 +223,11 @@ export const PROCESS_STEPS = [
     title: "Confirm the Project Details",
     body: "We review the measurements, product choices and installation plan so you know what to expect before moving forward.",
   },
+  {
+    num: "4",
+    title: "Professional Installation",
+    body: "Our team installs with precision and care. We confirm everything looks and works right before we leave.",
+  },
 ];
 
 // Page data for standard pages

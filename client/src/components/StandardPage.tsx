@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, type PageData } from "@/lib/siteData";
+import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, type PageData } from "@/lib/siteData";
 import {
   Phone, ChevronRight, CheckCircle2, Star, Award, Ruler, Wrench, MapPin,
   Sun, EyeOff, Layers, Zap, Shield, Home,
@@ -240,20 +240,15 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
   // Split sections: first section = "What It Is", rest = additional content
   const [firstSection, ...restSections] = data.sections;
 
-  // Process steps (reuse PROCESS_STEPS from siteData, or inline)
-  const steps = [
-    { num: "01", title: "Tell Us About the Room", body: "Share what you want to improve — glare, privacy, style, comfort, operation or a combination of needs." },
-    { num: "02", title: "Compare Options at the Showroom", body: "Browse materials, fabrics and operating methods. We help you compare the details that matter for the space." },
-    { num: "03", title: "Confirm the Project Details", body: "We review measurements, product choices and the installation plan so you know what to expect." },
-    { num: "04", title: "Professional Installation", body: "Our team installs with precision and care. We confirm everything looks and works right before we leave." },
-  ];
+  // Process steps — verbatim from PROCESS_STEPS in siteData.ts
+  const steps = PROCESS_STEPS.map((s) => ({ num: `0${s.num}`, title: s.title, body: s.body }));
 
-  // FAQ items — use page-specific or generic fallback
+  // FAQ items — answers aligned with approved copy in HOMEPAGE_FAQS and page sections
   const faqs = [
     { q: `What is included in a free consultation for ${data.schemaName}?`, a: "We discuss the room, compare product options, review measurements and confirm the project details. There is no obligation to purchase." },
     { q: "How long does installation take?", a: "Installation time depends on the product, the number of windows and the scope of the project. We confirm the timeline before moving forward." },
-    { q: "Do you offer motorized options?", a: "Motorized options may be available for selected products. Compatibility depends on the selected shade, motor, hub and control platform." },
-    { q: "What areas do you serve?", a: "We serve Orange Beach, Gulf Shores, Foley, Fairhope, Pensacola, Gulf Breeze and Navarre. Contact us to confirm service availability for your location." },
+    { q: "Are motorized window treatments available?", a: "Motorized options may be available for selected shades and window-treatment systems. Compatibility depends on the selected shade, motor, hub and control platform." },
+    { q: "Do you serve areas outside Orange Beach, Alabama?", a: "Yes. Our service area includes Gulf Shores, Foley, Fairhope, Pensacola, Gulf Breeze and Navarre. Contact us to confirm service availability for your location." },
   ];
 
   return (
