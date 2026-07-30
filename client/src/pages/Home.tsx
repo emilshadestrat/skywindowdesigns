@@ -1,3 +1,8 @@
+// Home.tsx — Sky Window Design & More
+// Pattern: Solomon Shade Solutions (solomonshadesolutions.com)
+// All copy VERBATIM from approved copy doc. Do not alter.
+
+import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
@@ -5,48 +10,74 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import {
   IMAGES, TRUST_ITEMS, PRODUCT_CARDS, HOMEPAGE_FAQS, PROCESS_STEPS, CONTACT,
 } from "@/lib/siteData";
+import { Phone, CheckCircle2, MapPin, Clock, ChevronRight, Star } from "lucide-react";
+
+// Scroll-reveal hook
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+function RevealDiv({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useReveal();
+  return (
+    <div ref={ref} className={`reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Sky Window Design & More",
+    legalName: "Sky Window Design & More, LLC",
+    telephone: "+12512067319",
+    email: "lance@skywindowdesign.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "25405 Perdido Beach Blvd., Suite 7A",
+      addressLocality: "Orange Beach",
+      addressRegion: "AL",
+      postalCode: "36561",
+      addressCountry: "US",
+    },
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "10:00", closes: "15:00" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Sky Window Design & More",
+    url: "https://skywindowdesign.com/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: HOMEPAGE_FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
 
 export default function Home() {
-  const schema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Sky Window Design & More",
-      legalName: "Sky Window Design & More, LLC",
-      telephone: "+12512067319",
-      email: "lance@skywindowdesign.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "25405 Perdido Beach Blvd., Suite 7A",
-        addressLocality: "Orange Beach",
-        addressRegion: "AL",
-        postalCode: "36561",
-        addressCountry: "US",
-      },
-      openingHoursSpecification: [
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "17:00" },
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "10:00", closes: "15:00" },
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "Sky Window Design & More",
-      url: "https://skywindowdesign.com/",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: HOMEPAGE_FAQS.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ];
-
   return (
-    <Layout>
+    <Layout heroPage>
       <Seo
         title="Sky Window Design & More | Custom Window Treatments in Orange Beach, AL"
         description="Custom window treatments in Orange Beach, Alabama. Roller shades, shutters, draperies, motorized options, and interior design for Gulf Coast homes and businesses."
@@ -54,205 +85,364 @@ export default function Home() {
         schema={schema}
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden px-8 pt-12 pb-24">
-        <div className="mx-auto max-w-[1280px] grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
-          <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-              Orange Beach, Alabama
-            </p>
-            <h1 className="font-[var(--font-display)] text-[clamp(2.75rem,2rem+3vw,4.5rem)] leading-[1.1] font-semibold text-[var(--text-heading)] mb-6">
+      {/* ═══════════════════════════════════════════
+          HERO — full-bleed photo + dark overlay
+          Pattern: Solomon hero with left-aligned H1
+          ═══════════════════════════════════════════ */}
+      <section className="relative min-h-[92vh] flex items-center" style={{ paddingTop: "70px" }}>
+        {/* Background image */}
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={IMAGES.hero}
+            alt="Custom window treatments in a bright coastal living room in Orange Beach, Alabama"
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay — matches Solomon's dark hero treatment */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(105deg, oklch(0.15 0.02 255 / 0.82) 0%, oklch(0.15 0.02 255 / 0.55) 60%, oklch(0.15 0.02 255 / 0.30) 100%)" }}
+          />
+        </div>
+
+        {/* Hero content */}
+        <div className="container relative z-10 py-20">
+          <div className="max-w-[680px]">
+            {/* Eyebrow */}
+            <p className="eyebrow text-blue-300 mb-5">Orange Beach, Alabama</p>
+
+            {/* H1 — verbatim from copy doc */}
+            <h1
+              className="text-white font-[Montserrat,sans-serif] font-extrabold leading-[1.08] mb-6"
+              style={{ fontSize: "clamp(2.5rem, 2rem + 3vw, 4.25rem)", letterSpacing: "-0.025em" }}
+            >
               Custom Window Treatments for Gulf Coast Living
             </h1>
-            <p className="text-[1.1875rem] leading-relaxed text-[var(--text-body)] mb-4 max-w-[560px]">
+
+            {/* Lead copy — verbatim */}
+            <p className="text-white/85 text-[1.125rem] leading-relaxed mb-3 max-w-[580px]">
               Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
             </p>
-            <p className="text-[1.1875rem] leading-relaxed text-[var(--text-body)] mb-8 max-w-[560px]">
+            <p className="text-white/85 text-[1.125rem] leading-relaxed mb-8 max-w-[580px]">
               We help Gulf Coast homeowners and businesses compare products, fabrics and operating methods — then schedule professional measure and installation.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[var(--brand-primary-hover)]">
-                Schedule a Consultation
-              </Link>
-              <a href={CONTACT.phoneHref} className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-[var(--brand-primary)] transition-colors hover:bg-[var(--brand-primary-tint)]">
+
+            {/* Checklist — verbatim */}
+            <ul className="mb-8 space-y-2">
+              {["Free in-home consultation", "Professional measure and installation", "Local Orange Beach showroom"].map((item) => (
+                <li key={item} className="flex items-center gap-2.5 text-white/90 text-[15px] font-medium">
+                  <CheckCircle2 size={17} className="text-blue-300 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-4 mb-10">
+              <a href={CONTACT.phoneHref} className="btn-primary !bg-blue-600 !border-blue-600 hover:!bg-blue-700 hover:!border-blue-700">
+                <Phone size={16} />
                 Call {CONTACT.phone}
               </a>
-            </div>
-          </div>
-          <div className="relative">
-            <img
-              src={IMAGES.hero}
-              alt="Bright coastal living room with custom roller shades overlooking the Gulf Coast in Orange Beach, Alabama"
-              className="w-full h-[420px] lg:h-[520px] object-cover rounded-[var(--radius-lg)] shadow-[var(--shadow-md)]"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Bar */}
-      <section className="px-8 pb-8">
-        <div className="mx-auto max-w-[1280px] flex items-center justify-center gap-8 flex-wrap py-6 border-y border-[var(--border-subtle)]">
-          {TRUST_ITEMS.map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[var(--star-gold)]"></span>
-              <span className="text-[15px] font-semibold text-[var(--text-heading)]">{item}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Window Treatments Intro */}
-      <section className="py-24 px-8">
-        <div className="mx-auto max-w-[1280px]">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-            Products
-          </p>
-          <h2 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-[var(--text-heading)] mb-6">
-            Window Treatments Designed Around Your Space
-          </h2>
-          <p className="text-[1.0625rem] leading-relaxed text-[var(--text-body)] max-w-[720px] mb-4">
-            Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.
-          </p>
-          <p className="text-[1.0625rem] leading-relaxed text-[var(--text-body)] max-w-[720px]">
-            We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space.
-          </p>
-        </div>
-      </section>
-
-      {/* Product Cards */}
-      <section className="pb-24 px-8">
-        <div className="mx-auto max-w-[1280px] grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PRODUCT_CARDS.map((card) => (
-            <Link
-              key={card.href}
-              href={card.href}
-              className="group rounded-[var(--radius-lg)] overflow-hidden bg-white border border-[var(--border-subtle)] shadow-[var(--shadow-sm)] transition-shadow hover:shadow-[var(--shadow-md)]"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={card.img}
-                  alt={`${card.title} — custom window treatment by Sky Window Design and More in Orange Beach, Alabama`}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-[var(--font-display)] text-1.25rem font-semibold text-[var(--text-heading)] mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-[var(--text-body)] mb-4">
-                  {card.desc}
-                </p>
-                <span className="text-[14px] font-semibold text-[var(--brand-primary)] group-hover:text-[var(--brand-primary-hover)]">
-                  Learn more →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Showroom */}
-      <section className="bg-[var(--surface-tint)] py-24 px-8">
-        <div className="mx-auto max-w-[1280px] grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-              Visit Us
-            </p>
-            <h2 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-[var(--text-heading)] mb-6">
-              A Local Showroom for Coastal Homes and Businesses
-            </h2>
-            <p className="text-[1.0625rem] leading-relaxed text-[var(--text-body)] mb-4 max-w-[560px]">
-              Visit Sky Window Design and More at {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state}. Browse materials, fabrics and operating methods in person.
-            </p>
-            <p className="text-[1.0625rem] leading-relaxed text-[var(--text-body)] mb-8 max-w-[560px]">
-              Contact us before visiting to confirm current hours and consultation availability.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[var(--brand-primary-hover)]">
+              <Link href="/contact" className="btn-outline-white">
                 Schedule a Consultation
               </Link>
-              <Link href="/about" className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-[var(--brand-primary)] transition-colors hover:bg-[var(--brand-primary-tint)]">
-                Learn About Us
-              </Link>
             </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="bg-white rounded-[var(--radius-md)] p-6 shadow-[var(--shadow-sm)]">
-              <h3 className="font-[var(--font-display)] text-1.25rem font-semibold text-[var(--text-heading)] mb-3">Showroom Hours</h3>
-              {CONTACT.hours.map((h, i) => (
-                <div key={i} className="flex justify-between py-1.5 text-[15px] text-[var(--text-body)] border-b border-[var(--border-subtle)] last:border-0">
-                  <span>{h.day}</span>
-                  <span className="font-medium text-[var(--text-heading)]">{h.time}</span>
+
+            {/* Google Reviews badge */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={13} className="fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="bg-white rounded-[var(--radius-md)] p-6 shadow-[var(--shadow-sm)]">
-              <h3 className="font-[var(--font-display)] text-1.25rem font-semibold text-[var(--text-heading)] mb-3">Location</h3>
-              <p className="text-[15px] text-[var(--text-body)]">{CONTACT.address.street}</p>
-              <p className="text-[15px] text-[var(--text-body)]">{CONTACT.address.city}, {CONTACT.address.state} {CONTACT.address.zip}</p>
-              <p className="text-[15px] text-[var(--text-body)] mt-3">{CONTACT.phone}</p>
+                <span className="text-white text-[13.5px] font-semibold ml-1">5.0</span>
+                <span className="text-white/70 text-[12.5px]">Google Reviews</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-24 px-8">
-        <div className="mx-auto max-w-[1280px]">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-            How It Works
-          </p>
-          <h2 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-[var(--text-heading)] mb-12">
-            How the Design Process Works
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {PROCESS_STEPS.map((step) => (
-              <div key={step.num} className="relative">
-                <div className="w-12 h-12 rounded-full bg-[var(--brand-primary)] text-white flex items-center justify-center text-xl font-bold font-[var(--font-display)] mb-4">
-                  {step.num}
-                </div>
-                <h3 className="font-[var(--font-display)] text-1.25rem font-semibold text-[var(--text-heading)] mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-[var(--text-body)] max-w-[360px]">
-                  {step.body}
-                </p>
+      {/* ═══════════════════════════════════════════
+          STATS BAR — dark strip below hero
+          Pattern: Solomon's 4-item trust strip
+          ═══════════════════════════════════════════ */}
+      <div style={{ backgroundColor: "oklch(0.15 0.02 255)" }} className="py-5 border-b border-white/10">
+        <div className="container">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: "🏠", label: "Locally Owned & Operated" },
+              { icon: "📐", label: "Professional Measure & Installation" },
+              { icon: "⭐", label: "5.0 Google Rating" },
+              { icon: "🌊", label: "Serving the Alabama Gulf Coast" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 text-white">
+                <span className="text-xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
+                <span className="text-[13.5px] font-semibold leading-tight">{item.label}</span>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* FAQ */}
-      <section className="bg-[var(--surface-tint)] py-24 px-8">
-        <div className="mx-auto max-w-[1280px]">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-            FAQ
-          </p>
-          <h2 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-[var(--text-heading)] mb-8">
-            Frequently Asked Questions
-          </h2>
-          <FaqAccordion items={HOMEPAGE_FAQS} />
+      {/* ═══════════════════════════════════════════
+          PRODUCTS INTRO
+          ═══════════════════════════════════════════ */}
+      <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+        <div className="container">
+          <RevealDiv>
+            <span className="eyebrow">Products</span>
+            <h2 className="section-heading mb-5">Window Treatments Designed Around Your Space</h2>
+            <p className="text-[1.0625rem] leading-relaxed text-slate-600 max-w-[760px] mb-4">
+              Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.
+            </p>
+            <p className="text-[1.0625rem] leading-relaxed text-slate-600 max-w-[760px]">
+              We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space.
+            </p>
+          </RevealDiv>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-[var(--brand-primary)] py-24 px-8">
-        <div className="mx-auto max-w-[1280px] text-center">
-          <h2 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-white mb-6">
-            Ready to Compare Options for Your Space?
-          </h2>
-          <p className="text-[1.0625rem] leading-relaxed text-white/90 mb-8 max-w-[560px] mx-auto">
-            Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or inspiration.
-          </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-[var(--brand-primary)] transition-colors hover:bg-[var(--brand-primary-tint)]">
-              Schedule a Consultation
-            </Link>
-            <a href={CONTACT.phoneHref} className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/14">
+      {/* ═══════════════════════════════════════════
+          PRODUCT CARDS — image-top, 3-col grid
+          Pattern: Solomon's service cards
+          ═══════════════════════════════════════════ */}
+      <section className="pb-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+        <div className="container">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PRODUCT_CARDS.map((card, i) => (
+              <RevealDiv key={card.href} delay={i * 60}>
+                <Link href={card.href} className="service-card block group h-full">
+                  <div className="overflow-hidden" style={{ borderRadius: "0.75rem 0.75rem 0 0" }}>
+                    <img
+                      src={card.img}
+                      alt={`${card.title} — custom window treatment by Sky Window Design and More in Orange Beach, Alabama`}
+                      className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-slate-900 mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-[14.5px] leading-relaxed text-slate-600 mb-4 flex-1">
+                      {card.desc}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
+                      Learn More <ChevronRight size={15} />
+                    </span>
+                  </div>
+                </Link>
+              </RevealDiv>
+            ))}
+          </div>
+
+          {/* CTA below cards */}
+          <RevealDiv className="mt-10 flex flex-wrap gap-4 justify-center">
+            <a href={CONTACT.phoneHref} className="btn-primary">
+              <Phone size={16} />
               Call {CONTACT.phone}
             </a>
+            <Link href="/contact" className="btn-outline">
+              Schedule a Consultation
+            </Link>
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          SHOWROOM — split layout
+          Pattern: Solomon's "Why Us" split section
+          ═══════════════════════════════════════════ */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left: copy */}
+            <RevealDiv>
+              <span className="eyebrow">Visit Us</span>
+              <h2 className="section-heading mb-5">A Local Showroom for Coastal Homes and Businesses</h2>
+              <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-4 max-w-[540px]">
+                Visit Sky Window Design and More at {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state}. Browse materials, fabrics and operating methods in person.
+              </p>
+              <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[540px]">
+                Contact us before visiting to confirm current hours and consultation availability.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Browse fabrics, materials and operating methods in person",
+                  "Compare products side by side with expert guidance",
+                  "Custom measure and professional installation included",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[15px] text-slate-700">
+                    <CheckCircle2 size={17} className="text-blue-600 mt-0.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact" className="btn-primary">
+                  Schedule a Consultation
+                </Link>
+                <Link href="/about" className="btn-outline">
+                  Learn About Us
+                </Link>
+              </div>
+            </RevealDiv>
+
+            {/* Right: hours + address cards */}
+            <RevealDiv delay={120} className="space-y-4">
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <Clock size={18} className="text-blue-600" />
+                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Showroom Hours</h3>
+                </div>
+                {CONTACT.hours.map((h) => (
+                  <div key={h.day} className="flex justify-between py-2 text-[14.5px] text-slate-700 border-b border-slate-200 last:border-0">
+                    <span>{h.day}</span>
+                    <span className="font-semibold text-slate-900">{h.time}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <MapPin size={18} className="text-blue-600" />
+                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Location</h3>
+                </div>
+                <p className="text-[14.5px] text-slate-700">{CONTACT.address.street}</p>
+                <p className="text-[14.5px] text-slate-700">{CONTACT.address.city}, {CONTACT.address.state} {CONTACT.address.zip}</p>
+                <a href={CONTACT.phoneHref} className="flex items-center gap-2 mt-3 text-[14.5px] font-semibold text-blue-700 hover:text-blue-900 transition-colors">
+                  <Phone size={14} />
+                  {CONTACT.phone}
+                </a>
+              </div>
+            </RevealDiv>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          PROCESS — dark background, numbered steps
+          Pattern: Solomon's "How It Works" section
+          ═══════════════════════════════════════════ */}
+      <section
+        className="py-20 relative"
+        style={{ backgroundColor: "oklch(0.15 0.02 255)" }}
+      >
+        <div className="container relative z-10">
+          <RevealDiv className="mb-12">
+            <span className="eyebrow text-blue-400">How It Works</span>
+            <h2 className="section-heading-white">How the Design Process Works</h2>
+          </RevealDiv>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {PROCESS_STEPS.map((step, i) => (
+              <RevealDiv key={step.num} delay={i * 80}>
+                <div
+                  className="font-[Montserrat,sans-serif] font-extrabold mb-4 leading-none"
+                  style={{ fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)", color: "oklch(0.50 0.21 255 / 0.35)" }}
+                  aria-hidden="true"
+                >
+                  0{step.num}
+                </div>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-white mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-[14.5px] leading-relaxed text-slate-400 max-w-[320px]">
+                  {step.body}
+                </p>
+              </RevealDiv>
+            ))}
+          </div>
+
+          <RevealDiv className="flex flex-wrap gap-4">
+            <a href={CONTACT.phoneHref} className="btn-primary">
+              <Phone size={16} />
+              Call {CONTACT.phone}
+            </a>
+            <Link href="/contact" className="btn-outline-white">
+              Schedule a Consultation
+            </Link>
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          SERVICE AREAS STRIP
+          ═══════════════════════════════════════════ */}
+      <section className="py-16 bg-white border-b border-slate-100">
+        <div className="container">
+          <RevealDiv>
+            <span className="eyebrow">Where We Work</span>
+            <h2 className="section-heading mb-4">Proudly Serving the Alabama Gulf Coast</h2>
+            <p className="text-[1.0625rem] text-slate-600 mb-8 max-w-[600px]">
+              Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
+            </p>
+          </RevealDiv>
+          <RevealDiv delay={60} className="flex flex-wrap gap-3">
+            {[
+              { label: "Orange Beach, AL", href: "/" },
+              { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
+              { label: "Foley, AL", href: "/locations/foley-al" },
+              { label: "Fairhope, AL", href: "/locations/fairhope-al" },
+              { label: "Pensacola, FL", href: "/locations/pensacola-fl" },
+              { label: "Gulf Breeze, FL", href: "/locations/gulf-breeze-fl" },
+              { label: "Navarre, FL", href: "/locations/navarre-fl" },
+            ].map((city) => (
+              <Link
+                key={city.label}
+                href={city.href}
+                className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all"
+              >
+                {city.label}
+              </Link>
+            ))}
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          FAQ
+          ═══════════════════════════════════════════ */}
+      <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+        <div className="container">
+          <RevealDiv>
+            <span className="eyebrow">FAQ</span>
+            <h2 className="section-heading mb-8">Frequently Asked Questions</h2>
+          </RevealDiv>
+          <RevealDiv delay={60}>
+            <FaqAccordion items={HOMEPAGE_FAQS} />
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          FINAL CTA BAND — dark blue
+          Pattern: Solomon's bottom CTA band
+          ═══════════════════════════════════════════ */}
+      <section
+        className="py-20"
+        style={{ backgroundColor: "oklch(0.50 0.21 255)" }}
+      >
+        <div className="container text-center">
+          <RevealDiv>
+            <h2
+              className="font-[Montserrat,sans-serif] font-extrabold text-white mb-5 leading-tight"
+              style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem)", letterSpacing: "-0.025em" }}
+            >
+              Ready to Compare Options for Your Space?
+            </h2>
+            <p className="text-white/85 text-[1.0625rem] leading-relaxed mb-8 max-w-[540px] mx-auto">
+              Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or inspiration.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700">
+                Schedule a Consultation
+              </Link>
+              <a href={CONTACT.phoneHref} className="btn-outline-white">
+                <Phone size={16} />
+                Call {CONTACT.phone}
+              </a>
+            </div>
+          </RevealDiv>
         </div>
       </section>
     </Layout>
