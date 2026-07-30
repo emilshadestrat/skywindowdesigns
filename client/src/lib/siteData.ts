@@ -46,8 +46,9 @@ export const NAV_LINKS = [
   },
   {
     label: "Design Services",
-    href: null,
+    href: "/design-services",
     dropdown: [
+      { label: "All Design Services", href: "/design-services" },
       { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
       { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
       { label: "Visualizer", href: "/visualizer" },
@@ -88,6 +89,7 @@ export const MOBILE_NAV_GROUPS = [
   {
     label: "Design Services",
     items: [
+      { label: "All Design Services", href: "/design-services" },
       { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
       { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
       { label: "Visualizer", href: "/visualizer" },
@@ -97,6 +99,7 @@ export const MOBILE_NAV_GROUPS = [
   {
     label: "Service Areas",
     items: [
+      { label: "All Service Areas", href: "/service-areas" },
       { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
       { label: "Foley, AL", href: "/locations/foley-al" },
       { label: "Fairhope, AL", href: "/locations/fairhope-al" },

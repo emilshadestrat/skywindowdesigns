@@ -11,24 +11,42 @@ export default function NotFound() {
         description="The page you are looking for could not be found. Browse our window treatments or contact us for help."
         canonical="https://skywindowdesign.com/404/"
       />
-      <section className="py-32 px-8">
-        <div className="mx-auto max-w-[640px] text-center">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)] mb-4">
-            404
-          </p>
-          <h1 className="font-[var(--font-display)] text-[clamp(2rem,1.6rem+1.6vw,2.75rem)] leading-tight font-semibold text-[var(--text-heading)] mb-6">
+      <section className="pt-8 pb-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+        <div className="container max-w-[640px] text-center">
+          <span className="eyebrow">404 Error</span>
+          <h1
+            className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-4"
+            style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+          >
             This Page Could Not Be Found
           </h1>
-          <p className="text-[1.0625rem] leading-relaxed text-[var(--text-body)] mb-8">
+          <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8">
             The page you are looking for may have moved or no longer exists. Try one of the links below, or contact us directly.
           </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/" className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[var(--brand-primary-hover)]">
+          <div className="flex items-center justify-center gap-4 flex-wrap mb-10">
+            <Link href="/" className="btn-primary">
               Back to Home
             </Link>
-            <a href={CONTACT.phoneHref} className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-primary)] px-7 py-3.5 text-[15px] font-semibold text-[var(--brand-primary)] transition-colors hover:bg-[var(--brand-primary-tint)]">
+            <a href={CONTACT.phoneHref} className="btn-outline">
               Call {CONTACT.phone}
             </a>
+          </div>
+          <div className="flex items-center justify-center gap-x-6 gap-y-2 flex-wrap text-[14.5px]">
+            <Link href="/window-treatments" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Window Treatments
+            </Link>
+            <Link href="/service-areas" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Service Areas
+            </Link>
+            <Link href="/roller-shades" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Roller Shades
+            </Link>
+            <Link href="/plantation-shutters" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Plantation Shutters
+            </Link>
+            <Link href="/contact" className="font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
       </section>

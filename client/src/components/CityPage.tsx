@@ -41,7 +41,8 @@ export function CityPage({ pageKey }: { pageKey: string }) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://skywindowdesign.com/" },
-        { "@type": "ListItem", position: 2, name: data.area, item: data.canonical },
+        { "@type": "ListItem", position: 2, name: "Service Areas", item: "https://skywindowdesign.com/service-areas" },
+        { "@type": "ListItem", position: 3, name: data.area, item: data.canonical },
       ],
     },
     {
@@ -56,7 +57,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
   ];
 
   return (
-    <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: data.area }]}>
+    <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: "Service Areas", url: "/service-areas" }, { label: data.area }]}>
       <Seo title={data.title} description={data.meta} canonical={data.canonical} schema={schema} />
 
       {/* ── City Hero ── */}

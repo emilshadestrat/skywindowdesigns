@@ -47,6 +47,14 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
   return (
     <>
+      {/* Skip to content link for keyboard users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-blue-700 focus:font-semibold focus:text-sm focus:rounded-lg focus:shadow-lg"
+      >
+        Skip to content
+      </a>
+
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div className={isPill
@@ -74,11 +82,19 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                     className="relative group"
                     onMouseEnter={() => setOpenDropdown(link.label)}
                     onMouseLeave={() => setOpenDropdown(null)}
+                    onFocus={() => setOpenDropdown(link.label)}
+                    onBlur={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                        setOpenDropdown(null);
+                      }
+                    }}
                   >
                     {link.href ? (
                       <Link
                         href={link.href}
                         className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                        aria-haspopup="menu"
+                        aria-expanded={openDropdown === link.label}
                       >
                         {link.label}
                         <ChevronDown size={13} className="opacity-60" />
@@ -86,6 +102,9 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                     ) : (
                       <button
                         className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                        aria-haspopup="menu"
+                        aria-expanded={openDropdown === link.label}
+                        onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
                       >
                         {link.label}
                         <ChevronDown size={13} className="opacity-60" />
@@ -175,12 +194,12 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       {!breadcrumb && !heroPage && <div className="pt-[70px]" />}
 
       {/* Page content */}
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
 
       {/* ── Footer ── */}
       <footer style={{ backgroundColor: "oklch(0.15 0.02 255)" }} className="pt-16 pb-8">
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.3fr] gap-10 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
             {/* Col 1: Brand */}
             <div>
               <img
@@ -229,7 +248,21 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               ))}
             </div>
 
-            {/* Col 3: Service Areas */}
+            {/* Col 3: More Services */}
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Design Services</div>
+              {FOOTER_LINKS.moreServices.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block text-[14.5px] text-slate-300 mb-2.5 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Col 4: Service Areas */}
             <div>
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Service Areas</div>
               {FOOTER_LINKS.serviceArea.map((link) => (
