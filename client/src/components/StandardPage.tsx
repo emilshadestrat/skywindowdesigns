@@ -65,9 +65,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               {data.h1}
             </h1>
             <div className="flex flex-wrap gap-4">
-              {data.ctas.map((cta) => (
+              {data.ctas.map((cta, idx) => (
                 <Link
-                  key={cta.href}
+                  key={idx}
                   href={cta.href}
                   className={cta.variant === "primary" ? "btn-primary" : "btn-outline"}
                 >
@@ -180,9 +180,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
             <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>
           </div>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
-            {data.ctas.map((cta) => (
+            {data.ctas.map((cta, idx) => (
               <Link
-                key={cta.href}
+                key={idx}
                 href={cta.href}
                 className={cta.variant === "primary" ? "btn-outline-white" : "btn-outline-white !border-white/40"}
               >
