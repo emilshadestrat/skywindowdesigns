@@ -9,7 +9,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { PAGES, CONTACT, PRODUCT_CARDS, type PageData } from "@/lib/siteData";
 import { Phone, ChevronRight, CheckCircle2 } from "lucide-react";
 
-// Related products to show at bottom of product pages
+// Related product cards to show at bottom of product pages (image cards)
 const RELATED: Record<string, string[]> = {
   "roller-shades":              ["motorized-shades", "cellular-honeycomb-shades", "roman-shades"],
   "motorized-shades":           ["roller-shades", "draperies-curtains", "plantation-shutters"],
@@ -46,6 +46,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
 
   const relatedSlugs = RELATED[pageKey] ?? [];
   const relatedCards = PRODUCT_CARDS.filter((c) => relatedSlugs.includes(c.href.replace("/", "")));
+  const textLinks = data.relatedLinks ?? [];
 
   return (
     <Layout breadcrumb={data.breadcrumb}>
@@ -160,6 +161,27 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                       Learn More <ChevronRight size={14} />
                     </span>
                   </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Related Services text links ── */}
+      {textLinks.length > 0 && (
+        <section className="py-12 bg-white border-t border-slate-100">
+          <div className="container">
+            <span className="eyebrow">Related Services</span>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+              {textLinks.map((link, idx) => (
+                <Link
+                  key={idx}
+                  href={link.href}
+                  className="inline-flex items-center gap-1 text-[14.5px] font-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                >
+                  <ChevronRight size={14} />
+                  {link.label}
                 </Link>
               ))}
             </div>

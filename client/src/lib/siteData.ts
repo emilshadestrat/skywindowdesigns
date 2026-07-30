@@ -36,35 +36,81 @@ export const NAV_LINKS = [
     href: "/window-treatments",
     dropdown: [
       { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+      { label: "Plantation Shutters", href: "/plantation-shutters" },
       { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
       { label: "Roman Shades", href: "/roman-shades" },
-      { label: "Blinds", href: "/blinds" },
-      { label: "Wallpaper and Interior Design", href: "/wallpaper-interior-design" },
+      { label: "Custom Blinds", href: "/blinds" },
     ],
   },
-  { label: "Motorized Shades", href: "/motorized-shades" },
-  { label: "Draperies and Curtains", href: "/draperies-curtains" },
-  { label: "Shutters", href: "/plantation-shutters" },
-  { label: "Commercial", href: "/commercial-window-treatments" },
-  { label: "Visualizer", href: "/visualizer" },
+  {
+    label: "Design Services",
+    href: null,
+    dropdown: [
+      { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
+      { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
+      { label: "Visualizer", href: "/visualizer" },
+      { label: "Window Treatment Repairs", href: "/window-treatment-repairs" },
+    ],
+  },
+  {
+    label: "Service Areas",
+    href: null,
+    dropdown: [
+      { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
+      { label: "Foley, AL", href: "/locations/foley-al" },
+      { label: "Fairhope, AL", href: "/locations/fairhope-al" },
+      { label: "Pensacola, FL", href: "/locations/pensacola-fl" },
+      { label: "Gulf Breeze, FL", href: "/locations/gulf-breeze-fl" },
+      { label: "Navarre, FL", href: "/locations/navarre-fl" },
+    ],
+  },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact", isCta: true },
 ];
 
-export const MOBILE_NAV_LINKS = [
-  { label: "Window Treatments", href: "/window-treatments" },
-  { label: "Roller Shades", href: "/roller-shades" },
-  { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
-  { label: "Roman Shades", href: "/roman-shades" },
-  { label: "Custom Blinds", href: "/blinds" },
-  { label: "Wallpaper and Interior Design", href: "/wallpaper-interior-design" },
-  { label: "Motorized Shades", href: "/motorized-shades" },
-  { label: "Draperies and Curtains", href: "/draperies-curtains" },
-  { label: "Shutters", href: "/plantation-shutters" },
-  { label: "Commercial", href: "/commercial-window-treatments" },
-  { label: "Visualizer", href: "/visualizer" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+export const MOBILE_NAV_GROUPS = [
+  {
+    label: "Window Treatments",
+    items: [
+      { label: "All Window Treatments", href: "/window-treatments" },
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+      { label: "Plantation Shutters", href: "/plantation-shutters" },
+      { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
+      { label: "Roman Shades", href: "/roman-shades" },
+      { label: "Custom Blinds", href: "/blinds" },
+    ],
+  },
+  {
+    label: "Design Services",
+    items: [
+      { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
+      { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
+      { label: "Visualizer", href: "/visualizer" },
+      { label: "Window Treatment Repairs", href: "/window-treatment-repairs" },
+    ],
+  },
+  {
+    label: "Service Areas",
+    items: [
+      { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
+      { label: "Foley, AL", href: "/locations/foley-al" },
+      { label: "Fairhope, AL", href: "/locations/fairhope-al" },
+      { label: "Pensacola, FL", href: "/locations/pensacola-fl" },
+      { label: "Gulf Breeze, FL", href: "/locations/gulf-breeze-fl" },
+      { label: "Navarre, FL", href: "/locations/navarre-fl" },
+    ],
+  },
+  {
+    label: "Company",
+    items: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
 ];
 
 export const FOOTER_LINKS = {
@@ -191,7 +237,8 @@ export interface PageData {
   breadcrumb: { label: string; url?: string }[];
   h1: string;
   sections: PageSection[];
-  ctas: { label: string; href: string; variant: "primary" | "secondary" }[];
+  ctas: { label: string; href: string; variant: string }[];
+  relatedLinks?: { label: string; href: string }[];
   schemaType: string;
   schemaName: string;
 }
@@ -213,6 +260,16 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Start Your Project", body: "Schedule a consultation to discuss the room, compare options and confirm the project details." },
     ],
     ctas: [{ label: "Schedule a Consultation", href: "/contact", variant: "primary" }, { label: "Visit the Orange Beach Showroom", href: "/about", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+      { label: "Plantation Shutters", href: "/plantation-shutters" },
+      { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
+      { label: "Roman Shades", href: "/roman-shades" },
+      { label: "Custom Blinds", href: "/blinds" },
+      { label: "Visualizer", href: "/visualizer" },
+    ],
     schemaType: "Service",
     schemaName: "Window Treatments",
   },
@@ -231,6 +288,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Find the Right Roller Shade", body: "Schedule a consultation to discuss the room, compare fabric options and confirm the project details." },
     ],
     ctas: [{ label: "Schedule a Consultation", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Window Treatments", href: "/window-treatments" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
+    ],
     schemaType: "Service",
     schemaName: "Roller Shades",
   },
@@ -249,6 +311,12 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Plan a Connected Window Treatment", body: "Schedule a consultation to discuss the space, compare motorized options and confirm compatibility with the selected products." },
     ],
     ctas: [{ label: "Plan Motorized Window Treatments", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Cellular Shades", href: "/cellular-honeycomb-shades" },
+      { label: "Roman Shades", href: "/roman-shades" },
+      { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Motorized Shades",
   },
@@ -267,6 +335,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Start With a Design Consultation", body: "Schedule a consultation to discuss the room, compare fabric and style options and confirm the project details." },
     ],
     ctas: [{ label: "Schedule a Consultation", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Roman Shades", href: "/roman-shades" },
+      { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
+      { label: "Window Treatments", href: "/window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Draperies and Curtains",
   },
@@ -285,6 +358,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Request a Consultation", body: "Schedule a consultation to discuss the space, compare material and louver options and confirm the project details." },
     ],
     ctas: [{ label: "Explore Plantation Shutters", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Window Treatments", href: "/window-treatments" },
+      { label: "Custom Blinds", href: "/blinds" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+    ],
     schemaType: "Service",
     schemaName: "Plantation Shutters",
   },
@@ -303,6 +381,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Choose a Configuration", body: "Schedule a consultation to discuss the room, compare cellular shade options and confirm the project details." },
     ],
     ctas: [{ label: "Compare Cellular Shade Options", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Window Treatments", href: "/window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Cellular Shades",
   },
@@ -321,6 +404,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Coordinate the Room", body: "Roman shades can be coordinated with draperies, wallpaper and other design elements for a more finished look." },
     ],
     ctas: [{ label: "Design Custom Roman Shades", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+      { label: "Wallpaper & Interior Design", href: "/wallpaper-interior-design" },
+      { label: "Motorized Shades", href: "/motorized-shades" },
+    ],
     schemaType: "Service",
     schemaName: "Roman Shades",
   },
@@ -339,6 +427,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Find Your Best Fit", body: "Schedule a consultation to discuss the room, compare material and operating options and confirm the project details." },
     ],
     ctas: [{ label: "Compare Custom Blinds", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Plantation Shutters", href: "/plantation-shutters" },
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Window Treatments", href: "/window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Custom Blinds",
   },
@@ -357,6 +450,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Plan Your Interior Update", body: "Schedule a consultation to discuss the room, compare wallpaper and window treatment options and confirm the project details." },
     ],
     ctas: [{ label: "Plan a Coordinated Interior", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+      { label: "Roman Shades", href: "/roman-shades" },
+      { label: "Commercial Window Treatments", href: "/commercial-window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Wallpaper and Interior Design",
   },
@@ -375,6 +473,11 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Request a Commercial Consultation", body: "Contact us to discuss the space, the operating needs and the project scope. We will help you compare options and determine the next step." },
     ],
     ctas: [{ label: "Request a Commercial Consultation", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Motorized Shades", href: "/motorized-shades" },
+      { label: "Roller Shades", href: "/roller-shades" },
+      { label: "Draperies & Curtains", href: "/draperies-curtains" },
+    ],
     schemaType: "Service",
     schemaName: "Commercial Window Treatments",
   },
@@ -392,6 +495,7 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Start With a Conversation", body: "Bring your questions, room photos, measurements or inspiration. We will help you organize the options and determine the next step." },
     ],
     ctas: [{ label: "Schedule a Consultation", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [],
     schemaType: "AboutPage",
     schemaName: "About Sky Window Design and More",
   },
@@ -409,6 +513,9 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Bring Your Favorites to a Consultation", body: "Save your favorite looks and bring them to a consultation. We will help you compare the options, confirm product availability and determine the next step." },
     ],
     ctas: [{ label: "Start Exploring", href: "/contact", variant: "primary" }, { label: "Schedule a Consultation", href: "/contact", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Window Treatments", href: "/window-treatments" },
+    ],
     schemaType: "WebPage",
     schemaName: "Window Treatment Visualizer",
   },
@@ -426,6 +533,9 @@ export const PAGES: Record<string, PageData> = {
       { heading: "Service Area and Next Steps", body: "Repair services are available within our service area. Contact us to discuss the issue, confirm service availability and request a consultation." },
     ],
     ctas: [{ label: "Request Repair Help", href: "/contact", variant: "primary" }, { label: "Call (251) 206-7319", href: "tel:+12512067319", variant: "secondary" }],
+    relatedLinks: [
+      { label: "Window Treatments", href: "/window-treatments" },
+    ],
     schemaType: "Service",
     schemaName: "Window Treatment Repairs",
   },

@@ -1,13 +1,13 @@
 // Layout.tsx — Sky Window Design & More
 // Pattern: Solomon Shade Solutions (solomonshadesolutions.com)
-// Nav: sticky, transparent on hero → white/blur on scroll
-// Footer: dark bg (#0f172a), 4 columns, social icons
-// Mobile: hamburger overlay + sticky bottom bar
+// Nav: 5-item consolidated with dropdowns, Contact as CTA button
+// Breadcrumbs: visible on all subpages
+// Mobile: grouped accordion nav overlay + sticky bottom bar
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { NAV_LINKS, MOBILE_NAV_LINKS, FOOTER_LINKS, CONTACT, IMAGES } from "@/lib/siteData";
-import { Phone, Menu, X, ChevronDown, MapPin, Mail, Clock } from "lucide-react";
+import { NAV_LINKS, MOBILE_NAV_GROUPS, FOOTER_LINKS, CONTACT, IMAGES } from "@/lib/siteData";
+import { Phone, Menu, X, ChevronDown, ChevronRight, MapPin, Mail, Clock, Plus, Minus } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,11 +19,13 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [location] = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setMobileNavOpen(false);
+    setExpandedGroups(new Set());
   }, [location]);
 
   useEffect(() => {
@@ -32,109 +34,124 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // CONTACTUS.png pattern: floating white rounded nav pill over hero, solid white bar on scroll
-  const navWrapper = heroPage && !scrolled
-    ? "nav-pill mx-3 lg:mx-4 mt-3 px-4 lg:px-6"
-    : "bg-white/95 backdrop-blur-md shadow-sm";
-  const navText = "text-slate-800";
-  const navHover = "hover:text-blue-700";
-  const logoFilter = "";
+  const toggleGroup = (label: string) => {
+    setExpandedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(label)) next.delete(label);
+      else next.add(label);
+      return next;
+    });
+  };
+
+  const isPill = heroPage && !scrolled;
 
   return (
     <>
       {/* ── Header ── */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`} style={heroPage && !scrolled ? { borderRadius: "9999px" } : {}}>
-        <div className={heroPage && !scrolled ? "nav-pill mx-3 lg:mx-6 mt-3 px-4 lg:px-6" : "bg-white/95 backdrop-blur-md shadow-sm"}>
-        <div className="container mx-auto flex items-center justify-between h-16 lg:h-[70px]">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <img
-              src={IMAGES.logo}
-              alt="Sky Window Design & More"
-              className={`h-10 lg:h-12 w-auto transition-all duration-300 ${logoFilter}`}
-              width="160"
-              height="48"
-            />
-          </Link>
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div className={isPill
+          ? "nav-pill mx-3 lg:mx-6 mt-3 px-4 lg:px-6"
+          : "bg-white/95 backdrop-blur-md shadow-sm"
+        }>
+          <div className="container mx-auto flex items-center justify-between h-16 lg:h-[70px]">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0">
+              <img
+                src={IMAGES.logo}
+                alt="Sky Window Design & More"
+                className="h-10 lg:h-12 w-auto transition-all duration-300"
+                width="160"
+                height="48"
+              />
+            </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map((link) =>
-              link.dropdown ? (
-                <div
-                  key={link.label}
-                  className="relative group"
-                  onMouseEnter={() => setOpenDropdown(link.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
+            {/* Desktop nav — 5 consolidated items */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {NAV_LINKS.map((link) =>
+                link.dropdown ? (
+                  <div
+                    key={link.label}
+                    className="relative group"
+                    onMouseEnter={() => setOpenDropdown(link.label)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    {link.href ? (
+                      <Link
+                        href={link.href}
+                        className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                      >
+                        {link.label}
+                        <ChevronDown size={13} className="opacity-60" />
+                      </Link>
+                    ) : (
+                      <button
+                        className="inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                      >
+                        {link.label}
+                        <ChevronDown size={13} className="opacity-60" />
+                      </button>
+                    )}
+                    {openDropdown === link.label && (
+                      <div className="absolute left-0 top-full pt-1 min-w-[220px] z-50">
+                        <div className="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                          {link.dropdown.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="block px-5 py-2.5 text-[14px] font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : link.isCta ? (
                   <Link
+                    key={link.href}
                     href={link.href}
-                    className={`inline-flex items-center gap-1 px-3 py-2 text-[14px] font-semibold transition-colors ${navText} ${navHover}`}
+                    className="ml-2 btn-primary text-[13.5px] !py-2.5 !px-5"
                   >
                     {link.label}
-                    <ChevronDown size={13} className="opacity-60" />
                   </Link>
-                  {openDropdown === link.label && (
-                    <div className="absolute left-0 top-full pt-1 min-w-[220px] z-50">
-                      <div className="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block px-5 py-2.5 text-[14px] font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-colors"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-2 text-[14px] font-semibold transition-colors ${navText} ${navHover}`}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </nav>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="px-3 py-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </nav>
 
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
+            {/* Desktop phone (always visible) */}
             <a
               href={CONTACT.phoneHref}
-              className={`inline-flex items-center gap-2 text-[14px] font-semibold transition-colors ${navText} ${navHover}`}
+              className={`hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors ${isPill ? "" : ""}`}
             >
               <Phone size={15} />
               {CONTACT.phone}
             </a>
-            <Link
-              href="/contact"
-              className="btn-primary text-[13.5px] !py-2.5 !px-5"
-            >
-              Free Consultation
-            </Link>
-          </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className={`lg:hidden p-2 transition-colors ${navText}`}
-            aria-label="Open navigation menu"
-            onClick={() => setMobileNavOpen(true)}
-          >
-            <Menu size={24} />
-          </button>
-        </div>
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden p-2 text-slate-800"
+              aria-label="Open navigation menu"
+              onClick={() => setMobileNavOpen(true)}
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Breadcrumb (non-hero pages only) */}
-      {breadcrumb && !heroPage && (
+      {/* Breadcrumb — visible on all subpages */}
+      {breadcrumb && (
         <nav
-          className="bg-slate-50 border-b border-slate-100 pt-[70px]"
+          className={`${isPill ? "pt-[80px]" : "pt-[70px]"} bg-slate-50 border-b border-slate-100`}
           aria-label="Breadcrumb"
         >
           <div className="container py-3 text-[13px] text-slate-500 flex items-center gap-1.5 flex-wrap">
@@ -147,12 +164,15 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 ) : (
                   <span className="text-slate-600 font-medium">{item.label}</span>
                 )}
-                {i < breadcrumb.length - 1 && <span className="text-slate-300">›</span>}
+                {i < breadcrumb.length - 1 && <ChevronRight size={12} className="text-slate-300" />}
               </span>
             ))}
           </div>
         </nav>
       )}
+
+      {/* Spacer for non-breadcrumb, non-hero pages */}
+      {!breadcrumb && !heroPage && <div className="pt-[70px]" />}
 
       {/* Page content */}
       <main>{children}</main>
@@ -294,14 +314,14 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
         </Link>
       </div>
 
-      {/* ── Mobile nav overlay ── */}
+      {/* ── Mobile nav overlay — grouped accordion ── */}
       {mobileNavOpen && (
         <div
           className="fixed inset-0 z-[60] bg-white flex flex-col overflow-y-auto lg:hidden"
           style={{ paddingBottom: "80px" }}
         >
           {/* Mobile nav header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 sticky top-0 bg-white z-10">
             <Link href="/" onClick={() => setMobileNavOpen(false)}>
               <img src={IMAGES.logo} alt="Sky Window Design & More" className="h-10 w-auto" width="160" height="40" />
             </Link>
@@ -313,19 +333,40 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               <X size={24} />
             </button>
           </div>
-          {/* Mobile nav links */}
-          <nav className="flex flex-col px-5 pt-4">
-            {MOBILE_NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="py-3.5 text-[16px] font-semibold text-slate-800 border-b border-slate-100 hover:text-blue-700 transition-colors"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+
+          {/* Mobile nav — grouped accordion */}
+          <nav className="flex flex-col px-5 pt-2">
+            {MOBILE_NAV_GROUPS.map((group) => {
+              const isExpanded = expandedGroups.has(group.label);
+              return (
+                <div key={group.label} className="border-b border-slate-100">
+                  <button
+                    className="w-full flex items-center justify-between py-3.5 text-[16px] font-bold text-slate-800"
+                    onClick={() => toggleGroup(group.label)}
+                    aria-expanded={isExpanded}
+                  >
+                    {group.label}
+                    {isExpanded ? <Minus size={18} className="text-slate-400" /> : <Plus size={18} className="text-slate-400" />}
+                  </button>
+                  {isExpanded && (
+                    <div className="pb-2 pl-3 flex flex-col gap-0.5">
+                      {group.items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="py-2.5 text-[15px] font-medium text-slate-600 hover:text-blue-700 transition-colors"
+                          onClick={() => setMobileNavOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
+
           {/* Mobile nav contact */}
           <div className="px-5 pt-6 pb-4 mt-auto">
             <a
