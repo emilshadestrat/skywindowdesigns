@@ -32,18 +32,19 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navBg = heroPage && !scrolled
-    ? "bg-transparent"
+  // CONTACTUS.png pattern: floating white rounded nav pill over hero, solid white bar on scroll
+  const navWrapper = heroPage && !scrolled
+    ? "nav-pill mx-3 lg:mx-4 mt-3 px-4 lg:px-6"
     : "bg-white/95 backdrop-blur-md shadow-sm";
-
-  const navText = heroPage && !scrolled ? "text-white" : "text-slate-800";
-  const navHover = heroPage && !scrolled ? "hover:text-blue-200" : "hover:text-blue-700";
-  const logoFilter = heroPage && !scrolled ? "brightness-0 invert" : "";
+  const navText = "text-slate-800";
+  const navHover = "hover:text-blue-700";
+  const logoFilter = "";
 
   return (
     <>
       {/* ── Header ── */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`} style={heroPage && !scrolled ? { borderRadius: "9999px" } : {}}>
+        <div className={heroPage && !scrolled ? "nav-pill mx-3 lg:mx-6 mt-3 px-4 lg:px-6" : "bg-white/95 backdrop-blur-md shadow-sm"}>
         <div className="container mx-auto flex items-center justify-between h-16 lg:h-[70px]">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
@@ -126,6 +127,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           >
             <Menu size={24} />
           </button>
+        </div>
         </div>
       </header>
 

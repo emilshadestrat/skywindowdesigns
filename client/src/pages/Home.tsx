@@ -86,99 +86,83 @@ export default function Home() {
       />
 
       {/* ═══════════════════════════════════════════
-          HERO — full-bleed photo + dark overlay
-          Pattern: Solomon hero with left-aligned H1
+          HERO — bright photo, white bottom fade, centered serif H1
+          Pattern: CONTACTUS.png — no dark overlay, centered content
           ═══════════════════════════════════════════ */}
-      <section className="relative min-h-[92vh] flex items-center" style={{ paddingTop: "70px" }}>
-        {/* Background image */}
+      <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "90px" }}>
+        {/* Background image — bright, no dark overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={IMAGES.hero}
             alt="Custom window treatments in a bright coastal living room in Orange Beach, Alabama"
             className="w-full h-full object-cover"
           />
-          {/* Dark overlay — matches Solomon's dark hero treatment */}
+          {/* White fade at bottom — image dissolves into white page */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(105deg, oklch(0.15 0.02 255 / 0.82) 0%, oklch(0.15 0.02 255 / 0.55) 60%, oklch(0.15 0.02 255 / 0.30) 100%)" }}
+            style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0) 55%, rgba(255,255,255,0.85) 80%, #ffffff 100%)" }}
           />
         </div>
 
-        {/* Hero content */}
-        <div className="container relative z-10 py-20">
-          <div className="max-w-[680px]">
-            {/* Eyebrow */}
-            <p className="eyebrow text-blue-300 mb-5">Orange Beach, Alabama</p>
+        {/* Sky watermark — bottom-left, semi-transparent */}
+        <span className="sky-watermark" aria-hidden="true">sky</span>
 
-            {/* H1 — verbatim from copy doc */}
-            <h1
-              className="text-white font-[Montserrat,sans-serif] font-extrabold leading-[1.08] mb-6"
-              style={{ fontSize: "clamp(2.5rem, 2rem + 3vw, 4.25rem)", letterSpacing: "-0.025em" }}
-            >
-              Custom Window Treatments for Gulf Coast Living
-            </h1>
+        {/* Hero content — centered */}
+        <div className="container relative z-10 py-20 flex flex-col items-center">
+          {/* H1 — verbatim from copy doc, Petrona serif per CONTACTUS.png */}
+          <h1
+            className="hero-serif leading-[1.12] mb-5"
+            style={{ fontSize: "clamp(2.25rem, 1.8rem + 2.8vw, 3.75rem)" }}
+          >
+            Custom Window Treatments for Gulf Coast Living
+          </h1>
 
-            {/* Lead copy — verbatim */}
-            <p className="text-white/85 text-[1.125rem] leading-relaxed mb-3 max-w-[580px]">
-              Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
-            </p>
-            <p className="text-white/85 text-[1.125rem] leading-relaxed mb-8 max-w-[580px]">
-              We help Gulf Coast homeowners and businesses compare products, fabrics and operating methods — then schedule professional measure and installation.
-            </p>
+          {/* Subheading — verbatim from copy doc */}
+          <p className="text-slate-700 text-[1.0625rem] leading-relaxed mb-8 max-w-[560px]">
+            Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
+          </p>
 
-            {/* Checklist — verbatim */}
-            <ul className="mb-8 space-y-2">
-              {["Free in-home consultation", "Professional measure and installation", "Local Orange Beach showroom"].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-white/90 text-[15px] font-medium">
-                  <CheckCircle2 size={17} className="text-blue-300 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4 mb-10">
-              <a href={CONTACT.phoneHref} className="btn-primary !bg-blue-600 !border-blue-600 hover:!bg-blue-700 hover:!border-blue-700">
-                <Phone size={16} />
-                Call {CONTACT.phone}
-              </a>
-              <Link href="/contact" className="btn-outline-white">
-                Schedule a Consultation
-              </Link>
-            </div>
-
+          {/* CTA row — Google badge + Get Quote button with vertical divider */}
+          <div className="flex items-center gap-5">
             {/* Google Reviews badge */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={13} className="fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <span className="text-white text-[13.5px] font-semibold ml-1">5.0</span>
-                <span className="text-white/70 text-[12.5px]">Google Reviews</span>
+            <div className="flex items-center gap-2.5">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <div className="flex flex-col items-start leading-none">
+                <span className="text-slate-800 text-[15px] font-bold">5.0</span>
+                <span className="text-slate-500 text-[11px] font-medium">Google Reviews</span>
               </div>
             </div>
+
+            {/* Vertical divider */}
+            <div className="w-px h-10 bg-slate-300" aria-hidden="true" />
+
+            {/* Get Quote button */}
+            <Link href="/contact" className="btn-primary">
+              Get a Quote
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════
-          STATS BAR — dark strip below hero
-          Pattern: Solomon's 4-item trust strip
+          TRUST BAR — solid blue, 3 columns, white serif text
+          Pattern: CONTACTUS.png bottom blue bar
           ═══════════════════════════════════════════ */}
-      <div style={{ backgroundColor: "oklch(0.15 0.02 255)" }} className="py-5 border-b border-white/10">
+      <div style={{ backgroundColor: "oklch(0.50 0.21 255)" }} className="py-4">
         <div className="container">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             {[
-              { icon: "🏠", label: "Locally Owned & Operated" },
-              { icon: "📐", label: "Professional Measure & Installation" },
-              { icon: "⭐", label: "5.0 Google Rating" },
-              { icon: "🌊", label: "Serving the Alabama Gulf Coast" },
+              "Locally Owned & Operated",
+              "Professional Measure & Installation",
+              "Serving the Alabama Gulf Coast",
             ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 text-white">
-                <span className="text-xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
-                <span className="text-[13.5px] font-semibold leading-tight">{item.label}</span>
+              <div key={item} className="flex items-center justify-center gap-2">
+                <CheckCircle2 size={16} className="text-white/80 flex-shrink-0" />
+                <span className="font-[Petrona,Georgia,serif] text-white text-[15px] font-medium">{item}</span>
               </div>
             ))}
           </div>
