@@ -255,7 +255,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
   const data: PageData | undefined = PAGES[pageKey];
   if (!data) return null;
 
-  const schema = {
+  const serviceSchema = {
     "@context": "https://schema.org",
     "@type": data.schemaType,
     name: data.schemaName,
@@ -296,6 +296,32 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
     { q: "How long does installation take?", a: "Installation time depends on the product, the number of windows and the scope of the project. We confirm the timeline before moving forward." },
     { q: "Are motorized window treatments available?", a: "Motorized options may be available for selected shades and window-treatment systems. Compatibility depends on the selected shade, motor, hub and control platform." },
     { q: "Do you serve areas outside Orange Beach, Alabama?", a: "Yes. Our service area includes Gulf Shores, Foley, Fairhope, Pensacola, Gulf Breeze and Navarre. Contact us to confirm service availability for your location." },
+  ];
+
+  // Build breadcrumb items from the page's breadcrumb data
+  const breadcrumbItems = data.breadcrumb.map((b, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: b.label,
+    ...(b.url ? { item: b.url.startsWith("http") ? b.url : `https://skywindowdesign.com${b.url}` } : {}),
+  }));
+
+  const schema = [
+    serviceSchema,
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbItems,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
   ];
 
   return (

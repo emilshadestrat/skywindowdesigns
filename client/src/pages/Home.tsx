@@ -41,10 +41,18 @@ const schema = [
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://skywindowdesign.com/#business",
     name: "Sky Window Design & More",
     legalName: "Sky Window Design & More, LLC",
+    description: "Custom window treatments for Orange Beach, Alabama and the Gulf Coast. Roller shades, plantation shutters, motorized shades, draperies, and more.",
+    url: "https://skywindowdesign.com/",
     telephone: "+12512067319",
     email: "lance@skywindowdesign.com",
+    image: "https://skywindowdesign.com/manus-storage/hero-coastal-room_69b05db7.jpg",
+    logo: "https://skywindowdesign.com/manus-storage/sky-logo_1a5423c8.png",
+    priceRange: "$$",
+    currenciesAccepted: "USD",
+    paymentAccepted: "Cash, Credit Card, Check",
     address: {
       "@type": "PostalAddress",
       streetAddress: "25405 Perdido Beach Blvd., Suite 7A",
@@ -53,6 +61,16 @@ const schema = [
       postalCode: "36561",
       addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 30.2658,
+      longitude: -87.5833,
+    },
+    hasMap: "https://www.google.com/maps/search/?api=1&query=25405+Perdido+Beach+Blvd+Suite+7A+Orange+Beach+AL+36561",
+    sameAs: [
+      "https://www.facebook.com/skywindowdesign",
+      "https://www.instagram.com/skywindowdesign",
+    ],
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "17:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "10:00", closes: "15:00" },

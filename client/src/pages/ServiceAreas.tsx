@@ -20,6 +20,19 @@ export default function ServiceAreas() {
         { "@type": "ListItem", position: 2, name: "Service Areas", item: "https://skywindowdesign.com/service-areas" },
       ],
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Sky Window Design Service Areas",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Gulf Shores, AL", url: "https://skywindowdesign.com/locations/gulf-shores-al" },
+        { "@type": "ListItem", position: 2, name: "Foley, AL", url: "https://skywindowdesign.com/locations/foley-al" },
+        { "@type": "ListItem", position: 3, name: "Fairhope, AL", url: "https://skywindowdesign.com/locations/fairhope-al" },
+        { "@type": "ListItem", position: 4, name: "Pensacola, FL", url: "https://skywindowdesign.com/locations/pensacola-fl" },
+        { "@type": "ListItem", position: 5, name: "Gulf Breeze, FL", url: "https://skywindowdesign.com/locations/gulf-breeze-fl" },
+        { "@type": "ListItem", position: 6, name: "Navarre, FL", url: "https://skywindowdesign.com/locations/navarre-fl" },
+      ],
+    },
   ];
 
   return (
