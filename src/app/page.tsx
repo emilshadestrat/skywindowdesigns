@@ -268,7 +268,7 @@ export default function Home() {
             <span className="eyebrow text-blue-400">How It Works</span>
             <h2 className="section-heading-white">How the Design Process Works</h2>
           </RevealDiv>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {PROCESS_STEPS.map((step, i) => (
               <RevealDiv key={step.num} delay={i * 80}>
                 <div
