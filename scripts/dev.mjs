@@ -2,14 +2,16 @@
 /**
  * Dev server wrapper — does three things:
  * 1. Strips the `--` separator that the Manus platform appends
- *    (e.g. `pnpm run dev -- -p 3000`)
- * 2. Starts a lightweight HTTP proxy on a side port for /manus-storage/ requests
- *    (replicates the Vite plugin that signs Forge storage URLs)
- * 3. Spawns `next dev` with the cleaned args, with the proxy as an env var
- *    so next.config.ts rewrites can forward /manus-storage/ to it
+ * 2. Starts a storage proxy on a high port (not 3000) for /manus-storage/ requests
+ * 3. Spawns `next dev` on port 3000 — the platform should detect this as the dev server
+ *
+ * Key: the proxy must NOT listen on port 3000 or any port the platform might
+ * auto-detect. We use port 4567 and set MANUS_STORAGE_PROXY_URL so next.config.ts
+ * rewrites can forward /manus-storage/ to it.
  */
 import { spawn } from "child_process";
 import { createServer } from "http";
+import { setTimeout as sleep } from "timers/promises";
 
 // ── Parse args ──────────────────────────────────────────────────────────────
 const rawArgs = process.argv.slice(2);
@@ -19,8 +21,8 @@ if (!hasPort) {
   cleanArgs.push("-p", "3000");
 }
 
-// ── Storage proxy server ────────────────────────────────────────────────────
-const PROXY_PORT = 3001;
+// ── Storage proxy server (high port, not auto-detected by platform) ─────────
+const PROXY_PORT = 4567;
 
 const proxyServer = createServer(async (req, res) => {
   try {
@@ -72,13 +74,17 @@ const proxyServer = createServer(async (req, res) => {
   }
 });
 
-proxyServer.listen(PROXY_PORT, () => {
-  console.log(`[dev.mjs] Manus storage proxy running on port ${PROXY_PORT}`);
+// Start proxy silently — don't log to stdout to avoid confusing the platform
+proxyServer.listen(PROXY_PORT, "127.0.0.1", () => {
+  // Proxy is ready
 });
 
-// ── Start next dev ──────────────────────────────────────────────────────────
+// ── Start next dev on port 3000 ─────────────────────────────────────────────
 // Set env var so next.config.ts rewrites can forward /manus-storage/ to the proxy
-process.env.MANUS_STORAGE_PROXY_URL = `http://localhost:${PROXY_PORT}`;
+process.env.MANUS_STORAGE_PROXY_URL = `http://127.0.0.1:${PROXY_PORT}`;
+
+// Small delay to ensure proxy is listening before next dev starts
+await sleep(500);
 
 const child = spawn("npx", ["next", "dev", "--turbopack", ...cleanArgs], {
   stdio: "inherit",
