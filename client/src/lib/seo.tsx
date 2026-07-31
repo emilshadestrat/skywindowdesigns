@@ -1,7 +1,5 @@
-// seo.ts — SEO infrastructure for Next.js App Router
-// Replaces the client-side Seo component with server-side generateMetadata helpers
-
-import type { Metadata } from "next";
+// seo.ts — SEO infrastructure for Vite + Wouter
+// Provides metadata helpers and JSON-LD schema rendering
 
 const SITE_URL = "https://skywindesign-8rzxlz7n.manus.space";
 
@@ -14,8 +12,8 @@ interface BuildMetadataParams {
 }
 
 /**
- * Build Next.js Metadata object for a page.
- * All meta tags are rendered server-side in the initial HTML.
+ * Build metadata object for a page.
+ * In the Vite version, this is used to update document head tags client-side.
  */
 export function buildMetadata({
   title,
@@ -23,7 +21,7 @@ export function buildMetadata({
   canonical,
   ogImage,
   type = "website",
-}: BuildMetadataParams): Metadata {
+}: BuildMetadataParams) {
   const fullUrl = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
 
   return {
@@ -50,8 +48,7 @@ export function buildMetadata({
 }
 
 /**
- * Render JSON-LD schema as a Next.js <script> tag.
- * Must be called from a Server Component.
+ * Render JSON-LD schema as a <script> tag.
  */
 export function JsonLd({ data }: { data: object | object[] }) {
   return (

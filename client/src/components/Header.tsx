@@ -5,8 +5,7 @@
 // Client component: uses useState, useEffect, usePathname
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "wouter";
 import { NAV_LINKS, CONTACT, IMAGES } from "@/lib/siteData";
 import { Phone, Menu, ChevronDown } from "lucide-react";
 
@@ -14,7 +13,7 @@ export function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const pathname = usePathname();
+  const [pathname] = useLocation();
 
   useEffect(() => {
     setMobileNavOpen(false);

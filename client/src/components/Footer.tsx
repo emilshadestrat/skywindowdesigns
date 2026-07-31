@@ -2,7 +2,7 @@
 // Extracted from Layout.tsx for Next.js App Router
 // Server component — uses next/link for navigation
 
-import Link from "next/link";
+import { Link } from "wouter";
 import { FOOTER_LINKS, CONTACT, IMAGES } from "@/lib/siteData";
 import { Phone, MapPin, Mail, Clock } from "lucide-react";
 

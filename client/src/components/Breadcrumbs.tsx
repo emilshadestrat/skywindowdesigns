@@ -1,7 +1,7 @@
 // Breadcrumbs.tsx — Sky Window Design & More
 // Server component — uses next/link for navigation
 
-import Link from "next/link";
+import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbsProps {

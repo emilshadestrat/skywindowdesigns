@@ -5,15 +5,14 @@
 // Client component: uses useState for accordion + overlay state
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "wouter";
 import { MOBILE_NAV_GROUPS, CONTACT, IMAGES } from "@/lib/siteData";
 import { Phone, X, Plus, Minus } from "lucide-react";
 
 export function MobileNav() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
-  const pathname = usePathname();
+  const [pathname] = useLocation();
 
   useEffect(() => {
     setMobileNavOpen(false);
