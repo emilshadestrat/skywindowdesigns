@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <Providers>
           {/* Skip to content link for keyboard users */}
