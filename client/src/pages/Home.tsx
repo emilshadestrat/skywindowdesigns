@@ -295,7 +295,7 @@ export default function Home() {
             </RevealDiv>
 
             {/* Right: hours + address cards */}
-            <RevealDiv delay={120} className="space-y-4">
+            <RevealDiv delay={120} className="space-y-4 lg:mt-10">
               <div className="surface-card p-6">
                 <div className="flex items-center gap-2.5 mb-4">
                   <Clock size={18} className="text-blue-600" />
