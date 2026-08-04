@@ -547,7 +547,7 @@ export const PAGES: Record<string, PageData> = {
       { label: "Window Treatments", href: "/window-treatments" },
     ],
     schemaType: "WebPage",
-    schemaName: "Window Treatment Visualizer",
+    schemaName: "Residential Window Treatments",
   },
   "window-treatment-repairs": {
     slug: "window-treatment-repairs",

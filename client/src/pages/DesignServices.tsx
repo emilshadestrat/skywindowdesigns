@@ -40,7 +40,7 @@ export default function DesignServices() {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Wallpaper & Interior Design", url: "https://skywindowdesign.com/wallpaper-interior-design" },
         { "@type": "ListItem", position: 2, name: "Commercial Window Treatments", url: "https://skywindowdesign.com/commercial-window-treatments" },
-        { "@type": "ListItem", position: 3, name: "Window Treatment Visualizer", url: "https://skywindowdesign.com/visualizer" },
+        { "@type": "ListItem", position: 3, name: "Residential Window Treatments", url: "https://skywindowdesign.com/visualizer" },
         { "@type": "ListItem", position: 4, name: "Window Treatment Repairs", url: "https://skywindowdesign.com/window-treatment-repairs" },
       ],
     },
