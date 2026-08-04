@@ -264,7 +264,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       {!breadcrumb && !heroPage && <div className="pt-[70px]" />}
 
       {/* Page content */}
-      <main id="main-content" className="pb-16 lg:pb-0">{children}</main>
+      <main id="main-content">{children}</main>
 
       {/* ── Footer ── */}
       <footer style={{ backgroundColor: "oklch(0.13 0.02 258)" }} className="pt-12 sm:pt-16 pb-20 lg:pb-8 relative">
