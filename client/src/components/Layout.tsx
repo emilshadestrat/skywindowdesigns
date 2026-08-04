@@ -54,23 +54,23 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       </a>
 
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(15,23,42,0.05),0_1px_2px_rgba(15,23,42,0.03)] border-b border-slate-100/60">
         <div>
-          <div className="container mx-auto flex items-center justify-between h-16 lg:h-[70px]">
+          <div className="container mx-auto flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <img
                 src={IMAGES.logo}
                 alt="Sky Window Design & More"
-                className="h-10 lg:h-12 w-auto transition-all duration-300"
+                className="h-12 lg:h-14 w-auto transition-all duration-300"
                 width="160"
-                height="48"
+                height="56"
               />
             </Link>
 
-            {/* Desktop nav — 5 consolidated items */}
+            {/* Desktop nav — non-CTA items only */}
             <nav className="hidden lg:flex items-center gap-1">
-              {NAV_LINKS.map((link) =>
+              {NAV_LINKS.filter((link) => !link.isCta).map((link) =>
                 link.dropdown ? (
                   <div
                     key={link.label}
@@ -106,8 +106,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                       </button>
                     )}
                     {openDropdown === link.label && (
-                      <div className="absolute left-0 top-full pt-1 min-w-[220px] z-50">
-                        <div className="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                      <div className="absolute left-0 top-full pt-1.5 min-w-[240px] z-50">
+                        <div className="bg-white rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.10),0_4px_12px_rgba(15,23,42,0.05)] border border-slate-100/80 py-2 overflow-hidden">
                           {link.dropdown.map((item) => (
                             <Link
                               key={item.href}
@@ -121,14 +121,6 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                       </div>
                     )}
                   </div>
-                ) : link.isCta ? (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="ml-2 btn-primary nav-cta text-[13.5px] !py-2.5 !px-5"
-                  >
-                    {link.label}
-                  </Link>
                 ) : (
                   <Link
                     key={link.href}
@@ -141,14 +133,25 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               )}
             </nav>
 
-            {/* Desktop phone (always visible) */}
-            <a
-              href={CONTACT.phoneHref}
-              className="nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
-            >
-              <Phone size={15} />
-              {CONTACT.phone}
-            </a>
+            {/* Spacer to push CTA + phone to the right */}
+            <div className="hidden lg:flex-1" />
+
+            {/* Contact CTA + phone — positioned on the right side */}
+            <div className="hidden lg:flex items-center gap-4">
+              <Link
+                href="/contact"
+                className="btn-primary nav-cta text-[13.5px] !py-2.5 !px-5"
+              >
+                Contact
+              </Link>
+              <a
+                href={CONTACT.phoneHref}
+                className="nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+              >
+                <Phone size={15} />
+                {CONTACT.phone}
+              </a>
+            </div>
 
             {/* Mobile hamburger */}
             <button

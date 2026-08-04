@@ -34,7 +34,7 @@ export function Header() {
             <img
               src={IMAGES.logo}
               alt="Sky Window Design & More"
-              className="h-10 lg:h-12 w-auto transition-all duration-300"
+              className="h-12 lg:h-14 w-auto transition-all duration-300"
               width="160"
               height="48"
             />

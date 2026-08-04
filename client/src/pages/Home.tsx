@@ -107,7 +107,7 @@ export default function Home() {
           HERO — bright photo, white bottom fade, centered serif H1
           Pattern: CONTACTUS.png — no dark overlay, centered content
           ═══════════════════════════════════════════ */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "120px", paddingBottom: "60px" }}>
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
         {/* Background image — bright, no dark overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
@@ -115,10 +115,15 @@ export default function Home() {
             alt="Custom window treatments in a bright coastal living room in Orange Beach, Alabama"
             className="w-full h-full object-cover"
           />
-          {/* White fade at bottom — image dissolves into white page */}
+          {/* Refined white fade — smoother transition with subtle warmth */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0) 35%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.95) 80%, #ffffff 100%)" }}
+            style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0) 30%, rgba(255,255,255,0.7) 55%, rgba(255,255,255,0.92) 78%, #ffffff 100%)" }}
+          />
+          {/* Subtle vignette for depth at edges */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse at center, transparent 50%, rgba(255,255,255,0.15) 100%)" }}
           />
         </div>
 
@@ -127,35 +132,38 @@ export default function Home() {
           src={IMAGES.skyWatermark}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-4 left-4 z-1 w-[180px] lg:w-[280px] opacity-80 pointer-events-none select-none"
+          className="absolute bottom-0 left-0 z-1 w-[300px] lg:w-[500px] opacity-90 pointer-events-none select-none"
         />
 
-        {/* Hero content — centered */}
+        {/* Hero content — centered with refined spacing */}
         <div className="container relative z-10 py-20 flex flex-col items-center">
-          {/* H1 — verbatim from copy doc, Petrona serif per CONTACTUS.png */}
+          {/* Refined eyebrow above H1 */}
+          <span className="eyebrow mb-6" style={{ color: "oklch(0.48 0.22 258)" }}>Orange Beach, Alabama</span>
+
+          {/* H1 — Petrona serif, refined leading */}
           <h1
-            className="hero-serif leading-[1.12] mb-5"
-            style={{ fontSize: "clamp(2.25rem, 1.8rem + 2.8vw, 3.75rem)" }}
+            className="hero-serif leading-[1.08] mb-6"
+            style={{ fontSize: "clamp(2.5rem, 2rem + 3vw, 4.25rem)" }}
           >
-            Custom Window Treatments for Gulf Coast Living
+            Custom Window Treatments<br />for Gulf Coast Living
           </h1>
 
           {/* Subheading — verbatim from copy doc */}
-          <p className="text-slate-700 text-[1.0625rem] leading-relaxed mb-8 max-w-[560px]">
+          <p className="text-slate-600 text-[1.0625rem] leading-[1.7] mb-10 max-w-[580px]">
             Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
           </p>
 
           {/* CTA row — Google badge image + Get Quote button */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-6">
             {/* Google Reviews badge image */}
             <img
               src={IMAGES.googleReview}
               alt="5.0 Google Reviews"
-              className="h-[52px] w-auto"
+              className="h-[80px] w-auto lg:h-[96px]"
             />
 
             {/* Get Quote button */}
-            <Link href="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary text-[15px] !py-3.5 !px-7">
               Get a Quote
             </Link>
           </div>
@@ -164,9 +172,9 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════
           TRUST BAR — solid blue, 3 columns, white serif text
-          Pattern: CONTACTUS.png bottom blue bar
+          Pattern: CONTACTUS.png bottom blue bar — refined with subtle gradient
           ═══════════════════════════════════════════ */}
-      <div style={{ backgroundColor: "oklch(0.50 0.21 255)" }} className="py-4">
+      <div style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="py-5">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             {[
@@ -174,9 +182,9 @@ export default function Home() {
               "Professional Measure & Installation",
               "Serving the Alabama Gulf Coast",
             ].map((item) => (
-              <div key={item} className="flex items-center justify-center gap-2">
-                <CheckCircle2 size={16} className="text-white/80 flex-shrink-0" />
-                <span className="font-[Petrona,Georgia,serif] text-white text-[15px] font-medium">{item}</span>
+              <div key={item} className="flex items-center justify-center gap-2.5">
+                <CheckCircle2 size={15} className="text-white/70 flex-shrink-0" />
+                <span className="font-[Petrona,Georgia,serif] text-white text-[14.5px] font-medium tracking-wide">{item}</span>
               </div>
             ))}
           </div>
@@ -186,15 +194,15 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           PRODUCTS INTRO
           ═══════════════════════════════════════════ */}
-      <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
           <RevealDiv>
             <span className="eyebrow">Products</span>
-            <h2 className="section-heading mb-5">Window Treatments Designed Around Your Space</h2>
-            <p className="text-[1.0625rem] leading-relaxed text-slate-600 max-w-[760px] mb-4">
+            <h2 className="section-heading mb-6">Window Treatments Designed Around Your Space</h2>
+            <p className="text-[1.0625rem] leading-[1.75] text-slate-600 max-w-[760px] mb-5">
               Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.
             </p>
-            <p className="text-[1.0625rem] leading-relaxed text-slate-600 max-w-[760px]">
+            <p className="text-[1.0625rem] leading-[1.75] text-slate-600 max-w-[760px]">
               We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space.
             </p>
           </RevealDiv>
@@ -205,9 +213,9 @@ export default function Home() {
           PRODUCT CARDS — image-top, 3-col grid
           Pattern: Solomon's service cards
           ═══════════════════════════════════════════ */}
-      <section className="pb-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="pb-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
             {PRODUCT_CARDS.map((card, i) => (
               <RevealDiv key={card.href} delay={i * 60}>
                 <Link href={card.href} className="service-card block group h-full">
@@ -218,11 +226,11 @@ export default function Home() {
                       className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-slate-900 mb-2">
+                  <div className="p-7 flex flex-col flex-1">
+                    <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.1875rem] text-slate-900 mb-2.5">
                       {card.title}
                     </h3>
-                    <p className="text-[14.5px] leading-relaxed text-slate-600 mb-4 flex-1">
+                    <p className="text-[14.5px] leading-[1.65] text-slate-600 mb-5 flex-1">
                       {card.desc}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
@@ -322,29 +330,35 @@ export default function Home() {
           Pattern: Solomon's "How It Works" section
           ═══════════════════════════════════════════ */}
       <section
-        className="py-20 relative"
-        style={{ backgroundColor: "oklch(0.15 0.02 255)" }}
+        className="py-24 relative"
+        style={{ backgroundColor: "oklch(0.14 0.025 260)" }}
       >
+        {/* Subtle texture overlay for depth */}
+        <div
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at top, oklch(0.20 0.03 260), transparent 70%)" }}
+        />
         <div className="container relative z-10">
-          <RevealDiv className="mb-12">
+          <RevealDiv className="mb-14">
             <span className="eyebrow text-blue-400">How It Works</span>
             <h2 className="section-heading-white">How the Design Process Works</h2>
           </RevealDiv>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-14">
             {PROCESS_STEPS.map((step, i) => (
               <RevealDiv key={step.num} delay={i * 80}>
                 <div
-                  className="font-[Montserrat,sans-serif] font-extrabold mb-4 leading-none"
-                  style={{ fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)", color: "oklch(0.50 0.21 255 / 0.35)" }}
+                  className="font-[Montserrat,sans-serif] font-extrabold mb-5 leading-none"
+                  style={{ fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)", color: "oklch(0.50 0.21 258 / 0.30)" }}
                   aria-hidden="true"
                 >
                   0{step.num}
                 </div>
+                <div className="w-8 h-px bg-blue-500/30 mb-4" />
                 <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-white mb-3">
                   {step.title}
                 </h3>
-                <p className="text-[14.5px] leading-relaxed text-slate-400 max-w-[320px]">
+                <p className="text-[14.5px] leading-[1.65] text-slate-400 max-w-[320px]">
                   {step.body}
                 </p>
               </RevealDiv>
@@ -366,12 +380,12 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           SERVICE AREAS STRIP
           ═══════════════════════════════════════════ */}
-      <section className="py-16 bg-white border-b border-slate-100">
+      <section className="py-20 bg-white border-b border-slate-100">
         <div className="container">
           <RevealDiv>
             <span className="eyebrow">Where We Work</span>
-            <h2 className="section-heading mb-4">Proudly Serving the Alabama Gulf Coast</h2>
-            <p className="text-[1.0625rem] text-slate-600 mb-8 max-w-[600px]">
+            <h2 className="section-heading mb-5">Proudly Serving the Alabama Gulf Coast</h2>
+            <p className="text-[1.0625rem] leading-[1.7] text-slate-600 mb-10 max-w-[600px]">
               Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
             </p>
           </RevealDiv>
@@ -389,7 +403,7 @@ export default function Home() {
                 <Link
                   key={city.label}
                   href={city.href}
-                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all"
+                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
                 >
                   {city.label}
                 </Link>
@@ -410,11 +424,11 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           FAQ
           ═══════════════════════════════════════════ */}
-      <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
           <RevealDiv>
             <span className="eyebrow">FAQ</span>
-            <h2 className="section-heading mb-8">Frequently Asked Questions</h2>
+            <h2 className="section-heading mb-10">Frequently Asked Questions</h2>
           </RevealDiv>
           <RevealDiv delay={60}>
             <FaqAccordion items={HOMEPAGE_FAQS} />
@@ -427,18 +441,23 @@ export default function Home() {
           Pattern: Solomon's bottom CTA band
           ═══════════════════════════════════════════ */}
       <section
-        className="py-20"
-        style={{ backgroundColor: "oklch(0.50 0.21 255)" }}
+        className="py-24"
+        style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }}
       >
-        <div className="container text-center">
+        {/* Subtle texture overlay */}
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.1), transparent 70%)" }}
+        />
+        <div className="container text-center relative z-10">
           <RevealDiv>
             <h2
-              className="font-[Montserrat,sans-serif] font-extrabold text-white mb-5 leading-tight"
-              style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem)", letterSpacing: "-0.025em" }}
+              className="font-[Montserrat,sans-serif] font-extrabold text-white mb-6 leading-tight"
+              style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem)", letterSpacing: "-0.03em" }}
             >
               Ready to Compare Options for Your Space?
             </h2>
-            <p className="text-white/85 text-[1.0625rem] leading-relaxed mb-8 max-w-[540px] mx-auto">
+            <p className="text-white/85 text-[1.0625rem] leading-[1.7] mb-10 max-w-[540px] mx-auto">
               Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or inspiration.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">

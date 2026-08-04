@@ -8,9 +8,9 @@ import { Phone, MapPin, Mail, Clock } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer style={{ backgroundColor: "oklch(0.15 0.02 255)" }} className="pt-16 pb-8">
+    <footer style={{ backgroundColor: "oklch(0.14 0.025 260)" }} className="pt-20 pb-8">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-10 mb-14">
           {/* Col 1: Brand */}
           <div>
             <img
@@ -20,7 +20,7 @@ export function Footer() {
               width="160"
               height="44"
             />
-            <p className="text-[14.5px] text-slate-400 leading-relaxed max-w-[280px] mb-6">
+            <p className="text-[14.5px] text-slate-400 leading-[1.7] max-w-[280px] mb-6">
               Custom window treatments for Orange Beach, Alabama and the surrounding Gulf Coast.
             </p>
             <div className="flex items-center gap-4">
@@ -47,7 +47,7 @@ export function Footer() {
 
           {/* Col 2: Services */}
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Services</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.20em] text-slate-500 mb-6">Services</div>
             {FOOTER_LINKS.services.map((link) => (
               <Link
                 key={link.href}
@@ -61,7 +61,7 @@ export function Footer() {
 
           {/* Col 3: Design Services */}
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Design Services</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.20em] text-slate-500 mb-6">Design Services</div>
             {FOOTER_LINKS.moreServices.map((link) => (
               <Link
                 key={link.href}
@@ -75,7 +75,7 @@ export function Footer() {
 
           {/* Col 4: Service Areas */}
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Service Areas</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.20em] text-slate-500 mb-6">Service Areas</div>
             {FOOTER_LINKS.serviceArea.map((link) => (
               <Link
                 key={link.href}
@@ -89,7 +89,7 @@ export function Footer() {
 
           {/* Col 5: Contact */}
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Contact</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.20em] text-slate-500 mb-6">Contact</div>
             <div className="space-y-3">
               <a
                 href={CONTACT.phoneHref}
@@ -131,7 +131,7 @@ export function Footer() {
         </div>
 
         {/* Footer bottom bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-slate-500">
+        <div className="border-t border-white/10 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-slate-500">
           <span>© 2026 Sky Window Design & More, LLC. All rights reserved.</span>
           <span className="flex gap-4">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
