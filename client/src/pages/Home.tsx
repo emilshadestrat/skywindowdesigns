@@ -219,22 +219,24 @@ export default function Home() {
             {PRODUCT_CARDS.map((card, i) => (
               <RevealDiv key={card.href} delay={i * 60}>
                 <Link href={card.href} className="service-card block group h-full">
-                  <div className="overflow-hidden" style={{ borderRadius: "0.75rem 0.75rem 0 0" }}>
+                  <div className="overflow-hidden relative">
                     <img
                       src={card.img}
                       alt={`${card.title} — custom window treatment by Sky Window Design and More in Orange Beach, Alabama`}
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
-                  <div className="p-7 flex flex-col flex-1">
-                    <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.1875rem] text-slate-900 mb-2.5">
+                  <div className="p-8 flex flex-col flex-1">
+                    <h3 className="font-[Fraunces,Georgia,serif] font-semibold text-[1.25rem] text-slate-900 mb-3 leading-tight">
                       {card.title}
                     </h3>
-                    <p className="text-[14.5px] leading-[1.65] text-slate-600 mb-5 flex-1">
+                    <div className="w-8 h-px bg-slate-300 mb-4 transition-all duration-400 group-hover:w-12 group-hover:bg-blue-600" />
+                    <p className="text-[14px] leading-[1.7] text-slate-500 mb-6 flex-1">
                       {card.desc}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
-                      Learn More <ChevronRight size={15} />
+                    <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-900 group-hover:text-blue-700 transition-colors">
+                      Learn More <ChevronRight size={14} />
                     </span>
                   </div>
                 </Link>
