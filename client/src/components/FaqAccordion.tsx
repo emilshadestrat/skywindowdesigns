@@ -19,7 +19,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
           value={`item-${i}`}
           className="border-b border-slate-200/80 first:border-t"
         >
-          <AccordionTrigger className="text-left text-[1.0625rem] font-semibold font-[Inter,sans-serif] text-slate-900 hover:text-blue-700 hover:no-underline py-6 transition-colors duration-200 [&>svg]:text-blue-600 [&>svg]:transition-transform [&>svg]:duration-300">
+          <AccordionTrigger className="text-left text-[1.0625rem] font-semibold font-[Inter,sans-serif] text-slate-900 hover:text-blue-700 hover:no-underline py-6 min-h-[72px] items-start transition-colors duration-200 [&>svg]:text-blue-600 [&>svg]:transition-transform [&>svg]:duration-300 [&>svg]:mt-1">
             {item.q}
           </AccordionTrigger>
           <AccordionContent className="text-[15px] leading-[1.7] text-slate-600 font-[Inter,sans-serif] pb-6 pt-0">
