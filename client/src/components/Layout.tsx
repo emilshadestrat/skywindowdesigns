@@ -43,8 +43,6 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
     });
   };
 
-  const isPill = heroPage && !scrolled;
-
   return (
     <>
       {/* Skip to content link for keyboard users */}
@@ -56,11 +54,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       </a>
 
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div className={isPill
-          ? "nav-pill mx-3 lg:mx-6 mt-3 px-4 lg:px-6"
-          : "bg-white/95 backdrop-blur-md shadow-sm"
-        }>
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm">
+        <div>
           <div className="container mx-auto flex items-center justify-between h-16 lg:h-[70px]">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
@@ -149,7 +144,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
             {/* Desktop phone (always visible) */}
             <a
               href={CONTACT.phoneHref}
-              className={`nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors ${isPill ? "" : ""}`}
+              className="nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
             >
               <Phone size={15} />
               {CONTACT.phone}
@@ -170,7 +165,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       {/* Breadcrumb — visible on all subpages */}
       {breadcrumb && (
         <nav
-          className={`${isPill ? "pt-[80px]" : "pt-[70px]"} bg-slate-50 border-b border-slate-100`}
+          className="pt-[70px] bg-slate-50 border-b border-slate-100"
           aria-label="Breadcrumb"
         >
           <div className="container py-3 text-[13px] text-slate-500 flex items-center gap-1.5 flex-wrap">

@@ -2,7 +2,9 @@
 // All copy is VERBATIM from the approved copy doc. Do not alter.
 
 export const IMAGES = {
-  logo: "/manus-storage/sky-logo_1a5423c8.png",
+  logo: "/manus-storage/SkyLogo(2)_b2bdb6a8.png",
+  googleReview: "/manus-storage/google(1)_c7c5b6e2.png",
+  skyWatermark: "/manus-storage/SkyLogo(3)_0053b108.png",
   hero: "/manus-storage/hero-coastal-room_69b05db7.jpg",
   rollerShades: "/manus-storage/card-roller-shades_652b785d.jpg",
   draperies: "/manus-storage/card-draperies_60df2915.jpg",

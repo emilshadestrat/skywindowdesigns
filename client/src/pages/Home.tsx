@@ -10,7 +10,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import {
   IMAGES, TRUST_ITEMS, PRODUCT_CARDS, HOMEPAGE_FAQS, PROCESS_STEPS, CONTACT,
 } from "@/lib/siteData";
-import { Phone, CheckCircle2, MapPin, Clock, ChevronRight, Star } from "lucide-react";
+import { Phone, CheckCircle2, MapPin, Clock, ChevronRight } from "lucide-react";
 
 // Scroll-reveal hook
 function useReveal() {
@@ -49,7 +49,7 @@ const schema = [
     telephone: "+12512067319",
     email: "lance@skywindowdesign.com",
     image: "https://skywindowdesign.com/manus-storage/hero-coastal-room_69b05db7.jpg",
-    logo: "https://skywindowdesign.com/manus-storage/sky-logo_1a5423c8.png",
+    logo: "https://skywindowdesign.com/manus-storage/SkyLogo(2)_b2bdb6a8.png",
     priceRange: "$$",
     currenciesAccepted: "USD",
     paymentAccepted: "Cash, Credit Card, Check",
@@ -107,7 +107,7 @@ export default function Home() {
           HERO — bright photo, white bottom fade, centered serif H1
           Pattern: CONTACTUS.png — no dark overlay, centered content
           ═══════════════════════════════════════════ */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "90px" }}>
+      <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "120px", paddingBottom: "60px" }}>
         {/* Background image — bright, no dark overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
@@ -122,8 +122,13 @@ export default function Home() {
           />
         </div>
 
-        {/* Sky watermark — bottom-left, semi-transparent */}
-        <span className="sky-watermark" aria-hidden="true">sky</span>
+        {/* Sky watermark image — bottom-left corner */}
+        <img
+          src={IMAGES.skyWatermark}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-4 left-4 z-1 w-[180px] lg:w-[280px] opacity-80 pointer-events-none select-none"
+        />
 
         {/* Hero content — centered */}
         <div className="container relative z-10 py-20 flex flex-col items-center">
@@ -140,23 +145,14 @@ export default function Home() {
             Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
           </p>
 
-          {/* CTA row — Google badge + Get Quote button with vertical divider */}
+          {/* CTA row — Google badge image + Get Quote button */}
           <div className="flex items-center gap-5">
-            {/* Google Reviews badge */}
-            <div className="flex items-center gap-2.5">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <div className="flex flex-col items-start leading-none">
-                <span className="text-slate-800 text-[15px] font-bold">5.0</span>
-                <span className="text-slate-500 text-[11px] font-medium">Google Reviews</span>
-              </div>
-            </div>
-
-            {/* Vertical divider */}
-            <div className="w-px h-10 bg-slate-300" aria-hidden="true" />
+            {/* Google Reviews badge image */}
+            <img
+              src={IMAGES.googleReview}
+              alt="5.0 Google Reviews"
+              className="h-[52px] w-auto"
+            />
 
             {/* Get Quote button */}
             <Link href="/contact" className="btn-primary">

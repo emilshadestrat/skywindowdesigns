@@ -416,14 +416,7 @@
     color: #1a1a1a;
   }
 
-  /* ── Floating white nav pill (CONTACTUS.png pattern) ── */
-  .nav-pill {
-    background: #ffffff;
-    border-radius: 9999px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.10), 0 1px 6px rgba(0,0,0,0.06);
-  }
-
-  /* ── Sky watermark for hero ── */
+  /* ── Sky watermark for hero (legacy text version, now using image) ── */
   .sky-watermark {
     position: absolute;
     bottom: 2%;
