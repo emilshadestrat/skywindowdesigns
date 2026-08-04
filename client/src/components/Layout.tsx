@@ -402,6 +402,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       </footer>
 
       {/* ── Mobile sticky bar ── */}
+      {!mobileNavOpen && (
       <div className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 sm:gap-3 bg-white border-t border-slate-200 px-3 py-3 lg:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
         <a
           href={CONTACT.phoneHref}
@@ -417,6 +418,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           Get Quote
         </Link>
       </div>
+      )}
 
       {/* ── Mobile nav overlay — grouped accordion ── */}
       {mobileNavOpen && (
@@ -439,7 +441,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           </div>
 
           {/* Mobile nav — grouped accordion */}
-          <nav className="flex flex-col px-5 pt-2">
+          <nav className="flex-1 flex flex-col px-5 pt-2">
             {MOBILE_NAV_GROUPS.map((group) => {
               const isExpanded = expandedGroups.has(group.label);
               return (
@@ -472,7 +474,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           </nav>
 
           {/* Mobile nav contact */}
-          <div className="px-5 pt-6 pb-4">
+          <div className="px-5 pt-6 pb-4 border-t border-slate-100 mt-2">
             <a
               href={CONTACT.phoneHref}
               className="btn-primary w-full justify-center mb-3"
