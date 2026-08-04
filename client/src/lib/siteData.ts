@@ -212,6 +212,22 @@ export const HOMEPAGE_FAQS = [
     q: "Are motorized window treatments available?",
     a: "Motorized options may be available for selected shades and window-treatment systems. Compatibility depends on the selected shade, motor, hub and control platform.",
   },
+  {
+    q: "Do you offer free in-home consultations?",
+    a: "Yes. We offer free in-home consultations throughout our service area. We bring samples, take measurements and discuss options so you can make an informed decision without leaving your home.",
+  },
+  {
+    q: "How long does installation typically take?",
+    a: "Installation time depends on the number of windows and the complexity of the treatment. Most residential projects are completed in a single day. We will provide a timeline during your consultation.",
+  },
+  {
+    q: "Can you match existing draperies or decor?",
+    a: "Yes. We help coordinate fabric, color and material with your existing decor. Bring photos or swatches to your consultation and we will find options that complement your space.",
+  },
+  {
+    q: "What warranty or guarantee do you provide?",
+    a: "We stand behind our work with a satisfaction guarantee. Product warranties vary by manufacturer and product line. We review the specific warranty details with you before you make a final selection.",
+  },
 ];
 
 export const PROCESS_STEPS = [

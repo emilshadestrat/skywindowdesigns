@@ -437,7 +437,7 @@ export default function Home() {
             <span className="eyebrow justify-center">FAQ</span>
             <h2 className="section-heading mb-10">Frequently Asked Questions</h2>
           </RevealDiv>
-          <RevealDiv delay={60}>
+          <RevealDiv delay={60} className="max-w-[900px] mx-auto">
             <FaqAccordion items={HOMEPAGE_FAQS} />
           </RevealDiv>
         </div>
