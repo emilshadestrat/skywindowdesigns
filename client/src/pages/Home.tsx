@@ -341,8 +341,8 @@ export default function Home() {
           style={{ background: "radial-gradient(ellipse at top, oklch(0.20 0.03 260), transparent 70%)" }}
         />
         <div className="container relative z-10">
-          <RevealDiv className="mb-14">
-            <span className="eyebrow text-blue-400">How It Works</span>
+          <RevealDiv className="mb-14 text-center">
+            <span className="eyebrow justify-center text-blue-400">How It Works</span>
             <h2 className="section-heading-white">How the Design Process Works</h2>
           </RevealDiv>
 
