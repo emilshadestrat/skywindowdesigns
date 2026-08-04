@@ -181,12 +181,7 @@
     margin-bottom: 1.25rem;
   }
   .eyebrow::after {
-    content: '';
-    width: 2.5rem;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.35;
-    border-radius: 1px;
+    content: none;
   }
 
   /* ── Section heading — tighter, more dramatic with serif accent ── */
