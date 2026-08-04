@@ -58,7 +58,7 @@ export default function DesignServices() {
 
       {/* ── Hero ── */}
       <section
-        className="pt-8 pb-16"
+        className="pt-6 pb-12 sm:pt-8 sm:pb-16"
         style={{ backgroundColor: "oklch(0.97 0.007 255)" }}
       >
         <div className="container">
@@ -66,18 +66,18 @@ export default function DesignServices() {
             <span className="eyebrow">Design Services</span>
             <h1
               className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
-              style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+              style={{ fontSize: "clamp(1.5rem, 1.25rem + 1.5vw, 3rem)", letterSpacing: "-0.025em" }}
             >
               Design Services Beyond Window Treatments
             </h1>
             <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[600px]">
               From wallpaper and interior design to commercial window treatments, repairs, and a visualizer tool — Sky Window Design & More offers design services that go beyond shades and shutters for Orange Beach and the Gulf Coast.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
                 Schedule a Consultation
               </Link>
-              <a href={CONTACT.phoneHref} className="btn-outline">
+              <a href={CONTACT.phoneHref} className="btn-outline w-full sm:w-auto justify-center">
                 <Phone size={15} />
                 {CONTACT.phone}
               </a>
@@ -87,7 +87,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Services grid ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container">
           <div className="grid sm:grid-cols-2 gap-5">
             {pages.map((page) => {
@@ -123,7 +123,7 @@ export default function DesignServices() {
 
       {/* ── CTA Band ── */}
       <section
-        className="py-16"
+        className="py-12 sm:py-16"
         style={{ backgroundColor: "oklch(0.15 0.02 255)" }}
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -133,11 +133,11 @@ export default function DesignServices() {
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>
           </div>
-          <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Link href="/contact" className="btn-outline-white">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 flex-shrink-0 w-full sm:w-auto">
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
-            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40">
+            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40 w-full sm:w-auto justify-center">
               <Phone size={15} />
               {CONTACT.phone}
             </a>

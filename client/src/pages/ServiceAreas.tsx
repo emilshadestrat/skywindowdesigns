@@ -46,7 +46,7 @@ export default function ServiceAreas() {
 
       {/* ── Hero ── */}
       <section
-        className="pt-8 pb-16"
+        className="pt-6 pb-12 sm:pt-8 sm:pb-16"
         style={{ backgroundColor: "oklch(0.97 0.007 255)" }}
       >
         <div className="container">
@@ -54,18 +54,18 @@ export default function ServiceAreas() {
             <span className="eyebrow">Service Areas</span>
             <h1
               className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
-              style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+              style={{ fontSize: "clamp(1.5rem, 1.25rem + 1.5vw, 3rem)", letterSpacing: "-0.025em" }}
             >
               Window Treatment Services Across the Gulf Coast
             </h1>
             <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[600px]">
               Sky Window Design &amp; More serves Orange Beach, Alabama and the surrounding Gulf Coast communities. Schedule a consultation at our Orange Beach showroom to discuss your project.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
                 Schedule a Consultation
               </Link>
-              <a href={CONTACT.phoneHref} className="btn-outline">
+              <a href={CONTACT.phoneHref} className="btn-outline w-full sm:w-auto justify-center">
                 <Phone size={15} />
                 {CONTACT.phone}
               </a>
@@ -75,7 +75,7 @@ export default function ServiceAreas() {
       </section>
 
       {/* ── City grid ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {cityKeys.map((key) => {
@@ -127,7 +127,7 @@ export default function ServiceAreas() {
       </section>
 
       {/* ── Map embed ── */}
-      <section className="py-12" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="py-10 sm:py-12" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container">
           <span className="eyebrow">Visit Our Showroom</span>
           <h2 className="section-heading mb-6">Orange Beach, Alabama</h2>
@@ -151,7 +151,7 @@ export default function ServiceAreas() {
 
       {/* ── CTA Band ── */}
       <section
-        className="py-16"
+        className="py-12 sm:py-16"
         style={{ backgroundColor: "oklch(0.15 0.02 255)" }}
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -161,11 +161,11 @@ export default function ServiceAreas() {
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>
           </div>
-          <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Link href="/contact" className="btn-outline-white">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 flex-shrink-0 w-full sm:w-auto">
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
-            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40">
+            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40 w-full sm:w-auto justify-center">
               <Phone size={15} />
               {CONTACT.phone}
             </a>

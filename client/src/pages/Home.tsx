@@ -107,7 +107,7 @@ export default function Home() {
           HERO — bright photo, white bottom fade, centered serif H1
           Pattern: CONTACTUS.png — no dark overlay, centered content
           ═══════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center" style={{ paddingTop: "120px", paddingBottom: "60px" }}>
         {/* Background image — bright, no dark overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
@@ -132,38 +132,38 @@ export default function Home() {
           src={IMAGES.skyWatermark}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-0 left-0 z-1 w-[300px] lg:w-[500px] opacity-90 pointer-events-none select-none"
+          className="absolute bottom-0 left-0 z-1 w-[200px] sm:w-[300px] lg:w-[500px] opacity-90 pointer-events-none select-none"
         />
 
         {/* Hero content — centered with refined spacing */}
-        <div className="container relative z-10 py-20 flex flex-col items-center">
+        <div className="container relative z-10 py-10 sm:py-20 flex flex-col items-center">
           {/* Refined eyebrow above H1 */}
           <span className="eyebrow mb-6" style={{ color: "oklch(0.48 0.22 258)" }}>Orange Beach, Alabama</span>
 
           {/* H1 — Petrona serif, refined leading */}
           <h1
             className="hero-serif leading-[1.08] mb-6"
-            style={{ fontSize: "clamp(2.5rem, 2rem + 3vw, 4.25rem)" }}
+            style={{ fontSize: "clamp(2rem, 1.6rem + 2.5vw, 4.25rem)" }}
           >
             Custom Window Treatments<br />for Gulf Coast Living
           </h1>
 
           {/* Subheading — verbatim from copy doc */}
-          <p className="lead-text mb-10 max-w-[580px]">
+          <p className="lead-text mb-8 sm:mb-10 max-w-[580px] px-4 sm:px-0 text-[15px] sm:text-[1.0625rem]">
             Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
           </p>
 
           {/* CTA row — Google badge image + Get Quote button */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6">
             {/* Google Reviews badge image */}
             <img
               src={IMAGES.googleReview}
               alt="5.0 Google Reviews"
-              className="h-[80px] w-auto lg:h-[96px]"
+              className="h-[64px] sm:h-[80px] w-auto lg:h-[96px]"
             />
 
             {/* Get Quote button */}
-            <Link href="/contact" className="btn-primary text-[15px] !py-3.5 !px-7">
+            <Link href="/contact" className="btn-primary text-[15px] !py-3.5 !px-7 w-full sm:w-auto justify-center">
               Get a Quote
             </Link>
           </div>
@@ -174,18 +174,18 @@ export default function Home() {
           TRUST BAR — solid blue, 3 columns, white serif text
           Pattern: CONTACTUS.png bottom blue bar — refined with subtle gradient
           ═══════════════════════════════════════════ */}
-      <div style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="py-6">
+      <div style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="py-5 sm:py-6">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             {[
               "Locally Owned & Operated",
               "Professional Measure & Installation",
               "Serving the Alabama Gulf Coast",
               "Free In-Home Consultations",
             ].map((item) => (
-              <div key={item} className="flex items-center justify-center gap-2.5">
-                <CheckCircle2 size={15} className="text-white/70 flex-shrink-0" />
-                <span className="font-[Fraunces,Georgia,serif] text-white text-[14px] font-medium tracking-wide">{item}</span>
+              <div key={item} className="flex items-center justify-center gap-1.5 sm:gap-2.5">
+                <CheckCircle2 size={13} className="text-white/70 flex-shrink-0 sm:hidden" /><CheckCircle2 size={15} className="text-white/70 flex-shrink-0 hidden sm:block" />
+                <span className="font-[Fraunces,Georgia,serif] text-white text-[12px] sm:text-[14px] font-medium tracking-wide">{item}</span>
               </div>
             ))}
           </div>
@@ -195,7 +195,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           PRODUCTS INTRO
           ═══════════════════════════════════════════ */}
-      <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
+      <section className="py-12 sm:py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
           <RevealDiv className="text-center">
             <span className="eyebrow justify-center">Products</span>
@@ -214,9 +214,9 @@ export default function Home() {
           PRODUCT CARDS — image-top, 3-col grid
           Pattern: Solomon's service cards
           ═══════════════════════════════════════════ */}
-      <section className="pb-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
+      <section className="pb-12 sm:pb-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
             {PRODUCT_CARDS.map((card, i) => (
               <RevealDiv key={card.href} delay={i * 60}>
                 <Link href={card.href} className="service-card block group h-full">
@@ -228,12 +228,12 @@ export default function Home() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
-                  <div className="p-8 flex flex-col flex-1">
-                    <h3 className="font-[Fraunces,Georgia,serif] font-semibold text-[1.25rem] text-slate-900 mb-3 leading-tight">
+                  <div className="p-5 sm:p-8 flex flex-col flex-1">
+                    <h3 className="font-[Fraunces,Georgia,serif] font-semibold text-[1.125rem] sm:text-[1.25rem] text-slate-900 mb-3 leading-tight">
                       {card.title}
                     </h3>
                     <div className="w-8 h-px bg-slate-300 mb-4 transition-all duration-400 group-hover:w-12 group-hover:bg-blue-600" />
-                    <p className="text-[14px] leading-[1.7] text-slate-500 mb-6 flex-1">
+                    <p className="text-[13px] sm:text-[14px] leading-[1.7] text-slate-500 mb-6 flex-1">
                       {card.desc}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-900 group-hover:text-blue-700 transition-colors">
@@ -246,12 +246,12 @@ export default function Home() {
           </div>
 
           {/* CTA below cards */}
-          <RevealDiv className="mt-10 flex flex-wrap gap-4 justify-center">
-            <a href={CONTACT.phoneHref} className="btn-primary">
+          <RevealDiv className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+            <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
               <Phone size={16} />
               Call {CONTACT.phone}
             </a>
-            <Link href="/contact" className="btn-outline">
+            <Link href="/contact" className="btn-outline w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
           </RevealDiv>
@@ -262,9 +262,9 @@ export default function Home() {
           SHOWROOM — split layout
           Pattern: Solomon's "Why Us" split section
           ═══════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-20 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-12 items-start">
             {/* Left: copy */}
             <RevealDiv>
               <span className="eyebrow">Visit Us</span>
@@ -287,11 +287,11 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="btn-primary">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
                   Schedule a Consultation
                 </Link>
-                <Link href="/about" className="btn-outline">
+                <Link href="/about" className="btn-outline w-full sm:w-auto justify-center">
                   Learn About Us
                 </Link>
               </div>
@@ -305,7 +305,7 @@ export default function Home() {
                   <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900">Showroom Hours</h3>
                 </div>
                 {CONTACT.hours.map((h) => (
-                  <div key={h.day} className="flex justify-between py-2 text-[14.5px] text-slate-700 border-b border-slate-200 last:border-0">
+                  <div key={h.day} className="flex justify-between py-2 text-[13.5px] sm:text-[14.5px] text-slate-700 border-b border-slate-200 last:border-0">
                     <span>{h.day}</span>
                     <span className="font-semibold text-slate-900">{h.time}</span>
                   </div>
@@ -333,7 +333,7 @@ export default function Home() {
           Pattern: Solomon's "How It Works" section
           ═══════════════════════════════════════════ */}
       <section
-        className="py-24 relative"
+        className="py-12 sm:py-24 relative"
         style={{ backgroundColor: "oklch(0.14 0.025 260)" }}
       >
         {/* Subtle texture overlay for depth */}
@@ -347,33 +347,33 @@ export default function Home() {
             <h2 className="section-heading-white">How the Design Process Works</h2>
           </RevealDiv>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-14">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-10 sm:mb-14">
             {PROCESS_STEPS.map((step, i) => (
               <RevealDiv key={step.num} delay={i * 80}>
                 <div
                   className="font-[Fraunces,Georgia,serif] font-extrabold mb-5 leading-none"
-                  style={{ fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)", color: "oklch(0.50 0.21 258 / 0.30)" }}
+                  style={{ fontSize: "clamp(2.25rem, 1.75rem + 2vw, 4.5rem)", color: "oklch(0.50 0.21 258 / 0.30)" }}
                   aria-hidden="true"
                 >
                   0{step.num}
                 </div>
                 <div className="w-8 h-px bg-blue-500/30 mb-4" />
-                <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.125rem] text-white mb-3">
+                <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1rem] sm:text-[1.125rem] text-white mb-3">
                   {step.title}
                 </h3>
-                <p className="text-[14.5px] leading-[1.65] text-slate-400 max-w-[320px]">
+                <p className="text-[13.5px] sm:text-[14.5px] leading-[1.65] text-slate-400 max-w-[320px] mx-auto">
                   {step.body}
                 </p>
               </RevealDiv>
             ))}
           </div>
 
-          <RevealDiv className="flex flex-wrap gap-4 justify-center">
-            <a href={CONTACT.phoneHref} className="btn-primary">
+          <RevealDiv className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+            <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
               <Phone size={16} />
               Call {CONTACT.phone}
             </a>
-            <Link href="/contact" className="btn-outline-white">
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
           </RevealDiv>
@@ -383,7 +383,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           SERVICE AREAS STRIP
           ═══════════════════════════════════════════ */}
-      <section className="py-20 bg-white border-b border-slate-100">
+      <section className="py-12 sm:py-20 bg-white border-b border-slate-100">
         <div className="container">
           <RevealDiv className="text-center">
             <span className="eyebrow justify-center">Where We Work</span>
@@ -392,7 +392,7 @@ export default function Home() {
               Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
             </p>
           </RevealDiv>
-          <RevealDiv delay={60} className="flex flex-wrap gap-3 justify-center">
+          <RevealDiv delay={60} className="flex flex-wrap gap-2 sm:gap-3 justify-center">
             {[
               { label: "Orange Beach, AL", href: "" },
               { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
@@ -406,14 +406,14 @@ export default function Home() {
                 <Link
                   key={city.label}
                   href={city.href}
-                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
+                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 text-[13px] sm:text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
                 >
                   {city.label}
                 </Link>
               ) : (
                 <span
                   key={city.label}
-                  className="px-5 py-2.5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-400 cursor-default"
+                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 text-[13px] sm:text-[14px] font-semibold text-slate-400 cursor-default"
                   title="Our home base — no separate page"
                 >
                   {city.label}
@@ -427,13 +427,13 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           FAQ
           ═══════════════════════════════════════════ */}
-      <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
+      <section className="py-12 sm:py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
           <RevealDiv className="text-center">
             <span className="eyebrow justify-center">FAQ</span>
             <h2 className="section-heading mb-10">Frequently Asked Questions</h2>
           </RevealDiv>
-          <RevealDiv delay={60} className="grid md:grid-cols-2 gap-x-10 gap-y-0 max-w-[1200px] mx-auto">
+          <RevealDiv delay={60} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-0 max-w-[1200px] mx-auto">
             <FaqAccordion items={HOMEPAGE_FAQS.slice(0, 4)} />
             <FaqAccordion items={HOMEPAGE_FAQS.slice(4)} />
           </RevealDiv>
@@ -445,7 +445,7 @@ export default function Home() {
           Pattern: Solomon's bottom CTA band
           ═══════════════════════════════════════════ */}
       <section
-        className="py-24"
+        className="py-12 sm:py-24"
         style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }}
       >
         {/* Subtle texture overlay */}
@@ -457,18 +457,18 @@ export default function Home() {
           <RevealDiv>
             <h2
               className="font-[Fraunces,Georgia,serif] font-extrabold text-white mb-6 leading-tight"
-              style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem)", letterSpacing: "-0.03em" }}
+              style={{ fontSize: "clamp(1.375rem, 1.15rem + 1.3vw, 2.75rem)", letterSpacing: "-0.03em" }}
             >
               Ready to Compare Options for Your Space?
             </h2>
-            <p className="text-white/85 text-[1.0625rem] leading-[1.7] mb-10 max-w-[540px] mx-auto">
+            <p className="text-white/85 text-[15px] sm:text-[1.0625rem] leading-[1.7] mb-10 max-w-[540px] mx-auto">
               Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or <span className="gold-accent text-white/95">inspiration</span>.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+              <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700 w-full sm:w-auto justify-center">
                 Schedule a Consultation
               </Link>
-              <a href={CONTACT.phoneHref} className="btn-outline-white">
+              <a href={CONTACT.phoneHref} className="btn-outline-white w-full sm:w-auto justify-center">
                 <Phone size={16} />
                 Call {CONTACT.phone}
               </a>

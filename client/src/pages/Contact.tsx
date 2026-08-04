@@ -77,14 +77,14 @@ export default function ContactPage() {
 
       {/* ── Page Hero ── */}
       <section
-        className="pt-8 pb-16"
+        className="pt-6 pb-12 sm:pt-8 sm:pb-16"
         style={{ backgroundColor: "oklch(0.97 0.007 255)" }}
       >
         <div className="container max-w-[760px]">
           <span className="eyebrow">Get in Touch</span>
           <h1
             className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-4"
-            style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(1.5rem, 1.25rem + 1.5vw, 3rem)", letterSpacing: "-0.025em" }}
           >
             Contact Sky Window Design and More
           </h1>
@@ -95,9 +95,9 @@ export default function ContactPage() {
       </section>
 
       {/* ── Main: Info + Form ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 items-start">
+          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 sm:gap-12 items-start">
 
             {/* ── Left: Contact info ── */}
             <div>
@@ -154,8 +154,8 @@ export default function ContactPage() {
                     <p className="text-[12px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-2">Hours</p>
                     <div className="space-y-1.5">
                       {CONTACT.hours.map((h) => (
-                        <div key={h.day} className="flex gap-4 text-[15px] text-slate-700">
-                          <span className="w-40 flex-shrink-0">{h.day}</span>
+                        <div key={h.day} className="flex gap-2 sm:gap-4 text-[14px] sm:text-[15px] text-slate-700">
+                          <span className="w-28 sm:w-40 flex-shrink-0">{h.day}</span>
                           <span className="font-semibold text-slate-900">{h.time}</span>
                         </div>
                       ))}

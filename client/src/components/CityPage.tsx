@@ -62,7 +62,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
 
       {/* ── City Hero ── */}
       <section
-        className="pt-8 pb-16"
+        className="pt-6 pb-12 sm:pt-8 sm:pb-16"
         style={{ backgroundColor: "oklch(0.97 0.007 255)" }}
       >
         <div className="container">
@@ -70,15 +70,15 @@ export function CityPage({ pageKey }: { pageKey: string }) {
             <span className="eyebrow">{data.area}</span>
             <h1
               className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
-              style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+              style={{ fontSize: "clamp(1.5rem, 1.25rem + 1.5vw, 3rem)", letterSpacing: "-0.025em" }}
             >
               {data.h1}
             </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
                 Schedule a Consultation
               </Link>
-              <a href={CONTACT.phoneHref} className="btn-outline">
+              <a href={CONTACT.phoneHref} className="btn-outline w-full sm:w-auto justify-center">
                 <Phone size={15} />
                 {CONTACT.phone}
               </a>
@@ -88,9 +88,9 @@ export function CityPage({ pageKey }: { pageKey: string }) {
       </section>
 
       {/* ── Content + Sidebar ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-[1fr_300px] gap-12 items-start">
+          <div className="grid lg:grid-cols-[1fr_300px] gap-8 sm:gap-12 items-start">
             {/* Main content */}
             <div className="max-w-[720px]">
               {data.sections.map((section, i) => (
@@ -159,7 +159,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
       </section>
 
       {/* ── Products strip ── */}
-      <section className="py-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="py-12 sm:py-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container">
           <span className="eyebrow">Our Services</span>
           <h2 className="section-heading mb-8">Window Treatments Available in {data.area}</h2>
@@ -187,7 +187,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
       </section>
 
       {/* ── Other Service Areas cross-link strip ── */}
-      <section className="py-12 bg-white border-t border-slate-100">
+      <section className="py-10 sm:py-12 bg-white border-t border-slate-100">
         <div className="container">
           <span className="eyebrow">Other Service Areas</span>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
@@ -212,7 +212,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
 
       {/* ── CTA Band ── */}
       <section
-        className="py-16"
+        className="py-12 sm:py-16"
         style={{ backgroundColor: "oklch(0.15 0.02 255)" }}
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -222,11 +222,11 @@ export function CityPage({ pageKey }: { pageKey: string }) {
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a <span className="gold-accent text-yellow-400/80">free consultation</span> at our Orange Beach showroom.</p>
           </div>
-          <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Link href="/contact" className="btn-outline-white">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 flex-shrink-0 w-full sm:w-auto">
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
-            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40">
+            <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40 w-full sm:w-auto justify-center">
               <Phone size={15} />
               {CONTACT.phone}
             </a>

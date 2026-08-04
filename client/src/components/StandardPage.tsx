@@ -345,14 +345,14 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(10,15,40,0.85) 0%, rgba(10,15,40,0.55) 60%, rgba(10,15,40,0.30) 100%)" }} />
         </div>
 
-        <div className="container relative z-10 py-16 lg:py-20">
-          <div className="grid lg:grid-cols-[1fr_380px] gap-10 items-start">
+        <div className="container relative z-10 py-10 sm:py-16 lg:py-20">
+          <div className="grid lg:grid-cols-[1fr_380px] gap-8 sm:gap-10 items-start">
             {/* Left: eyebrow + H1 + bullets + CTAs + rating */}
             <div>
               <span className="eyebrow !text-blue-400 !mb-3">Orange Beach, Alabama</span>
               <h1
                 className="font-[Fraunces,Georgia,serif] font-extrabold text-white leading-tight mb-5"
-                style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
+                style={{ fontSize: "clamp(1.5rem, 1.25rem + 1.5vw, 3rem)", letterSpacing: "-0.025em" }}
               >
                 {data.h1}
               </h1>
@@ -377,12 +377,12 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               )}
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                <a href={CONTACT.phoneHref} className="btn-primary">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
+                <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
                   <Phone size={15} />
                   Call {CONTACT.phone}
                 </a>
-                <Link href="/contact" className="btn-outline-white">
+                <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
                   Get a Free Consultation
                 </Link>
               </div>
@@ -433,9 +433,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           Pattern: Solomon "WHAT THEY ARE" section
           ══════════════════════════════════════════════════════════ */}
       {firstSection && (
-        <section className="py-20 bg-white">
+        <section className="py-12 sm:py-20 bg-white">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
               {/* Left: copy */}
               <RevealDiv>
                 <span className="eyebrow">What It Is</span>
@@ -445,13 +445,13 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                     {para.trim()}
                   </p>
                 ))}
-                <div className="flex flex-wrap gap-4 mt-6">
-                  <a href={CONTACT.phoneHref} className="btn-primary">
-                    <Phone size={15} />
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6">
+                  <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
+                    <Phone size={16} />
                     Call {CONTACT.phone}
                   </a>
-                  <Link href="/contact" className="btn-outline">
-                    Get a Free Consultation
+                  <Link href="/contact" className="btn-outline w-full sm:w-auto justify-center">
+                    Schedule a Consultation
                   </Link>
                 </div>
               </RevealDiv>
@@ -474,7 +474,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           4. DARK FEATURES GRID — background image + 4 white cards
           Pattern: Solomon "BUILT TO LAST" section
           ══════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
+      <section className="relative py-12 sm:py-20 overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
         <div className="absolute inset-0 z-0">
           <img src={secondaryImg} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ opacity: 0.12 }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(8,12,35,0.92) 0%, rgba(8,12,35,0.88) 100%)" }} />
@@ -500,13 +500,13 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               </RevealDiv>
             ))}
           </div>
-          <RevealDiv delay={280} className="flex flex-wrap gap-4 justify-center mt-12">
-            <a href={CONTACT.phoneHref} className="btn-primary">
-              <Phone size={15} />
+          <RevealDiv delay={280} className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-12">
+            <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
+              <Phone size={16} />
               Call {CONTACT.phone}
             </a>
-            <Link href="/contact" className="btn-outline-white">
-              Get a Free Consultation
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
+              Schedule a Consultation
             </Link>
           </RevealDiv>
         </div>
@@ -517,11 +517,11 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           Pattern: Solomon mid-page editorial sections
           ══════════════════════════════════════════════════════════ */}
       {restSections.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
-          <div className="container space-y-20">
+        <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+          <div className="container space-y-10 sm:space-y-20">
             {restSections.map((section, i) => (
               <RevealDiv key={i}>
-                <div className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                <div className={`grid lg:grid-cols-2 gap-8 sm:gap-12 items-center ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
                   {/* Text side */}
                   <div>
                     <span className="eyebrow">{i === 0 ? "Why Choose It" : "More to Know"}</span>
@@ -556,7 +556,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           6. HOW IT WORKS — numbered steps on dark background
           Pattern: Solomon "HOW IT WORKS" section
           ══════════════════════════════════════════════════════════ */}
-      <section className="py-20 relative" style={{ backgroundColor: "oklch(0.15 0.02 255)" }}>
+      <section className="py-12 sm:py-20 relative" style={{ backgroundColor: "oklch(0.15 0.02 255)" }}>
         <div className="container relative z-10">
           <RevealDiv className="mb-12">
             <span className="eyebrow !text-blue-400">How It Works</span>
@@ -577,12 +577,12 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               </RevealDiv>
             ))}
           </div>
-          <RevealDiv className="flex flex-wrap gap-4">
-            <a href={CONTACT.phoneHref} className="btn-primary">
-              <Phone size={15} />
+          <RevealDiv className="flex flex-col sm:flex-row flex-wrap gap-4">
+            <a href={CONTACT.phoneHref} className="btn-primary w-full sm:w-auto justify-center">
+              <Phone size={16} />
               Call {CONTACT.phone}
             </a>
-            <Link href="/contact" className="btn-outline-white">
+            <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
               Schedule a Consultation
             </Link>
           </RevealDiv>
@@ -593,7 +593,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           7. RELATED PRODUCTS — image cards
           ══════════════════════════════════════════════════════════ */}
       {relatedCards.length > 0 && (
-        <section className="py-16 bg-white">
+        <section className="py-12 sm:py-16 bg-white">
           <div className="container">
             <RevealDiv>
               <span className="eyebrow">Also Available</span>
@@ -626,7 +626,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
       {/* ══════════════════════════════════════════════════════════
           8. FAQ — accordion on light background
           ══════════════════════════════════════════════════════════ */}
-      <section className="py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
+      <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container">
           <RevealDiv>
             <span className="eyebrow">FAQ</span>
@@ -642,7 +642,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           9. RELATED SERVICES TEXT LINKS
           ══════════════════════════════════════════════════════════ */}
       {textLinks.length > 0 && (
-        <section className="py-12 bg-white border-t border-slate-100">
+        <section className="py-10 sm:py-12 bg-white border-t border-slate-100">
           <div className="container">
             <span className="eyebrow">Related Services</span>
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
@@ -664,7 +664,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
       {/* ══════════════════════════════════════════════════════════
           9b. AVAILABLE IN YOUR AREA — city cross-links strip
           ══════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-white border-t border-slate-100">
+      <section className="py-10 sm:py-12 bg-white border-t border-slate-100">
         <div className="container">
           <span className="eyebrow">Available in Your Area</span>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
@@ -689,23 +689,23 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           10. FINAL CTA BAND — dark blue
           Pattern: Solomon bottom CTA band
           ══════════════════════════════════════════════════════════ */}
-      <section className="py-20" style={{ backgroundColor: "oklch(0.50 0.21 255)" }}>
+      <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.50 0.21 255)" }}>
         <div className="container text-center">
           <RevealDiv>
             <h2
               className="font-[Fraunces,Georgia,serif] font-extrabold text-white mb-4 leading-tight"
-              style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem)", letterSpacing: "-0.025em" }}
+              style={{ fontSize: "clamp(1.375rem, 1.15rem + 1.3vw, 2.625rem)", letterSpacing: "-0.025em" }}
             >
               Ready to Compare Options for Your Space?
             </h2>
-            <p className="text-white/85 text-[1.0625rem] leading-relaxed mb-8 max-w-[540px] mx-auto">
+            <p className="text-white/85 text-[15px] sm:text-[1.0625rem] leading-relaxed mb-8 max-w-[540px] mx-auto">
               Schedule a free consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or <span className="gold-accent text-yellow-300">inspiration</span>.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+              <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700 w-full sm:w-auto justify-center">
                 Schedule a Consultation
               </Link>
-              <a href={CONTACT.phoneHref} className="btn-outline-white">
+              <a href={CONTACT.phoneHref} className="btn-outline-white w-full sm:w-auto justify-center">
                 <Phone size={16} />
                 Call {CONTACT.phone}
               </a>

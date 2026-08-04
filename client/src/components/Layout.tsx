@@ -264,13 +264,13 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       {!breadcrumb && !heroPage && <div className="pt-[70px]" />}
 
       {/* Page content */}
-      <main id="main-content">{children}</main>
+      <main id="main-content" className="pb-16 lg:pb-0">{children}</main>
 
       {/* ── Footer ── */}
-      <footer style={{ backgroundColor: "oklch(0.13 0.02 258)" }} className="pt-16 pb-8 relative">
+      <footer style={{ backgroundColor: "oklch(0.13 0.02 258)" }} className="pt-12 sm:pt-16 pb-20 lg:pb-8 relative">
         <div style={{ background: "linear-gradient(to right, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="absolute top-0 left-0 right-0 h-px" />
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-8 sm:gap-6 lg:gap-8 mb-12">
             {/* Col 1: Brand */}
             <div>
               <img
@@ -402,7 +402,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       </footer>
 
       {/* ── Mobile sticky bar ── */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-3 bg-white border-t border-slate-200 px-4 py-3 lg:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 sm:gap-3 bg-white border-t border-slate-200 px-3 py-3 lg:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
         <a
           href={CONTACT.phoneHref}
           className="btn-primary flex-1 justify-center !text-[14px] !py-2.5"
