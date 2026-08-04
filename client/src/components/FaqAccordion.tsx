@@ -12,7 +12,7 @@ interface FaqItem {
 
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   return (
-    <Accordion type="single" collapsible className="w-full max-w-[780px]">
+    <Accordion type="single" collapsible className="w-full">
       {items.map((item, i) => (
         <AccordionItem
           key={i}
