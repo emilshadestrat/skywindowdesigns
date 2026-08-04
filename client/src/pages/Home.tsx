@@ -196,13 +196,13 @@ export default function Home() {
           ═══════════════════════════════════════════ */}
       <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
-          <RevealDiv>
-            <span className="eyebrow">Products</span>
+          <RevealDiv className="text-center">
+            <span className="eyebrow justify-center">Products</span>
             <h2 className="section-heading mb-6">Window Treatments Designed Around Your Space</h2>
-            <p className="lead-text max-w-[760px] mb-5">
+            <p className="lead-text max-w-[760px] mx-auto mb-5">
               Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.
             </p>
-            <p className="lead-text max-w-[760px]">
+            <p className="lead-text max-w-[760px] mx-auto">
               We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space.
             </p>
           </RevealDiv>
