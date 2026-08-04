@@ -176,16 +176,12 @@ export default function Home() {
           ═══════════════════════════════════════════ */}
       <div style={{ background: "linear-gradient(135deg, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="py-6">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-5 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
             {[
               "Locally Owned & Operated",
               "Professional Measure & Installation",
               "Serving the Alabama Gulf Coast",
               "Free In-Home Consultations",
-              "Motorized & Smart Home Options",
-              "Custom Fabric & Material Selection",
-              "Licensed & Insured",
-              "Satisfaction Guaranteed",
             ].map((item) => (
               <div key={item} className="flex items-center justify-center gap-2.5">
                 <CheckCircle2 size={15} className="text-white/70 flex-shrink-0" />
