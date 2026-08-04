@@ -372,7 +372,7 @@ export default function Home() {
             ))}
           </div>
 
-          <RevealDiv className="flex flex-wrap gap-4">
+          <RevealDiv className="flex flex-wrap gap-4 justify-center">
             <a href={CONTACT.phoneHref} className="btn-primary">
               <Phone size={16} />
               Call {CONTACT.phone}
