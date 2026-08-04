@@ -384,14 +384,14 @@ export default function Home() {
           ═══════════════════════════════════════════ */}
       <section className="py-20 bg-white border-b border-slate-100">
         <div className="container">
-          <RevealDiv>
-            <span className="eyebrow">Where We Work</span>
+          <RevealDiv className="text-center">
+            <span className="eyebrow justify-center">Where We Work</span>
             <h2 className="section-heading mb-5">Proudly Serving the Alabama Gulf Coast</h2>
-            <p className="lead-text mb-10 max-w-[600px]">
+            <p className="lead-text mb-10 max-w-[600px] mx-auto">
               Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
             </p>
           </RevealDiv>
-          <RevealDiv delay={60} className="flex flex-wrap gap-3">
+          <RevealDiv delay={60} className="flex flex-wrap gap-3 justify-center">
             {[
               { label: "Orange Beach, AL", href: "" },
               { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
@@ -428,8 +428,8 @@ export default function Home() {
           ═══════════════════════════════════════════ */}
       <section className="py-24" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
         <div className="container">
-          <RevealDiv>
-            <span className="eyebrow">FAQ</span>
+          <RevealDiv className="text-center">
+            <span className="eyebrow justify-center">FAQ</span>
             <h2 className="section-heading mb-10">Frequently Asked Questions</h2>
           </RevealDiv>
           <RevealDiv delay={60}>
