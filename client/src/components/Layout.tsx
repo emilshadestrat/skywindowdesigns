@@ -55,9 +55,9 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
       {/* ── Header ── */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(15,23,42,0.05),0_1px_2px_rgba(15,23,42,0.03)] border-b border-slate-100/60"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-slate-100/60 ${scrolled ? "shadow-[0_4px_24px_rgba(15,23,42,0.08),0_1px_3px_rgba(15,23,42,0.04)]" : "shadow-[0_1px_3px_rgba(15,23,42,0.05),0_1px_2px_rgba(15,23,42,0.03)]"}`}
         onMouseLeave={() => setOpenDropdown(null)}
-      >
+>
         <div>
           <div className="container mx-auto flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
@@ -127,9 +127,10 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
             <div className="hidden lg:flex items-center gap-5">
               <a
                 href={CONTACT.phoneHref}
-                className="nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
+                className="nav-link hidden xl:inline-flex items-center gap-2 text-[15px] font-[Fraunces,serif] font-medium tracking-wide text-slate-700 hover:text-blue-700 transition-colors"
+                style={{ fontStyle: 'italic' }}
               >
-                <Phone size={15} />
+                <Phone size={14} className="text-blue-600" />
                 {CONTACT.phone}
               </a>
               <Link
