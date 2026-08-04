@@ -59,14 +59,21 @@
 
 :root {
   /* ── Brand blues — deeper, more saturated for premium feel ── */
-  --brand:       oklch(0.48 0.22 258);   /* deeper, richer blue */
-  --brand-dark:  oklch(0.35 0.20 258);   /* sophisticated dark blue */
-  --brand-light: oklch(0.95 0.035 258);  /* soft tinted surface */
+  --brand:       oklch(0.46 0.20 258);   /* refined, sophisticated blue */
+  --brand-dark:  oklch(0.32 0.18 258);   /* deep navy for depth */
+  --brand-light: oklch(0.96 0.03 258);  /* soft tinted surface */
 
   /* ── Site structure — richer dark, warmer surface ── */
-  --site-dark:    oklch(0.14 0.025 260);  /* deeper navy-black */
-  --site-surface: oklch(0.97 0.008 260);  /* warmer alternating tint */
-  --gold:         oklch(0.75 0.15 80);    /* refined gold for accents */
+  --site-dark:    oklch(0.12 0.02 260);  /* richer near-black navy */
+  --site-surface: oklch(0.98 0.006 260);  /* warmer, lighter alternating tint */
+  --gold:         oklch(0.72 0.14 75);    /* muted antique gold for accents */
+
+  /* ── Premium shadow tokens ── */
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.03);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.03);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,0.08), 0 4px 12px rgba(15,23,42,0.04);
+  --shadow-xl: 0 24px 48px rgba(15,23,42,0.10), 0 8px 24px rgba(15,23,42,0.05);
+  --shadow-blue: 0 4px 14px rgba(37, 99, 235, 0.18), 0 2px 6px rgba(37, 99, 235, 0.10);
 
   /* ── Tailwind semantic tokens ── */
   --radius: 0.5rem;
@@ -164,40 +171,49 @@
     font-family: 'Inter', sans-serif;
     font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--color-brand);
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
   }
   .eyebrow::after {
     content: '';
-    width: 2rem;
-    height: 1.5px;
+    width: 2.5rem;
+    height: 1px;
     background: currentColor;
-    opacity: 0.4;
+    opacity: 0.35;
     border-radius: 1px;
   }
 
-  /* ── Section heading — tighter, more dramatic ── */
+  /* ── Section heading — tighter, more dramatic with serif accent ── */
   .section-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: oklch(0.13 0.02 258);
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: oklch(0.12 0.02 258);
   }
 
   .section-heading-white {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
     color: #ffffff;
+  }
+
+  /* ── Premium lead paragraph ── */
+  .lead-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: oklch(0.42 0.015 258);
+    font-weight: 400;
   }
 
   /* ── CTA buttons — premium with subtle gradient and refined shadow ── */
@@ -205,15 +221,15 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, oklch(0.52 0.22 258), oklch(0.44 0.21 258));
+    background: linear-gradient(135deg, oklch(0.50 0.20 258), oklch(0.40 0.19 258));
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
-    padding: 0.875rem 1.875rem;
+    padding: 0.9375rem 2rem;
     border-radius: 9999px;
     border: none;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+    box-shadow: var(--shadow-blue), inset 0 1px 0 rgba(255,255,255,0.12);
     transition: background 200ms cubic-bezier(0.23, 1, 0.32, 1),
                 box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1),
                 transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -221,13 +237,13 @@
     white-space: nowrap;
   }
   .btn-primary:hover {
-    background: linear-gradient(135deg, oklch(0.42 0.21 258), oklch(0.34 0.20 258));
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, oklch(0.40 0.19 258), oklch(0.32 0.18 258));
+    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.30), 0 4px 12px rgba(37, 99, 235, 0.15), inset 0 1px 0 rgba(255,255,255,0.12);
     transform: translateY(-2px);
   }
   .btn-primary:active {
     transform: translateY(0) scale(0.97);
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.20);
   }
 
   /* ── Nav CTA button — enhanced hover ── */
@@ -389,17 +405,17 @@
   /* ── Card — elevated with layered shadows and refined radius ── */
   .service-card {
     background: #ffffff;
-    border-radius: 0.875rem;
+    border-radius: 0.75rem;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.03);
-    transition: box-shadow 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 400ms cubic-bezier(0.23, 1, 0.32, 1), transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(15,23,42,0.04);
+    border: 1px solid rgba(15,23,42,0.05);
   }
   .service-card:hover {
-    box-shadow: 0 12px 32px rgba(15,23,42,0.10), 0 4px 12px rgba(15,23,42,0.05);
-    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
   }
   .service-card img {
     width: 100%;
@@ -411,12 +427,12 @@
     transform: scale(1.05);
   }
 
-  /* ── Hero serif heading ── */
+  /* ── Hero serif heading — more dramatic weight contrast ── */
   .hero-serif {
     font-family: 'Petrona', Georgia, 'Times New Roman', serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: oklch(0.13 0.02 258);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: oklch(0.11 0.02 258);
   }
 
   /* ── Sky watermark for hero (legacy text version, now using image) ── */
@@ -437,11 +453,11 @@
     white-space: nowrap;
   }
 
-  /* ── Scroll-reveal animation — smoother easing ── */
+  /* ── Scroll-reveal animation — smoother, more refined ── */
   .reveal {
     opacity: 0;
-    transform: translateY(1.25rem);
-    transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(1.5rem);
+    transition: opacity 600ms cubic-bezier(0.23, 1, 0.32, 1), transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
   }
   .reveal.visible {
     opacity: 1;
@@ -458,8 +474,46 @@
   /* ── Premium section divider — subtle gradient line ── */
   .section-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(15,23,42,0.08), transparent);
+    background: linear-gradient(to right, transparent, rgba(15,23,42,0.06), transparent);
     border: none;
     margin: 0;
+  }
+
+  /* ── Premium surface card — for info blocks ── */
+  .surface-card {
+    background: oklch(0.99 0.004 260);
+    border-radius: 0.75rem;
+    border: 1px solid oklch(0.92 0.008 260);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .surface-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* ── Premium gold accent text ── */
+  .gold-accent {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── Premium nav underline animation ── */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 1.5px;
+    background: var(--color-brand);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
   }
 }

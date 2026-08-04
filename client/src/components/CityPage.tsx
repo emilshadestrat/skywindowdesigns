@@ -101,7 +101,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                   >
                     {section.heading}
                   </h2>
-                  <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-3">
+                  <p className="lead-text mb-3">
                     {section.body}
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
 
             {/* Sidebar */}
             <aside className="space-y-4 lg:sticky lg:top-24">
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="surface-card p-6">
                 <h3 className="font-[Montserrat,sans-serif] font-bold text-[1rem] text-slate-900 mb-4">
                   Serving {data.area}
                 </h3>
@@ -141,7 +141,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                   {CONTACT.phone}
                 </a>
               </div>
-              <div className="bg-blue-50 rounded-xl p-5 border border-blue-100">
+              <div className="surface-card p-5" style={{ borderColor: "oklch(0.90 0.04 258)" }}>
                 <div className="flex items-start gap-2.5">
                   <MapPin size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -220,7 +220,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
             <p className="font-[Montserrat,sans-serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
               Serving {data.area} and the Gulf Coast
             </p>
-            <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>
+            <p className="text-slate-400 text-[14.5px]">Schedule a <span className="gold-accent text-yellow-400/80">free consultation</span> at our Orange Beach showroom.</p>
           </div>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
             <Link href="/contact" className="btn-outline-white">

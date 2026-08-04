@@ -149,7 +149,7 @@ export default function Home() {
           </h1>
 
           {/* Subheading — verbatim from copy doc */}
-          <p className="text-slate-600 text-[1.0625rem] leading-[1.7] mb-10 max-w-[580px]">
+          <p className="lead-text mb-10 max-w-[580px]">
             Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.
           </p>
 
@@ -199,10 +199,10 @@ export default function Home() {
           <RevealDiv>
             <span className="eyebrow">Products</span>
             <h2 className="section-heading mb-6">Window Treatments Designed Around Your Space</h2>
-            <p className="text-[1.0625rem] leading-[1.75] text-slate-600 max-w-[760px] mb-5">
+            <p className="lead-text max-w-[760px] mb-5">
               Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.
             </p>
-            <p className="text-[1.0625rem] leading-[1.75] text-slate-600 max-w-[760px]">
+            <p className="lead-text max-w-[760px]">
               We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space.
             </p>
           </RevealDiv>
@@ -266,10 +266,10 @@ export default function Home() {
             <RevealDiv>
               <span className="eyebrow">Visit Us</span>
               <h2 className="section-heading mb-5">A Local Showroom for Coastal Homes and Businesses</h2>
-              <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-4 max-w-[540px]">
+              <p className="lead-text mb-4 max-w-[540px]">
                 Visit Sky Window Design and More at {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state}. Browse materials, fabrics and operating methods in person.
               </p>
-              <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[540px]">
+              <p className="lead-text mb-8 max-w-[540px]">
                 Contact us before visiting to confirm current hours and consultation availability.
               </p>
               <ul className="space-y-3 mb-8">
@@ -296,7 +296,7 @@ export default function Home() {
 
             {/* Right: hours + address cards */}
             <RevealDiv delay={120} className="space-y-4">
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="surface-card p-6">
                 <div className="flex items-center gap-2.5 mb-4">
                   <Clock size={18} className="text-blue-600" />
                   <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Showroom Hours</h3>
@@ -308,7 +308,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="surface-card p-6">
                 <div className="flex items-center gap-2.5 mb-4">
                   <MapPin size={18} className="text-blue-600" />
                   <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Location</h3>
@@ -385,7 +385,7 @@ export default function Home() {
           <RevealDiv>
             <span className="eyebrow">Where We Work</span>
             <h2 className="section-heading mb-5">Proudly Serving the Alabama Gulf Coast</h2>
-            <p className="text-[1.0625rem] leading-[1.7] text-slate-600 mb-10 max-w-[600px]">
+            <p className="lead-text mb-10 max-w-[600px]">
               Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
             </p>
           </RevealDiv>
@@ -458,7 +458,7 @@ export default function Home() {
               Ready to Compare Options for Your Space?
             </h2>
             <p className="text-white/85 text-[1.0625rem] leading-[1.7] mb-10 max-w-[540px] mx-auto">
-              Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or inspiration.
+              Schedule a consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or <span className="gold-accent text-white/95">inspiration</span>.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700">

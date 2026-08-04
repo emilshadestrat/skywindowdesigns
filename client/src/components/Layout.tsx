@@ -195,7 +195,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       <main id="main-content">{children}</main>
 
       {/* ── Footer ── */}
-      <footer style={{ backgroundColor: "oklch(0.15 0.02 255)" }} className="pt-16 pb-8">
+      <footer style={{ backgroundColor: "oklch(0.13 0.02 258)" }} className="pt-16 pb-8 relative">
+        <div style={{ background: "linear-gradient(to right, oklch(0.48 0.22 258), oklch(0.40 0.20 258))" }} className="absolute top-0 left-0 right-0 h-px" />
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
             {/* Col 1: Brand */}
@@ -234,7 +235,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
             {/* Col 2: Services */}
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Services</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-5">Services</div>
               {FOOTER_LINKS.services.map((link) => (
                 <Link
                   key={link.href}
@@ -248,7 +249,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
             {/* Col 3: More Services */}
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Design Services</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-5">Design Services</div>
               {FOOTER_LINKS.moreServices.map((link) => (
                 <Link
                   key={link.href}
@@ -262,7 +263,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
             {/* Col 4: Service Areas */}
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Service Areas</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-5">Service Areas</div>
               {FOOTER_LINKS.serviceArea.map((link) => (
                 <Link
                   key={link.href}
@@ -276,7 +277,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
 
             {/* Col 4: Contact */}
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-5">Contact</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-5">Contact</div>
               <div className="space-y-3">
                 <a
                   href={CONTACT.phoneHref}
@@ -318,7 +319,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           </div>
 
           {/* Footer bottom bar */}
-          <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-slate-500">
+          <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-slate-500">
             <span>© 2026 Sky Window Design & More, LLC. All rights reserved.</span>
             <span className="flex gap-4">
               <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>

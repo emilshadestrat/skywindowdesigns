@@ -190,8 +190,8 @@ function ConsultCard() {
 
   return (
     <div
-      className="rounded-2xl bg-white p-6 border border-slate-100"
-      style={{ boxShadow: "0 8px 40px rgba(15,23,42,0.18)" }}
+      className="surface-card p-6"
+      style={{ boxShadow: "var(--shadow-xl)" }}
     >
       {submitted ? (
         <div className="text-center py-6">
@@ -394,7 +394,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                     <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <span className="text-white/70 text-[13px]">5.0 · Google Reviews · Locally Owned & Operated</span>
+                <span className="text-white/70 text-[13px]"><span className="gold-accent text-yellow-400">5.0</span> · Google Reviews · Locally Owned & Operated</span>
               </div>
             </div>
 
@@ -441,7 +441,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                 <span className="eyebrow">What It Is</span>
                 <h2 className="section-heading mb-5">{firstSection.heading}</h2>
                 {firstSection.body.split("\n\n").map((para, j) => (
-                  <p key={j} className="text-[1.0625rem] leading-relaxed text-slate-600 mb-4">
+                  <p key={j} className="lead-text mb-4">
                     {para.trim()}
                   </p>
                 ))}
@@ -457,7 +457,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               </RevealDiv>
               {/* Right: product image (different from hero for variety) */}
               <RevealDiv delay={120}>
-                <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 40px rgba(15,23,42,0.12)" }}>
+                <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "var(--shadow-xl)" }}>
                   <img
                     src={secondaryImg}
                     alt={data.schemaName}
@@ -487,7 +487,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {features.map((f, i) => (
               <RevealDiv key={f.title} delay={i * 70}>
-                <div className="bg-white/95 rounded-xl p-5 h-full" style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.18)" }}>
+                <div className="surface-card p-5 h-full" style={{ boxShadow: "var(--shadow-lg)" }}>
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-white"
                     style={{ backgroundColor: "oklch(0.50 0.21 255)" }}
@@ -532,13 +532,13 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                       {section.heading}
                     </h2>
                     {section.body.split("\n\n").map((para, j) => (
-                      <p key={j} className="text-[1.0rem] leading-relaxed text-slate-600 mb-3">
+                      <p key={j} className="lead-text mb-3" style={{ fontSize: "1.0rem" }}>
                         {para.trim()}
                       </p>
                     ))}
                   </div>
                   {/* Image side (rotates through different product images) */}
-                  <div className="rounded-xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(15,23,42,0.08)" }}>
+                  <div className="rounded-xl overflow-hidden" style={{ boxShadow: "var(--shadow-lg)" }}>
                     <img
                       src={EDITORIAL_IMGS[i % EDITORIAL_IMGS.length]}
                       alt={section.heading}
@@ -699,7 +699,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               Ready to Compare Options for Your Space?
             </h2>
             <p className="text-white/85 text-[1.0625rem] leading-relaxed mb-8 max-w-[540px] mx-auto">
-              Schedule a free consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or inspiration.
+              Schedule a free consultation at the Orange Beach showroom. Bring your questions, room photos, measurements or <span className="gold-accent text-yellow-300">inspiration</span>.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700">
