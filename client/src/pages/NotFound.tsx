@@ -15,7 +15,7 @@ export default function NotFound() {
         <div className="container max-w-[640px] text-center">
           <span className="eyebrow">404 Error</span>
           <h1
-            className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-4"
+            className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-4"
             style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
           >
             This Page Could Not Be Found

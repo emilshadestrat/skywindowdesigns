@@ -14,7 +14,7 @@ export default function Accessibility() {
         <div className="container max-w-[760px]">
           <span className="eyebrow">Accessibility</span>
           <h1
-            className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-4"
+            className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-4"
             style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
           >
             Accessibility Statement
@@ -27,7 +27,7 @@ export default function Accessibility() {
         <div className="container max-w-[720px]">
           <div className="space-y-6">
             <div>
-              <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+              <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
                 Our Commitment
               </h2>
               <p className="text-[1.0625rem] leading-relaxed text-slate-600">
@@ -35,7 +35,7 @@ export default function Accessibility() {
               </p>
             </div>
             <div>
-              <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+              <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
                 Features
               </h2>
               <p className="text-[1.0625rem] leading-relaxed text-slate-600">
@@ -43,7 +43,7 @@ export default function Accessibility() {
               </p>
             </div>
             <div>
-              <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+              <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
                 Reporting Issues
               </h2>
               <p className="text-[1.0625rem] leading-relaxed text-slate-600">
@@ -51,7 +51,7 @@ export default function Accessibility() {
               </p>
             </div>
             <div>
-              <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+              <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
                 Third-Party Content
               </h2>
               <p className="text-[1.0625rem] leading-relaxed text-slate-600">

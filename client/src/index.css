@@ -6,7 +6,7 @@
 /* ============================================================
    SKY WINDOW DESIGN & MORE — Design Tokens
    Pattern: Solomon Shade Solutions (coastal service authority)
-   Fonts: Montserrat 700/800 (headings) + Inter 400/500/600 (body)
+   Fonts: Fraunces 500-900 (headings, serif display) + Inter 300-700 (body, sans)
    Primary: Sky Blue #1a56db | Dark: #0f172a | Accent gold: amber
    ============================================================ */
 
@@ -123,9 +123,10 @@
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', system-ui, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-optical-sizing: auto;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -190,21 +191,23 @@
 
   /* ── Section heading — tighter, more dramatic with serif accent ── */
   .section-heading {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
     font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: oklch(0.12 0.02 258);
+    font-optical-sizing: auto;
   }
 
   .section-heading-white {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
     font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: #ffffff;
+    font-optical-sizing: auto;
   }
 
   /* ── Premium lead paragraph ── */
@@ -216,34 +219,47 @@
     font-weight: 400;
   }
 
-  /* ── CTA buttons — premium with subtle gradient and refined shadow ── */
+  /* ── CTA buttons — refined with sophisticated shape and depth ── */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, oklch(0.50 0.20 258), oklch(0.40 0.19 258));
+    background: linear-gradient(135deg, oklch(0.48 0.20 258), oklch(0.38 0.19 258));
     color: #ffffff;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    padding: 0.9375rem 2rem;
-    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 0.875rem 2.25rem;
+    border-radius: 2px;
     border: none;
-    box-shadow: var(--shadow-blue), inset 0 1px 0 rgba(255,255,255,0.12);
-    transition: background 200ms cubic-bezier(0.23, 1, 0.32, 1),
-                box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1),
-                transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.20), 0 2px 8px rgba(37, 99, 235, 0.10), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
     text-decoration: none;
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%);
+    opacity: 0;
+    transition: opacity 220ms ease-out;
   }
   .btn-primary:hover {
-    background: linear-gradient(135deg, oklch(0.40 0.19 258), oklch(0.32 0.18 258));
-    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.30), 0 4px 12px rgba(37, 99, 235, 0.15), inset 0 1px 0 rgba(255,255,255,0.12);
+    background: linear-gradient(135deg, oklch(0.38 0.19 258), oklch(0.30 0.18 258));
+    box-shadow: 0 10px 32px rgba(37, 99, 235, 0.28), 0 4px 12px rgba(37, 99, 235, 0.14), inset 0 1px 0 rgba(255,255,255,0.15);
     transform: translateY(-2px);
+  }
+  .btn-primary:hover::after {
+    opacity: 1;
   }
   .btn-primary:active {
     transform: translateY(0) scale(0.97);
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.20);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.18);
   }
 
   /* ── Nav CTA button — enhanced hover ── */
@@ -360,12 +376,14 @@
     background-color: transparent;
     color: var(--color-brand);
     font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    padding: 0.8125rem 1.875rem;
-    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 0.8125rem 2rem;
+    border-radius: 2px;
     border: 1.5px solid var(--color-brand);
-    transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out, transform 100ms ease-out;
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -373,6 +391,7 @@
     background-color: var(--color-brand);
     color: #ffffff;
     border-color: var(--color-brand);
+    transform: translateY(-1px);
   }
   .btn-outline:active {
     transform: scale(0.97);
@@ -385,18 +404,21 @@
     background-color: transparent;
     color: #ffffff;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    padding: 0.8125rem 1.875rem;
-    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 0.8125rem 2rem;
+    border-radius: 2px;
     border: 1.5px solid rgba(255,255,255,0.5);
-    transition: background-color 160ms ease-out, border-color 160ms ease-out, transform 100ms ease-out;
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
     text-decoration: none;
     white-space: nowrap;
   }
   .btn-outline-white:hover {
     background-color: rgba(255,255,255,0.12);
     border-color: #ffffff;
+    transform: translateY(-1px);
   }
   .btn-outline-white:active {
     transform: scale(0.97);
@@ -429,10 +451,11 @@
 
   /* ── Hero serif heading — more dramatic weight contrast ── */
   .hero-serif {
-    font-family: 'Petrona', Georgia, 'Times New Roman', serif;
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
     font-weight: 500;
     letter-spacing: -0.015em;
     color: oklch(0.11 0.02 258);
+    font-optical-sizing: auto;
   }
 
   /* ── Sky watermark for hero (legacy text version, now using image) ── */
@@ -441,7 +464,7 @@
     bottom: 2%;
     left: 0;
     transform: translateX(-8%);
-    font-family: 'Petrona', Georgia, serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-size: clamp(10rem, 8rem + 18vw, 28rem);
     font-weight: 700;
     color: rgba(100, 140, 220, 0.10);

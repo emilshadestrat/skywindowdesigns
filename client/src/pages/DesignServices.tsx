@@ -65,7 +65,7 @@ export default function DesignServices() {
           <div className="max-w-[760px]">
             <span className="eyebrow">Design Services</span>
             <h1
-              className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-6"
+              className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
               style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
             >
               Design Services Beyond Window Treatments
@@ -103,7 +103,7 @@ export default function DesignServices() {
                       <span className="text-blue-600 mt-0.5 flex-shrink-0">
                         {ICON_MAP[slug]}
                       </span>
-                      <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-slate-900">
+                      <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.125rem] text-slate-900">
                         {page.schemaName}
                       </h2>
                     </div>
@@ -128,7 +128,7 @@ export default function DesignServices() {
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="font-[Montserrat,sans-serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
+            <p className="font-[Fraunces,Georgia,serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
               Serving the Gulf Coast
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>

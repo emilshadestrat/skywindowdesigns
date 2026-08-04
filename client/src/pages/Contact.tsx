@@ -83,7 +83,7 @@ export default function ContactPage() {
         <div className="container max-w-[760px]">
           <span className="eyebrow">Get in Touch</span>
           <h1
-            className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-4"
+            className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-4"
             style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
           >
             Contact Sky Window Design and More
@@ -102,7 +102,7 @@ export default function ContactPage() {
             {/* ── Left: Contact info ── */}
             <div>
               <h2
-                className="font-[Montserrat,sans-serif] font-bold text-slate-900 mb-6"
+                className="font-[Fraunces,Georgia,serif] font-bold text-slate-900 mb-6"
                 style={{ fontSize: "clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem)" }}
               >
                 Showroom Information
@@ -205,7 +205,7 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="text-center py-8">
                   <CheckCircle2 size={48} className="text-blue-600 mx-auto mb-4" />
-                  <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+                  <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
                     Thank You
                   </h2>
                   <p className="text-[15px] text-slate-600 leading-relaxed max-w-[360px] mx-auto">
@@ -215,7 +215,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <h2
-                    className="font-[Montserrat,sans-serif] font-bold text-slate-900 mb-2"
+                    className="font-[Fraunces,Georgia,serif] font-bold text-slate-900 mb-2"
                     style={{ fontSize: "clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem)" }}
                   >
                     Request a Consultation

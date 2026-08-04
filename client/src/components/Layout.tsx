@@ -168,7 +168,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                     <div key={link.label} className="grid grid-cols-12 gap-8">
                       {/* Left column — category label + description */}
                       <div className="col-span-3">
-                        <h3 className="font-[Montserrat,sans-serif] font-extrabold text-[1rem] text-slate-900 mb-2">
+                        <h3 className="font-[Fraunces,Georgia,serif] font-extrabold text-[1rem] text-slate-900 mb-2">
                           {link.label}
                         </h3>
                         <p className="text-[13px] leading-relaxed text-slate-500">

@@ -34,7 +34,7 @@ export default function Blog() {
         <div className="container max-w-[760px]">
           <span className="eyebrow">Blog & Resources</span>
           <h1
-            className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-6"
+            className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
             style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
           >
             Window Treatment Tips & Design Ideas
@@ -63,7 +63,7 @@ export default function Blog() {
           >
             <BookOpen size={28} className="text-blue-600" />
           </div>
-          <h2 className="font-[Montserrat,sans-serif] font-bold text-[1.5rem] text-slate-900 mb-3">
+          <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.5rem] text-slate-900 mb-3">
             Articles Coming Soon
           </h2>
           <p className="text-[1rem] leading-relaxed text-slate-600 mb-8">
@@ -90,7 +90,7 @@ export default function Blog() {
       <section className="py-16" style={{ backgroundColor: "oklch(0.15 0.02 255)" }}>
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="font-[Montserrat,sans-serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
+            <p className="font-[Fraunces,Georgia,serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
               Have a Question About Window Treatments?
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a free consultation at our Orange Beach showroom.</p>

@@ -44,12 +44,12 @@ export function ConsultCard() {
       {submitted ? (
         <div className="text-center py-6">
           <CheckCircle2 size={40} className="text-blue-600 mx-auto mb-3" />
-          <p className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-slate-900 mb-2">Thank You</p>
+          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.125rem] text-slate-900 mb-2">Thank You</p>
           <p className="text-[13.5px] text-slate-600 leading-relaxed">We received your message and will respond within one business day.</p>
         </div>
       ) : (
         <>
-          <p className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Request a Free Consultation</p>
+          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Request a Free Consultation</p>
           <p className="text-[12.5px] text-slate-500 mb-4 leading-relaxed">We&apos;ll respond within one business day. No obligation.</p>
           <form className="space-y-3" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-3">

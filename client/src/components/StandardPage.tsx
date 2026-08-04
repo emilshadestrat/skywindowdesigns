@@ -196,12 +196,12 @@ function ConsultCard() {
       {submitted ? (
         <div className="text-center py-6">
           <CheckCircle2 size={40} className="text-blue-600 mx-auto mb-3" />
-          <p className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-slate-900 mb-2">Thank You</p>
+          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.125rem] text-slate-900 mb-2">Thank You</p>
           <p className="text-[13.5px] text-slate-600 leading-relaxed">We received your message and will respond within one business day.</p>
         </div>
       ) : (
         <>
-          <p className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Request a Free Consultation</p>
+          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Request a Free Consultation</p>
           <p className="text-[12.5px] text-slate-500 mb-4 leading-relaxed">We'll respond within one business day. No obligation.</p>
           <form className="space-y-3" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-3">
@@ -351,7 +351,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
             <div>
               <span className="eyebrow !text-blue-400 !mb-3">Orange Beach, Alabama</span>
               <h1
-                className="font-[Montserrat,sans-serif] font-extrabold text-white leading-tight mb-5"
+                className="font-[Fraunces,Georgia,serif] font-extrabold text-white leading-tight mb-5"
                 style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
               >
                 {data.h1}
@@ -494,7 +494,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                   >
                     {f.icon}
                   </div>
-                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[0.9375rem] text-slate-900 mb-2">{f.title}</h3>
+                  <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[0.9375rem] text-slate-900 mb-2">{f.title}</h3>
                   <p className="text-[13.5px] leading-relaxed text-slate-600">{f.body}</p>
                 </div>
               </RevealDiv>
@@ -526,7 +526,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                   <div>
                     <span className="eyebrow">{i === 0 ? "Why Choose It" : "More to Know"}</span>
                     <h2
-                      className="font-[Montserrat,sans-serif] font-bold text-slate-900 mb-4"
+                      className="font-[Fraunces,Georgia,serif] font-bold text-slate-900 mb-4"
                       style={{ fontSize: "clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem)", letterSpacing: "-0.02em" }}
                     >
                       {section.heading}
@@ -566,13 +566,13 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
             {steps.map((step, i) => (
               <RevealDiv key={step.num} delay={i * 80}>
                 <div
-                  className="font-[Montserrat,sans-serif] font-extrabold mb-4 leading-none"
+                  className="font-[Fraunces,Georgia,serif] font-extrabold mb-4 leading-none"
                   style={{ fontSize: "clamp(2.5rem, 1.5rem + 2.5vw, 3.75rem)", color: "oklch(0.50 0.21 255 / 0.35)" }}
                   aria-hidden="true"
                 >
                   {step.num}
                 </div>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[1rem] text-white mb-2">{step.title}</h3>
+                <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1rem] text-white mb-2">{step.title}</h3>
                 <p className="text-[14px] leading-relaxed text-slate-400">{step.body}</p>
               </RevealDiv>
             ))}
@@ -609,7 +609,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                       className="w-full aspect-[4/3] object-cover"
                     />
                     <div className="p-5">
-                      <h3 className="font-[Montserrat,sans-serif] font-bold text-[1rem] text-slate-900 mb-1.5">{card.title}</h3>
+                      <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1rem] text-slate-900 mb-1.5">{card.title}</h3>
                       <p className="text-[14px] text-slate-600 mb-3 leading-relaxed">{card.desc}</p>
                       <span className="inline-flex items-center gap-1 text-[13.5px] font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
                         Learn More <ChevronRight size={14} />
@@ -693,7 +693,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         <div className="container text-center">
           <RevealDiv>
             <h2
-              className="font-[Montserrat,sans-serif] font-extrabold text-white mb-4 leading-tight"
+              className="font-[Fraunces,Georgia,serif] font-extrabold text-white mb-4 leading-tight"
               style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem)", letterSpacing: "-0.025em" }}
             >
               Ready to Compare Options for Your Space?

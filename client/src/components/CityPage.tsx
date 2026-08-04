@@ -69,7 +69,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
           <div className="max-w-[760px]">
             <span className="eyebrow">{data.area}</span>
             <h1
-              className="font-[Montserrat,sans-serif] font-extrabold leading-tight text-slate-900 mb-6"
+              className="font-[Fraunces,Georgia,serif] font-extrabold leading-tight text-slate-900 mb-6"
               style={{ fontSize: "clamp(1.875rem, 1.5rem + 2vw, 3rem)", letterSpacing: "-0.025em" }}
             >
               {data.h1}
@@ -96,7 +96,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
               {data.sections.map((section, i) => (
                 <div key={i} className={i > 0 ? "mt-10 pt-10 border-t border-slate-100" : ""}>
                   <h2
-                    className="font-[Montserrat,sans-serif] font-bold text-slate-900 mb-3"
+                    className="font-[Fraunces,Georgia,serif] font-bold text-slate-900 mb-3"
                     style={{ fontSize: "clamp(1.125rem, 1rem + 0.5vw, 1.375rem)" }}
                   >
                     {section.heading}
@@ -110,7 +110,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
               {/* FAQ */}
               <div className="mt-12 pt-12 border-t border-slate-100">
                 <h2
-                  className="font-[Montserrat,sans-serif] font-bold text-slate-900 mb-6"
+                  className="font-[Fraunces,Georgia,serif] font-bold text-slate-900 mb-6"
                   style={{ fontSize: "clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem)" }}
                 >
                   Frequently Asked Questions
@@ -122,7 +122,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
             {/* Sidebar */}
             <aside className="space-y-4 lg:sticky lg:top-24">
               <div className="surface-card p-6">
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[1rem] text-slate-900 mb-4">
+                <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1rem] text-slate-900 mb-4">
                   Serving {data.area}
                 </h3>
                 <ul className="space-y-2.5 mb-5">
@@ -172,7 +172,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                   className="w-full aspect-[4/3] object-cover"
                 />
                 <div className="p-5">
-                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[1rem] text-slate-900 mb-1.5">
+                  <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1rem] text-slate-900 mb-1.5">
                     {card.title}
                   </h3>
                   <p className="text-[14px] text-slate-600 mb-3 leading-relaxed line-clamp-2">{card.desc}</p>
@@ -217,7 +217,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="font-[Montserrat,sans-serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
+            <p className="font-[Fraunces,Georgia,serif] font-extrabold text-white text-[1.375rem] leading-tight mb-1">
               Serving {data.area} and the Gulf Coast
             </p>
             <p className="text-slate-400 text-[14.5px]">Schedule a <span className="gold-accent text-yellow-400/80">free consultation</span> at our Orange Beach showroom.</p>

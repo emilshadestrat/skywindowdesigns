@@ -184,7 +184,7 @@ export default function Home() {
             ].map((item) => (
               <div key={item} className="flex items-center justify-center gap-2.5">
                 <CheckCircle2 size={15} className="text-white/70 flex-shrink-0" />
-                <span className="font-[Petrona,Georgia,serif] text-white text-[14.5px] font-medium tracking-wide">{item}</span>
+                <span className="font-[Fraunces,Georgia,serif] text-white text-[14.5px] font-medium tracking-wide">{item}</span>
               </div>
             ))}
           </div>
@@ -227,7 +227,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-7 flex flex-col flex-1">
-                    <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.1875rem] text-slate-900 mb-2.5">
+                    <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.1875rem] text-slate-900 mb-2.5">
                       {card.title}
                     </h3>
                     <p className="text-[14.5px] leading-[1.65] text-slate-600 mb-5 flex-1">
@@ -299,7 +299,7 @@ export default function Home() {
               <div className="surface-card p-6">
                 <div className="flex items-center gap-2.5 mb-4">
                   <Clock size={18} className="text-blue-600" />
-                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Showroom Hours</h3>
+                  <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900">Showroom Hours</h3>
                 </div>
                 {CONTACT.hours.map((h) => (
                   <div key={h.day} className="flex justify-between py-2 text-[14.5px] text-slate-700 border-b border-slate-200 last:border-0">
@@ -311,7 +311,7 @@ export default function Home() {
               <div className="surface-card p-6">
                 <div className="flex items-center gap-2.5 mb-4">
                   <MapPin size={18} className="text-blue-600" />
-                  <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.0625rem] text-slate-900">Location</h3>
+                  <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900">Location</h3>
                 </div>
                 <p className="text-[14.5px] text-slate-700">{CONTACT.address.street}</p>
                 <p className="text-[14.5px] text-slate-700">{CONTACT.address.city}, {CONTACT.address.state} {CONTACT.address.zip}</p>
@@ -348,14 +348,14 @@ export default function Home() {
             {PROCESS_STEPS.map((step, i) => (
               <RevealDiv key={step.num} delay={i * 80}>
                 <div
-                  className="font-[Montserrat,sans-serif] font-extrabold mb-5 leading-none"
+                  className="font-[Fraunces,Georgia,serif] font-extrabold mb-5 leading-none"
                   style={{ fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)", color: "oklch(0.50 0.21 258 / 0.30)" }}
                   aria-hidden="true"
                 >
                   0{step.num}
                 </div>
                 <div className="w-8 h-px bg-blue-500/30 mb-4" />
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[1.125rem] text-white mb-3">
+                <h3 className="font-[Fraunces,Georgia,serif] font-bold text-[1.125rem] text-white mb-3">
                   {step.title}
                 </h3>
                 <p className="text-[14.5px] leading-[1.65] text-slate-400 max-w-[320px]">
@@ -452,7 +452,7 @@ export default function Home() {
         <div className="container text-center relative z-10">
           <RevealDiv>
             <h2
-              className="font-[Montserrat,sans-serif] font-extrabold text-white mb-6 leading-tight"
+              className="font-[Fraunces,Georgia,serif] font-extrabold text-white mb-6 leading-tight"
               style={{ fontSize: "clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem)", letterSpacing: "-0.03em" }}
             >
               Ready to Compare Options for Your Space?
