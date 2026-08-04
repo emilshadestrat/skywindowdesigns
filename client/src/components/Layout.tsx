@@ -54,7 +54,10 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
       </a>
 
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(15,23,42,0.05),0_1px_2px_rgba(15,23,42,0.03)] border-b border-slate-100/60">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(15,23,42,0.05),0_1px_2px_rgba(15,23,42,0.03)] border-b border-slate-100/60"
+        onMouseLeave={() => setOpenDropdown(null)}
+      >
         <div>
           <div className="container mx-auto flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
@@ -74,9 +77,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 link.dropdown ? (
                   <div
                     key={link.label}
-                    className="relative group"
+                    className="relative"
                     onMouseEnter={() => setOpenDropdown(link.label)}
-                    onMouseLeave={() => setOpenDropdown(null)}
                     onFocus={() => setOpenDropdown(link.label)}
                     onBlur={(e) => {
                       if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -92,7 +94,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                         aria-expanded={openDropdown === link.label}
                       >
                         {link.label}
-                        <ChevronDown size={13} className="opacity-60" />
+                        <ChevronDown size={13} className={`opacity-60 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""}`} />
                       </Link>
                     ) : (
                       <button
@@ -102,23 +104,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                         onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
                       >
                         {link.label}
-                        <ChevronDown size={13} className="opacity-60" />
+                        <ChevronDown size={13} className={`opacity-60 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""}`} />
                       </button>
-                    )}
-                    {openDropdown === link.label && (
-                      <div className="absolute left-0 top-full pt-1.5 min-w-[240px] z-50">
-                        <div className="bg-white rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.10),0_4px_12px_rgba(15,23,42,0.05)] border border-slate-100/80 py-2 overflow-hidden">
-                          {link.dropdown.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="dropdown-item block px-5 py-2.5 text-[14px] font-medium text-slate-700"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
                     )}
                   </div>
                 ) : (
@@ -163,6 +150,90 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
             </button>
           </div>
         </div>
+
+        {/* ── Full-width mega-menu dropdown panel ── */}
+        {openDropdown && (
+          <div
+            className="absolute left-0 right-0 top-full hidden lg:block"
+            onMouseEnter={() => setOpenDropdown(openDropdown)}
+          >
+            <div className="mega-menu-panel bg-white border-t border-slate-100 shadow-[0_16px_48px_rgba(15,23,42,0.12),0_4px_16px_rgba(15,23,42,0.06)]">
+              <div className="container py-8">
+                {NAV_LINKS.filter((l) => l.label === openDropdown).map((link) => {
+                  const items = link.dropdown || [];
+                  const isServices = link.label === "Window Treatments";
+                  const isDesign = link.label === "Design Services";
+                  const isAreas = link.label === "Service Areas";
+                  return (
+                    <div key={link.label} className="grid grid-cols-12 gap-8">
+                      {/* Left column — category label + description */}
+                      <div className="col-span-3">
+                        <h3 className="font-[Montserrat,sans-serif] font-extrabold text-[1rem] text-slate-900 mb-2">
+                          {link.label}
+                        </h3>
+                        <p className="text-[13px] leading-relaxed text-slate-500">
+                          {isServices && "Explore our full range of custom window treatments, each tailored to your space, light and privacy needs."}
+                          {isDesign && "Professional design services from wallpaper to commercial installations and repairs."}
+                          {isAreas && "Serving homeowners and businesses across the Alabama and Florida Gulf Coast."}
+                        </p>
+                        {link.href && (
+                          <Link
+                            href={link.href}
+                            className="inline-flex items-center gap-1 mt-4 text-[13px] font-semibold text-blue-700 hover:text-blue-900 transition-colors"
+                          >
+                            View all <ChevronRight size={14} />
+                          </Link>
+                        )}
+                      </div>
+                      {/* Right column — link grid */}
+                      <div className="col-span-9">
+                        <div className={`grid gap-x-6 gap-y-1 ${
+                          items.length > 5 ? "grid-cols-3" : items.length > 3 ? "grid-cols-2" : "grid-cols-1"
+                        }`}>
+                          {items.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="dropdown-item block px-4 py-3 rounded-lg text-[14px] font-medium text-slate-700 hover:text-blue-800"
+                            >
+                              <span className="font-semibold text-slate-900 block mb-0.5">{item.label}</span>
+                              {isServices && (
+                                <span className="text-[12px] text-slate-400 font-normal">
+                                  {item.label.includes("Roller") && "Solar, privacy & blackout options"}
+                                  {item.label.includes("Motorized") && "Remote, app & voice control"}
+                                  {item.label.includes("Draperies") && "Custom fabric, lining & hardware"}
+                                  {item.label.includes("Shutters") && "Adjustable louvers, built-in look"}
+                                  {item.label.includes("Cellular") && "Honeycomb construction for comfort"}
+                                  {item.label.includes("Roman") && "Classic & contemporary fold styles"}
+                                  {item.label.includes("Blinds") && "Wood, composite & metal options"}
+                                </span>
+                              )}
+                              {isDesign && (
+                                <span className="text-[12px] text-slate-400 font-normal">
+                                  {item.label.includes("All") && "Browse all design services"}
+                                  {item.label.includes("Wallpaper") && "Color, texture & pattern coordination"}
+                                  {item.label.includes("Commercial") && "Offices, hospitality & restaurants"}
+                                  {item.label.includes("Visualizer") && "Browse by product type & room"}
+                                  {item.label.includes("Repairs") && "Cord, mechanism & fabric repair"}
+                                </span>
+                              )}
+                              {isAreas && (
+                                <span className="text-[12px] text-slate-400 font-normal">
+                                  {item.label.includes("All") && "View all service areas"}
+                                  {!item.label.includes("All") && "Window treatment services"}
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Breadcrumb — visible on all subpages */}
