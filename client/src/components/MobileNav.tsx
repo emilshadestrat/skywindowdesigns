@@ -43,7 +43,7 @@ export function MobileNav() {
           href="/contact"
           className="btn-outline flex-1 justify-center !text-[14px] !py-2.5"
         >
-          Free Consultation
+          Get Quote
         </Link>
       </div>
 
@@ -114,7 +114,7 @@ export function MobileNav() {
               className="btn-outline w-full justify-center"
               onClick={() => setMobileNavOpen(false)}
             >
-              Free Consultation
+              Get Quote
             </Link>
           </div>
         </div>

@@ -385,7 +385,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 href="/contact"
                 className="btn-primary footer-cta mt-5 !text-[13.5px] !py-2.5 !px-5 inline-flex"
               >
-                Free Consultation
+                Get Quote
               </Link>
             </div>
           </div>
@@ -414,7 +414,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           href="/contact"
           className="btn-outline flex-1 justify-center !text-[14px] !py-2.5"
         >
-          Free Consultation
+          Get Quote
         </Link>
       </div>
 
@@ -485,7 +485,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
               className="btn-outline w-full justify-center"
               onClick={() => setMobileNavOpen(false)}
             >
-              Free Consultation
+              Get Quote
             </Link>
           </div>
         </div>

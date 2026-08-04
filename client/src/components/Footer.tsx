@@ -125,7 +125,7 @@ export function Footer() {
               href="/contact"
               className="btn-primary footer-cta mt-5 !text-[13.5px] !py-2.5 !px-5 inline-flex"
             >
-              Free Consultation
+              Get Quote
             </Link>
           </div>
         </div>
