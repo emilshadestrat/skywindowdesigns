@@ -472,7 +472,7 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           </nav>
 
           {/* Mobile nav contact */}
-          <div className="px-5 pt-6 pb-4 mt-auto">
+          <div className="px-5 pt-6 pb-4">
             <a
               href={CONTACT.phoneHref}
               className="btn-primary w-full justify-center mb-3"
