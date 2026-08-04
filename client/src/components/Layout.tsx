@@ -123,14 +123,8 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
             {/* Spacer to push CTA + phone to the right */}
             <div className="hidden lg:flex-1" />
 
-            {/* Contact CTA + phone — positioned on the right side */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Link
-                href="/contact"
-                className="btn-primary nav-cta text-[13.5px] !py-2.5 !px-5"
-              >
-                Contact
-              </Link>
+            {/* Phone + Contact CTA — positioned on the right side */}
+            <div className="hidden lg:flex items-center gap-5">
               <a
                 href={CONTACT.phoneHref}
                 className="nav-link hidden xl:inline-flex items-center gap-2 text-[14px] font-semibold text-slate-800 hover:text-blue-700 transition-colors"
@@ -138,6 +132,12 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
                 <Phone size={15} />
                 {CONTACT.phone}
               </a>
+              <Link
+                href="/contact"
+                className="btn-primary nav-cta text-[13.5px] !py-2.5 !px-5"
+              >
+                Contact
+              </Link>
             </div>
 
             {/* Mobile hamburger */}
