@@ -477,14 +477,16 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           <div className="px-5 pt-6 pb-4 border-t border-slate-100 mt-2">
             <a
               href={CONTACT.phoneHref}
-              className="btn-primary w-full justify-center mb-3"
+              className="w-full justify-center mb-3 inline-flex items-center gap-2 rounded-[2px] py-3.5 text-[15px] font-bold uppercase tracking-[0.06em] text-white transition-all duration-200"
+              style={{ backgroundColor: "oklch(0.48 0.22 258)" }}
             >
               <Phone size={16} />
-              {CONTACT.phone}
+              Call {CONTACT.phone}
             </a>
             <Link
               href="/contact"
-              className="btn-outline w-full justify-center"
+              className="w-full justify-center inline-flex items-center gap-2 rounded-[2px] py-3.5 text-[15px] font-bold uppercase tracking-[0.06em] transition-all duration-200 border-2"
+              style={{ borderColor: "oklch(0.48 0.22 258)", color: "oklch(0.48 0.22 258)", backgroundColor: "transparent" }}
               onClick={() => setMobileNavOpen(false)}
             >
               Get Quote
