@@ -1,17 +1,18 @@
 // Shared site data for Sky Window Design & More
 // All copy is VERBATIM from the approved copy doc. Do not alter.
 
+const PROJECT_ASSET_ORIGIN = "https://skywindesign-8rzxlz7n.manus.space";
+
 export const IMAGES = {
-  logo: "/manus-storage/SkyLogo(2)_b2bdb6a8.png",
-  googleReview: "/manus-storage/google(1)_c7c5b6e2.png",
-  skyWatermark: "/manus-storage/SkyLogo(3)_0053b108.png",
-  hero: "/manus-storage/hero-coastal-room_69b05db7.jpg",
-  rollerShades: "/manus-storage/card-roller-shades_652b785d.jpg",
-  draperies: "/manus-storage/card-draperies_60df2915.jpg",
-  plantationShutters: "/manus-storage/card-plantation-shutters_45739670.jpg",
-  cellularShades: "/manus-storage/card-cellular-shades_5e41e3bb.jpg",
-  romanShades: "/manus-storage/card-roman-shades_ac01c907.jpg",
-  motorizedShades: "/manus-storage/card-motorized-shades_f8269239.jpg",
+  logo: `${PROJECT_ASSET_ORIGIN}/manus-storage/sky-logo_37be9c31.png`,
+  skyWatermark: `${PROJECT_ASSET_ORIGIN}/manus-storage/SkyLogo(3)_979db2e4.png`,
+  hero: `${PROJECT_ASSET_ORIGIN}/manus-storage/hero-coastal-room_f1470a36.jpg`,
+  rollerShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-roller-shades_e386e217.jpg`,
+  draperies: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-draperies_93c27b60.jpg`,
+  plantationShutters: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-plantation-shutters_d5eff664.jpg`,
+  cellularShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-cellular-shades_4d3f568c.jpg`,
+  romanShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-roman-shades_4565cf07.jpg`,
+  motorizedShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-motorized-shades_464047a0.jpg`,
 };
 
 export const CONTACT = {

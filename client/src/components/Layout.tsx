@@ -1,5 +1,7 @@
 // Layout.tsx — Sky Window Design & More
 // Pattern: Solomon Shade Solutions (solomonshadesolutions.com)
+"use client";
+
 // Nav: 5-item consolidated with dropdowns, Contact as CTA button
 // Breadcrumbs: visible on all subpages
 // Mobile: grouped accordion nav overlay + sticky bottom bar

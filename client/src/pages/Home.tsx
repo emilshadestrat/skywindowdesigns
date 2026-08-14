@@ -1,5 +1,7 @@
 // Home.tsx — Sky Window Design & More
 // Pattern: Solomon Shade Solutions (solomonshadesolutions.com)
+"use client";
+
 // All copy VERBATIM from approved copy doc. Do not alter.
 
 import { useEffect, useRef } from "react";
@@ -155,12 +157,9 @@ export default function Home() {
 
           {/* CTA row — Google badge image + Get Quote button */}
           <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6">
-            {/* Google Reviews badge image */}
-            <img
-              src={IMAGES.googleReview}
-              alt="5.0 Google Reviews"
-              className="h-[64px] sm:h-[80px] w-auto lg:h-[96px]"
-            />
+            <p className="text-[12px] sm:text-sm font-semibold tracking-wide text-slate-700">
+              5.0 Google Reviews
+            </p>
 
             {/* Get Quote button */}
             <Link href="/contact" className="btn-primary text-[15px] !py-3.5 !px-7 w-full sm:w-auto justify-center">
@@ -252,7 +251,7 @@ export default function Home() {
               Call {CONTACT.phone}
             </a>
             <Link href="/contact" className="btn-outline w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
           </RevealDiv>
         </div>
@@ -289,7 +288,7 @@ export default function Home() {
               </ul>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
-                  Schedule a Consultation
+                  Get Quote
                 </Link>
                 <Link href="/about" className="btn-outline w-full sm:w-auto justify-center">
                   Learn About Us
@@ -374,7 +373,7 @@ export default function Home() {
               Call {CONTACT.phone}
             </a>
             <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
           </RevealDiv>
         </div>
@@ -466,7 +465,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700 w-full sm:w-auto justify-center">
-                Schedule a Consultation
+                Get Quote
               </Link>
               <a href={CONTACT.phoneHref} className="btn-outline-white w-full sm:w-auto justify-center">
                 <Phone size={16} />

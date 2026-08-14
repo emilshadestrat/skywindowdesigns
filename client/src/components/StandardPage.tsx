@@ -201,7 +201,7 @@ function ConsultCard() {
         </div>
       ) : (
         <>
-          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Request a Free Consultation</p>
+          <p className="font-[Fraunces,Georgia,serif] font-bold text-[1.0625rem] text-slate-900 mb-1">Get a Quote</p>
           <p className="text-[12.5px] text-slate-500 mb-4 leading-relaxed">We'll respond within one business day. No obligation.</p>
           <form className="space-y-3" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-3">
@@ -233,7 +233,7 @@ function ConsultCard() {
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
             <button type="submit" className="btn-primary w-full justify-center !text-[14px] !py-3">
-              Request a Consultation
+              Get Quote
             </button>
           </form>
           <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
@@ -383,7 +383,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                   Call {CONTACT.phone}
                 </a>
                 <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-                  Get a Free Consultation
+                  Get Quote
                 </Link>
               </div>
 
@@ -451,7 +451,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
                     Call {CONTACT.phone}
                   </a>
                   <Link href="/contact" className="btn-outline w-full sm:w-auto justify-center">
-                    Schedule a Consultation
+                    Get Quote
                   </Link>
                 </div>
               </RevealDiv>
@@ -506,7 +506,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               Call {CONTACT.phone}
             </a>
             <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
           </RevealDiv>
         </div>
@@ -583,7 +583,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               Call {CONTACT.phone}
             </a>
             <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
           </RevealDiv>
         </div>
@@ -703,7 +703,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-outline-white !border-white !text-white hover:!bg-white hover:!text-blue-700 w-full sm:w-auto justify-center">
-                Schedule a Consultation
+                Get Quote
               </Link>
               <a href={CONTACT.phoneHref} className="btn-outline-white w-full sm:w-auto justify-center">
                 <Phone size={16} />

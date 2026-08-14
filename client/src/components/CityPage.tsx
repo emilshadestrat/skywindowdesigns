@@ -76,7 +76,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
             </h1>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
               <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
-                Schedule a Consultation
+                Get Quote
               </Link>
               <a href={CONTACT.phoneHref} className="btn-outline w-full sm:w-auto justify-center">
                 <Phone size={15} />
@@ -134,7 +134,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                   ))}
                 </ul>
                 <Link href="/contact" className="btn-primary w-full justify-center mb-3 !text-[14px] !py-2.5">
-                  Schedule a Consultation
+                  Get Quote
                 </Link>
                 <a href={CONTACT.phoneHref} className="btn-outline w-full justify-center !text-[14px] !py-2.5">
                   <Phone size={14} />
@@ -224,7 +224,7 @@ export function CityPage({ pageKey }: { pageKey: string }) {
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 flex-shrink-0 w-full sm:w-auto">
             <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
             <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40 w-full sm:w-auto justify-center">
               <Phone size={15} />

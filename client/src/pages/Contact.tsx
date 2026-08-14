@@ -262,7 +262,7 @@ export default function ContactPage() {
                       type="submit"
                       className="btn-primary w-full justify-center !text-[15px] !py-3.5"
                     >
-                      Request a Consultation
+                      Get Quote
                     </button>
                     <p className="text-[12.5px] text-slate-400 text-center leading-relaxed">
                       We will respond within one business day. This form does not schedule an appointment automatically.

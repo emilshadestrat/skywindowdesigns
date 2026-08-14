@@ -44,7 +44,7 @@ export default function Blog() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/contact" className="btn-primary">
-              Schedule a Consultation
+              Get Quote
             </Link>
             <a href={CONTACT.phoneHref} className="btn-outline">
               <Phone size={15} />
@@ -97,7 +97,7 @@ export default function Blog() {
           </div>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
             <Link href="/contact" className="btn-outline-white">
-              Schedule a Consultation
+              Get Quote
             </Link>
             <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40">
               <Phone size={15} />

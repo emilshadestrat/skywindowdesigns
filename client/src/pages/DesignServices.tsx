@@ -75,7 +75,7 @@ export default function DesignServices() {
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
               <Link href="/contact" className="btn-primary w-full sm:w-auto justify-center">
-                Schedule a Consultation
+                Get Quote
               </Link>
               <a href={CONTACT.phoneHref} className="btn-outline w-full sm:w-auto justify-center">
                 <Phone size={15} />
@@ -135,7 +135,7 @@ export default function DesignServices() {
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 flex-shrink-0 w-full sm:w-auto">
             <Link href="/contact" className="btn-outline-white w-full sm:w-auto justify-center">
-              Schedule a Consultation
+              Get Quote
             </Link>
             <a href={CONTACT.phoneHref} className="btn-outline-white !border-white/40 w-full sm:w-auto justify-center">
               <Phone size={15} />
