@@ -1,0 +1,9 @@
+# Static hosting configuration for Sky Window Design & More.
+# The project is a Next.js static export; `pnpm build` writes deployable files to dist/.
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "10.4.1"
