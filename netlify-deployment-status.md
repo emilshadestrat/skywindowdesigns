@@ -12,8 +12,8 @@
 
 ## GitHub synchronization state
 
-The intended repository is `https://github.com/emilshadestrat/skywindowdesigns.git` on `main`. The restored local Next.js migration is ready, but the guarded replacement push remains deferred because the task-level GitHub connection has not activated despite the GitHub App installation being scoped to the repository.
+The intended repository is `https://github.com/emilshadestrat/skywindowdesigns.git` on `main`. The guarded force-with-lease synchronization completed successfully: `main` now points to commit `1122794`, which contains the restored Next.js migration and the release record.
 
 ## Required next action
 
-The Netlify API connection must authenticate successfully or an interactive Netlify project route must remain available with deployment controls before the local export can be uploaded. No existing deployment or GitHub remote state has been modified by the current release attempts.
+The Netlify API connection must authenticate successfully or an interactive Netlify project route must remain available with deployment controls before the local export can be uploaded. The support team has been asked to refresh the task's Netlify authorization after repeated HTTP 401 responses. No existing Netlify deployment has been modified by the current release attempts.
