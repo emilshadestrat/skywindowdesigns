@@ -20,4 +20,19 @@ The intended repository is `https://github.com/emilshadestrat/skywindowdesigns.g
 
 ## Required next action
 
-The requested next action is to configure the existing site to build the synchronized GitHub `main` branch with `pnpm build` and publish the generated `dist` directory. No existing Netlify deployment has been modified by the current release attempts.
+The repository's `netlify.toml` now defines the requested build command (`pnpm build`), publish directory (`dist`), Node.js 20, and pnpm 10.4.1. This configuration was committed and pushed to GitHub `main` at `a4da931`.
+
+## Completed production deployment
+
+| Item | Verified result |
+|---|---|
+| Netlify deploy ID | `6a84f1e1cf6f54e6c7e23586` |
+| Deployment source | API upload of `/home/ubuntu/sky-window-design/dist/` to the existing Sky Window site |
+| Production state | `ready` |
+| Published time | 2026-08-19T00:00:29.785Z |
+| Deployment duration | 59 seconds |
+| Deploy content | 53 new files: 27 generated pages and 26 assets |
+| Secret scan | 311 files scanned; no matches reported |
+| Live verification | `https://skywindowdesigns.netlify.app/`, `/sitemap.xml`, and `/robots.txt` each responded successfully |
+
+The release is live. The Netlify deployment record identifies this deployment as an API upload; although the GitHub `main` branch contains the Netlify build configuration, the available deployment integration did not expose a repository-link setting to independently confirm an automatic Git-triggered build.

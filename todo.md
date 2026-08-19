@@ -5,7 +5,8 @@
 - [x] Push the completed Next.js migration to the confirmed GitHub repository.
 - [x] Restore checkpoint e89710d9 and verify the Next.js App Router source and static export.
 - [x] Replace the GitHub main branch with the restored Next.js migration using a guarded force-with-lease update.
-- [ ] Verify refreshed Netlify authorization for site `165c91fc-1d0a-4c6f-8b5d-d4c475c4c967`.
-- [ ] Connect the existing https://skywindowdesigns.netlify.app site to GitHub main and configure `pnpm build` with publish directory `dist`.
-- [ ] Confirm the published https://skywindowdesigns.netlify.app deployment status.
-- [ ] Document the synchronized GitHub and Netlify release configuration, including the deferred Netlify authorization follow-up.
+- [x] Verify refreshed Netlify authorization for site `165c91fc-1d0a-4c6f-8b5d-d4c475c4c967`.
+- [x] Add repository-based Netlify configuration for `pnpm build` with publish directory `dist` and synchronize it to GitHub `main`.
+- [x] Deploy and confirm the published https://skywindowdesigns.netlify.app release.
+- [x] Document the synchronized GitHub and Netlify release configuration and deployment verification.
+- [ ] Confirm in Netlify Site configuration that the existing site is linked to `emilshadestrat/skywindowdesigns` on `main` for future automatic Git-triggered builds.
