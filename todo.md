@@ -10,5 +10,5 @@
 - [x] Deploy and confirm the published https://skywindowdesigns.netlify.app release.
 - [x] Document the synchronized GitHub and Netlify release configuration and deployment verification.
 - [ ] Confirm in Netlify Site configuration that the existing site is linked to `emilshadestrat/skywindowdesigns` on `main` for future automatic Git-triggered builds.
-- [ ] Reconcile the restored local `main` branch with GitHub and confirm no release records remain unpushed.
-- [ ] Recheck the current Netlify production deploy for `skywindowdesigns.netlify.app` and confirm it remains ready.
+- [x] Reconcile the restored local `main` branch with GitHub and confirm no release records remain unpushed.
+- [x] Recheck the current Netlify production deploy for `skywindowdesigns.netlify.app` and confirm it remains ready.
