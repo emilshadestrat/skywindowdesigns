@@ -36,3 +36,7 @@ The repository's `netlify.toml` now defines the requested build command (`pnpm b
 | Live verification | `https://skywindowdesigns.netlify.app/`, `/sitemap.xml`, and `/robots.txt` each responded successfully |
 
 The release is live. The Netlify deployment record identifies this deployment as an API upload; although the GitHub `main` branch contains the Netlify build configuration, the available deployment integration did not expose a repository-link setting to independently confirm an automatic Git-triggered build.
+
+## Synchronization recheck
+
+On August 21, 2026, the GitHub API confirmed that `emilshadestrat/skywindowdesigns` `main` points to `a4da931deac4120fe69981b69dfc76bf3fae3b9f`. Netlify deployment `6a84f1e1cf6f54e6c7e23586` was rechecked and remains `ready` at `https://skywindowdesigns.netlify.app`, with no reported deployment error.
