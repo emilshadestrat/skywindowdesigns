@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { CONTACT } from "@/lib/siteData";
+import { submitLead } from "@/lib/submitLead";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 
 const schema = {
@@ -39,6 +40,8 @@ const labelCls = "block text-[13.5px] font-semibold text-slate-700 mb-1.5";
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const errCls = "text-[12.5px] text-red-600 mt-1";
 
   function validate(form: HTMLFormElement): boolean {
@@ -58,12 +61,29 @@ export default function ContactPage() {
     return Object.keys(errs).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (!validate(form)) return;
-    // GHL integration placeholder — wire to GoHighLevel webhook before launch
-    setSubmitted(true);
+    const fd = new FormData(form);
+    if (fd.get("_gotcha")) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await submitLead({
+        firstName: (fd.get("firstName") as string).trim(),
+        lastName: (fd.get("lastName") as string).trim(),
+        phone: (fd.get("phone") as string).trim(),
+        email: (fd.get("email") as string).trim(),
+        project: (fd.get("project") as string)?.trim() || undefined,
+        sourcePage: "/contact",
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError(`Something went wrong. Please call us at ${CONTACT.phone} instead.`);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -260,10 +280,12 @@ export default function ContactPage() {
                     <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                     <button
                       type="submit"
-                      className="btn-primary w-full justify-center !text-[15px] !py-3.5"
+                      disabled={submitting}
+                      className="btn-primary w-full justify-center !text-[15px] !py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Get Quote
+                      {submitting ? "Sending…" : "Get Quote"}
                     </button>
+                    {submitError && <p className={`${errCls} text-center`}>{submitError}</p>}
                     <p className="text-[12.5px] text-slate-400 text-center leading-relaxed">
                       We will respond within one business day. This form does not schedule an appointment automatically.
                     </p>
