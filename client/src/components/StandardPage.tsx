@@ -8,12 +8,13 @@ import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, CITY_PAGES, type PageData } from "@/lib/siteData";
+import { submitLead } from "@/lib/submitLead";
 import {
   Phone, ChevronRight, CheckCircle2, Star, Award, Ruler, Wrench, MapPin,
   Sun, EyeOff, Layers, Zap, Shield, Home,
 } from "lucide-react";
 
-// ── Scroll-reveal hook (same as Home.tsx) ──────────────────────────────────
+// ── Scroll-reveal hook (same as Home.tsx) ─────────────────────────────────────────────────────────────────────────────────────────────
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -37,7 +38,7 @@ function RevealDiv({ children, className = "", delay = 0 }: { children: React.Re
   );
 }
 
-// ── Related product map ────────────────────────────────────────────────────
+// ── Related product map ────────────────────────────────────────────────────────────────────────
 const RELATED: Record<string, string[]> = {
   "roller-shades":             ["motorized-shades", "cellular-honeycomb-shades", "roman-shades"],
   "motorized-shades":          ["roller-shades", "draperies-curtains", "plantation-shutters"],
@@ -48,7 +49,7 @@ const RELATED: Record<string, string[]> = {
   "blinds":                    ["plantation-shutters", "roller-shades", "cellular-honeycomb-shades"],
 };
 
-// ── Per-page hero image map ────────────────────────────────────────────────
+// ── Per-page hero image map ──────────────────────────────────────────────────────────────────────────────────────
 const PAGE_IMG: Record<string, string> = {
   "roller-shades":             IMAGES.rollerShades,
   "motorized-shades":          IMAGES.motorizedShades,
@@ -65,7 +66,7 @@ const PAGE_IMG: Record<string, string> = {
   "about":                     IMAGES.hero,
 };
 
-// ── Secondary image map ("What It Is" section right-side image) ─────────────
+// ── Secondary image map ("What It Is" section right-side image) ──────────────────────────────
 // Uses a different product image than the hero for visual variety
 const PAGE_IMG_SECONDARY: Record<string, string> = {
   "roller-shades":             IMAGES.cellularShades,
@@ -83,10 +84,10 @@ const PAGE_IMG_SECONDARY: Record<string, string> = {
   "about":                     IMAGES.draperies,
 };
 
-// ── Editorial section images (rotates through available product images) ──────
+// ── Editorial section images (rotates through available product images) ───────────────────
 const EDITORIAL_IMGS = [IMAGES.cellularShades, IMAGES.romanShades, IMAGES.draperies, IMAGES.plantationShutters];
 
-// ── Per-page bullet points (hero left column) ──────────────────────────────
+// ── Per-page bullet points (hero left column) ───────────────────────────────────────────────────
 const PAGE_BULLETS: Record<string, string[]> = {
   "roller-shades":             ["Light-filtering, solar, privacy & blackout options", "Manual, cordless & motorized operation", "Custom fit for any window size", "Clean, minimal profile"],
   "motorized-shades":          ["Remote, app & voice control options", "Scheduled & group operation", "Ideal for hard-to-reach windows", "Cordless for a cleaner look"],
@@ -103,7 +104,7 @@ const PAGE_BULLETS: Record<string, string[]> = {
   "about":                     ["Local Orange Beach showroom", "Custom measure & professional install", "Homes & businesses served", "Practical, honest design guidance"],
 };
 
-// ── Per-page feature cards (dark "Built to Last" section) ──────────────────
+// ── Per-page feature cards (dark "Built to Last" section) ──────────────────────────────────────
 const PAGE_FEATURES: Record<string, { icon: React.ReactNode; title: string; body: string }[]> = {
   "roller-shades": [
     { icon: <Sun size={22} />, title: "Solar & Light-Filtering", body: "Reduce glare and UV while preserving your view with solar fabrics in a range of openness factors." },
@@ -149,7 +150,7 @@ const PAGE_FEATURES: Record<string, { icon: React.ReactNode; title: string; body
   ],
 };
 
-// ── Default features for pages without specific ones ──────────────────────
+// ── Default features for pages without specific ones ──────────────────────────────────────────
 const DEFAULT_FEATURES = [
   { icon: <Award size={22} />, title: "Locally Owned & Operated", body: "Based in Orange Beach, Alabama, serving homeowners and businesses across the Gulf Coast." },
   { icon: <Ruler size={22} />, title: "Professional Measure & Install", body: "Every project is measured and installed by our team for a precise, professional result." },
@@ -157,10 +158,12 @@ const DEFAULT_FEATURES = [
   { icon: <CheckCircle2 size={22} />, title: "Free Consultation", body: "Schedule a free consultation to discuss the room, compare options and confirm the project details." },
 ];
 
-// ── Inline consultation card (hero right column) ───────────────────────────
-function ConsultCard() {
+// ── Inline consultation card (hero right column) ───────────────────────────────────
+function ConsultCard({ sourcePage }: { sourcePage: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const inputCls = "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow";
   const errCls = "text-[12px] text-red-600 mt-1";
   const labelCls = "block text-[12.5px] font-semibold text-slate-700 mb-1";
@@ -181,11 +184,29 @@ function ConsultCard() {
     return Object.keys(errs).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (!validate(form)) return;
-    setSubmitted(true);
+    const fd = new FormData(form);
+    if (fd.get("_gotcha")) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await submitLead({
+        firstName: (fd.get("firstName") as string).trim(),
+        lastName: (fd.get("lastName") as string).trim(),
+        phone: (fd.get("phone") as string).trim(),
+        email: (fd.get("email") as string)?.trim() || undefined,
+        project: (fd.get("project") as string)?.trim() || undefined,
+        sourcePage,
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong. Please call us instead.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -232,9 +253,10 @@ function ConsultCard() {
             </div>
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-            <button type="submit" className="btn-primary w-full justify-center !text-[14px] !py-3">
-              Get Quote
+            <button type="submit" disabled={submitting} className="btn-primary w-full justify-center !text-[14px] !py-3 disabled:opacity-60 disabled:cursor-not-allowed">
+              {submitting ? "Sending…" : "Get Quote"}
             </button>
+            {submitError && <p className={`${errCls} text-center`}>{submitError}</p>}
           </form>
           <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
             {["Rated 5.0 ★ by homeowners", "Licensed & insured", "No obligation. No spam. Ever."].map((item) => (
@@ -250,7 +272,7 @@ function ConsultCard() {
   );
 }
 
-// ── Main component ─────────────────────────────────────────────────────────
+// ── Main component ────────────────────────────────────────────────────────────────────
 export function StandardPage({ pageKey }: { pageKey: string }) {
   const data: PageData | undefined = PAGES[pageKey];
   if (!data) return null;
@@ -328,10 +350,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
     <Layout breadcrumb={data.breadcrumb}>
       <Seo title={data.title} description={data.meta} canonical={data.canonical} schema={schema} />
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           1. DARK HERO — full-bleed image, left content + right card
           Pattern: Solomon /services/motorized-patio-screens hero
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "oklch(0.10 0.02 255)" }}>
         {/* Background image with dark overlay */}
         <div className="absolute inset-0 z-0">
@@ -400,16 +422,16 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
 
             {/* Right: consultation card */}
             <div className="lg:sticky lg:top-24">
-              <ConsultCard />
+              <ConsultCard sourcePage={`/${pageKey}`} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           2. TRUST BAR — dark strip with 4 trust items
           Pattern: Solomon trust bar below hero
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <div style={{ backgroundColor: "oklch(0.18 0.025 255)" }} className="py-4 border-b border-white/5">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -428,10 +450,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           3. "WHAT IT IS" — two-column: left text + right image
           Pattern: Solomon "WHAT THEY ARE" section
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       {firstSection && (
         <section className="py-12 sm:py-20 bg-white">
           <div className="container">
@@ -470,10 +492,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           4. DARK FEATURES GRID — background image + 4 white cards
           Pattern: Solomon "BUILT TO LAST" section
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="relative py-12 sm:py-20 overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
         <div className="absolute inset-0 z-0">
           <img src={secondaryImg} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ opacity: 0.12 }} />
@@ -512,10 +534,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           5. ADDITIONAL CONTENT SECTIONS — two-col image+text
           Pattern: Solomon mid-page editorial sections
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       {restSections.length > 0 && (
         <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
           <div className="container space-y-10 sm:space-y-20">
@@ -552,10 +574,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           6. HOW IT WORKS — numbered steps on dark background
           Pattern: Solomon "HOW IT WORKS" section
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="py-12 sm:py-20 relative" style={{ backgroundColor: "oklch(0.15 0.02 255)" }}>
         <div className="container relative z-10">
           <RevealDiv className="mb-12">
@@ -589,9 +611,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           7. RELATED PRODUCTS — image cards
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       {relatedCards.length > 0 && (
         <section className="py-12 sm:py-16 bg-white">
           <div className="container">
@@ -623,9 +645,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           8. FAQ — accordion on light background
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container">
           <RevealDiv>
@@ -638,9 +660,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           9. RELATED SERVICES TEXT LINKS
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       {textLinks.length > 0 && (
         <section className="py-10 sm:py-12 bg-white border-t border-slate-100">
           <div className="container">
@@ -661,9 +683,9 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           9b. AVAILABLE IN YOUR AREA — city cross-links strip
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="py-10 sm:py-12 bg-white border-t border-slate-100">
         <div className="container">
           <span className="eyebrow">Available in Your Area</span>
@@ -685,10 +707,10 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
           10. FINAL CTA BAND — dark blue
           Pattern: Solomon bottom CTA band
-          ══════════════════════════════════════════════════════════ */}
+          ═════════════════════════════════════════════════════════════ */}
       <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.50 0.21 255)" }}>
         <div className="container text-center">
           <RevealDiv>
