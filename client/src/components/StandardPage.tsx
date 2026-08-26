@@ -164,6 +164,8 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  // Captured once at mount — used server-side as a bot-timing signal alongside the honeypot.
+  const [formLoadedAt] = useState<number>(() => Date.now());
   const inputCls = "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow";
   const errCls = "text-[12px] text-red-600 mt-1";
   const labelCls = "block text-[12.5px] font-semibold text-slate-700 mb-1";
@@ -200,6 +202,7 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
         email: (fd.get("email") as string)?.trim() || undefined,
         project: (fd.get("project") as string)?.trim() || undefined,
         sourcePage,
+        formLoadedAt,
       });
       setSubmitted(true);
     } catch {

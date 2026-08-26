@@ -8,6 +8,7 @@ export interface LeadPayload {
   email?: string;
   project?: string;
   sourcePage: string;
+  formLoadedAt: number;
 }
 
 export async function submitLead(payload: LeadPayload): Promise<void> {

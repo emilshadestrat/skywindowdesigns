@@ -42,6 +42,8 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  // Captured once at mount — used server-side as a bot-timing signal alongside the honeypot.
+  const [formLoadedAt] = useState<number>(() => Date.now());
   const errCls = "text-[12.5px] text-red-600 mt-1";
 
   function validate(form: HTMLFormElement): boolean {
@@ -77,6 +79,7 @@ export default function ContactPage() {
         email: (fd.get("email") as string).trim(),
         project: (fd.get("project") as string)?.trim() || undefined,
         sourcePage: "/contact",
+        formLoadedAt,
       });
       setSubmitted(true);
     } catch {
