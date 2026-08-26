@@ -5,10 +5,13 @@
 
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/submitLead";
 
 export function ConsultCard() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const inputCls = "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow";
   const errCls = "text-[12px] text-red-600 mt-1";
   const labelCls = "block text-[12.5px] font-semibold text-slate-700 mb-1";
@@ -29,11 +32,29 @@ export function ConsultCard() {
     return Object.keys(errs).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (!validate(form)) return;
-    setSubmitted(true);
+    const fd = new FormData(form);
+    if (fd.get("_gotcha")) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await submitLead({
+        firstName: (fd.get("firstName") as string).trim(),
+        lastName: (fd.get("lastName") as string).trim(),
+        phone: (fd.get("phone") as string).trim(),
+        email: (fd.get("email") as string)?.trim() || undefined,
+        project: (fd.get("project") as string)?.trim() || undefined,
+        sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong. Please call us instead.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -80,9 +101,10 @@ export function ConsultCard() {
             </div>
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-            <button type="submit" className="btn-primary w-full justify-center !text-[14px] !py-3">
-              Get Quote
+            <button type="submit" disabled={submitting} className="btn-primary w-full justify-center !text-[14px] !py-3 disabled:opacity-60 disabled:cursor-not-allowed">
+              {submitting ? "Sending…" : "Get Quote"}
             </button>
+            {submitError && <p className={`${errCls} text-center`}>{submitError}</p>}
           </form>
           <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
             {["Rated 5.0 ★ by homeowners", "Licensed & insured", "No obligation. No spam. Ever."].map((item) => (
