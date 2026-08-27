@@ -4,6 +4,7 @@
 type FunctionEvent = {
   httpMethod: string;
   body: string | null;
+  headers?: Record<string, string | undefined>;
 };
 
 type FunctionResponse = {
@@ -15,6 +16,35 @@ type FunctionResponse = {
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
 
+// Minimum time (ms) that must elapse between the form rendering and it being
+// submitted. Submissions faster than this are almost certainly bots filling
+// the form programmatically rather than a person typing.
+const MIN_SUBMIT_MS = 3000;
+
+// Simple in-memory sliding-window rate limiter keyed by client IP.
+// Note: this resets whenever the function's execution environment is recycled,
+// which is fine for the level of abuse this is meant to deter.
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const rateLimitHits = new Map<string, number[]>();
+
+function getClientIp(event: FunctionEvent): string {
+  const headers = event.headers || {};
+  const nfIp = headers["x-nf-client-connection-ip"];
+  if (nfIp) return nfIp;
+  const forwardedFor = headers["x-forwarded-for"];
+  if (forwardedFor) return forwardedFor.split(",")[0]?.trim() || "unknown";
+  return "unknown";
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recentHits = (rateLimitHits.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  recentHits.push(now);
+  rateLimitHits.set(ip, recentHits);
+  return recentHits.length > RATE_LIMIT_MAX_REQUESTS;
+}
+
 interface LeadPayload {
   firstName?: string;
   lastName?: string;
@@ -23,11 +53,21 @@ interface LeadPayload {
   project?: string;
   sourcePage?: string;
   _gotcha?: string;
+  formLoadedAt?: number;
 }
 
 export const handler = async (event: FunctionEvent): Promise<FunctionResponse> => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: JSON.stringify({ error: "Method Not Allowed" }) };
+  }
+
+  const clientIp = getClientIp(event);
+  if (isRateLimited(clientIp)) {
+    console.warn("submit-lead: rate limit exceeded", clientIp);
+    return {
+      statusCode: 429,
+      body: JSON.stringify({ ok: false, message: "Too many requests. Please wait a few minutes and try again." }),
+    };
   }
 
   let data: LeadPayload;
@@ -39,6 +79,14 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
 
   // Honeypot — accept quietly without forwarding to GHL.
   if (data._gotcha) {
+    console.warn("submit-lead: honeypot triggered, discarding submission silently");
+    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+  }
+
+  // Timing check — a form submitted faster than a human could fill it out is
+  // treated the same as the honeypot case: accept quietly, don't forward to GHL.
+  if (!data.formLoadedAt || Date.now() - data.formLoadedAt < MIN_SUBMIT_MS) {
+    console.warn("submit-lead: submission rejected for suspicious timing, discarding silently");
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   }
 
