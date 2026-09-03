@@ -392,47 +392,7 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               </h1>
 
               {/* Subtext from first section */}
-              {pageKey === "visualizer" && visualizerEmbedUrl && (
-        <section className="relative overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
-          <div className="container py-10 sm:py-14">
-            <div
-              className="relative rounded-2xl overflow-hidden border border-white/10"
-              style={{
-                background: "linear-gradient(135deg, oklch(0.20 0.04 255) 0%, oklch(0.14 0.02 255) 100%)",
-                boxShadow: "var(--shadow-xl)",
-              }}
-            >
-              <div className="grid lg:grid-cols-[1fr_auto] gap-6 sm:gap-8 items-center p-6 sm:p-8 lg:p-10">
-                <div className="text-center lg:text-left">
-                  <span className="eyebrow !text-blue-400 !mb-3">Try It Before Your Consultation</span>
-                  <h2
-                    className="font-[Fraunces,Georgia,serif] font-bold text-white mb-3 leading-tight"
-                    style={{ fontSize: "clamp(1.375rem, 1.15rem + 1vw, 1.875rem)", letterSpacing: "-0.02em" }}
-                  >
-                    See Your Window Treatment Options
-                  </h2>
-                  <p className="text-white/70 text-[14.5px] leading-relaxed max-w-[520px] mx-auto lg:mx-0">
-                    Explore styles, fabrics and operating options online before you visit the Orange Beach showroom.
-                  </p>
-                </div>
-                <div className="flex justify-center lg:justify-end">
-                  <a
-                    href={visualizerEmbedUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary !px-7 !py-3.5 whitespace-nowrap inline-flex items-center gap-2"
-                  >
-                    <Layers size={16} />
-                    Launch Visualizer
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {firstSection && (
+              {firstSection && (
                 <p className="text-[1.0rem] leading-relaxed text-white/75 mb-6 max-w-[540px]">
                   {firstSection.body.split("\n\n")[0]}
                 </p>
@@ -501,6 +461,34 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
           </div>
         </div>
       </div>
+
+      {/* Visualizer launcher — clean light band above "How the Visualizer Works" */}
+      {pageKey === "visualizer" && visualizerEmbedUrl && (
+        <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
+          <div className="container">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="max-w-[620px]">
+                <span className="eyebrow">Try It Before Your Consultation</span>
+                <h2 className="section-heading mb-3">See Your Window Treatment Options</h2>
+                <p className="lead-text">
+                  Explore styles, fabrics and operating options online before you visit the Orange Beach showroom.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <a
+                  href={visualizerEmbedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary !px-7 !py-3.5 whitespace-nowrap inline-flex items-center gap-2"
+                >
+                  <Layers size={16} />
+                  Launch Visualizer
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═════════════════════════════════════════════════════════════
           3. "WHAT IT IS" — two-column: left text + right image
