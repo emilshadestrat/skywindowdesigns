@@ -14,6 +14,10 @@ import {
   Sun, EyeOff, Layers, Zap, Shield, Home,
 } from "lucide-react";
 
+// The full visualizer URL is supplied through Netlify at build time.
+// Keep the access key out of source control.
+const visualizerEmbedUrl = process.env.NEXT_PUBLIC_SHADESTRATEGY_VISUALIZER_URL;
+
 // ── Scroll-reveal hook (same as Home.tsx) ─────────────────────────────────────────────────────────────────────────────────────────────
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -383,7 +387,27 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
               </h1>
 
               {/* Subtext from first section */}
-              {firstSection && (
+              {pageKey === "visualizer" && visualizerEmbedUrl && (
+        <section className="py-10 sm:py-14 bg-white border-y border-slate-100">
+          <div className="container text-center">
+            <span className="eyebrow">Try It Before Your Consultation</span>
+            <h2 className="section-heading mb-4">See Your Window Treatment Options</h2>
+            <p className="lead-text max-w-[620px] mx-auto mb-7">
+              Open the visualizer to explore styles, fabrics and operating options before you visit the Orange Beach showroom.
+            </p>
+            <a
+              href={visualizerEmbedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-block", padding: "14px 28px", background: "#0e5ed4", color: "#fff", fontWeight: 600, textDecoration: "none", borderRadius: 2, fontSize: 15 }}
+            >
+              Visualize Your Windows
+            </a>
+          </div>
+        </section>
+      )}
+
+      {firstSection && (
                 <p className="text-[1.0rem] leading-relaxed text-white/75 mb-6 max-w-[540px]">
                   {firstSection.body.split("\n\n")[0]}
                 </p>
