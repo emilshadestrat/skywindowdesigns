@@ -393,21 +393,41 @@ export function StandardPage({ pageKey }: { pageKey: string }) {
 
               {/* Subtext from first section */}
               {pageKey === "visualizer" && visualizerEmbedUrl && (
-        <section className="py-10 sm:py-14 bg-white border-y border-slate-100">
-          <div className="container text-center">
-            <span className="eyebrow">Try It Before Your Consultation</span>
-            <h2 className="section-heading mb-4">See Your Window Treatment Options</h2>
-            <p className="lead-text max-w-[620px] mx-auto mb-7">
-              Open the visualizer to explore styles, fabrics and operating options before you visit the Orange Beach showroom.
-            </p>
-            <a
-              href={visualizerEmbedUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-block", padding: "14px 28px", background: "#0e5ed4", color: "#fff", fontWeight: 600, textDecoration: "none", borderRadius: 2, fontSize: 15 }}
+        <section className="relative overflow-hidden" style={{ backgroundColor: "oklch(0.12 0.02 255)" }}>
+          <div className="container py-10 sm:py-14">
+            <div
+              className="relative rounded-2xl overflow-hidden border border-white/10"
+              style={{
+                background: "linear-gradient(135deg, oklch(0.20 0.04 255) 0%, oklch(0.14 0.02 255) 100%)",
+                boxShadow: "var(--shadow-xl)",
+              }}
             >
-              Visualize Your Windows
-            </a>
+              <div className="grid lg:grid-cols-[1fr_auto] gap-6 sm:gap-8 items-center p-6 sm:p-8 lg:p-10">
+                <div className="text-center lg:text-left">
+                  <span className="eyebrow !text-blue-400 !mb-3">Try It Before Your Consultation</span>
+                  <h2
+                    className="font-[Fraunces,Georgia,serif] font-bold text-white mb-3 leading-tight"
+                    style={{ fontSize: "clamp(1.375rem, 1.15rem + 1vw, 1.875rem)", letterSpacing: "-0.02em" }}
+                  >
+                    See Your Window Treatment Options
+                  </h2>
+                  <p className="text-white/70 text-[14.5px] leading-relaxed max-w-[520px] mx-auto lg:mx-0">
+                    Explore styles, fabrics and operating options online before you visit the Orange Beach showroom.
+                  </p>
+                </div>
+                <div className="flex justify-center lg:justify-end">
+                  <a
+                    href={visualizerEmbedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary !px-7 !py-3.5 whitespace-nowrap inline-flex items-center gap-2"
+                  >
+                    <Layers size={16} />
+                    Launch Visualizer
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}
