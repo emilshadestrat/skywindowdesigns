@@ -14,9 +14,14 @@ import {
   Sun, EyeOff, Layers, Zap, Shield, Home,
 } from "lucide-react";
 
-// The full visualizer URL is supplied through Netlify at build time.
+// The visualizer URL or access key is supplied through Netlify at build time.
 // Keep the access key out of source control.
-const visualizerEmbedUrl = process.env.NEXT_PUBLIC_SHADESTRATEGY_VISUALIZER_URL;
+const visualizerConfig = process.env.NEXT_PUBLIC_SHADESTRATEGY_VISUALIZER_URL;
+const visualizerEmbedUrl = visualizerConfig
+  ? visualizerConfig.startsWith("http")
+    ? visualizerConfig
+    : `https://ai.shadestrategy.com/embed/visualizer?key=${visualizerConfig}&fullscreen=1`
+  : undefined;
 
 // ── Scroll-reveal hook (same as Home.tsx) ─────────────────────────────────────────────────────────────────────────────────────────────
 function useReveal() {
