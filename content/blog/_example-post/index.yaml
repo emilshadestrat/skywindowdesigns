@@ -1,0 +1,30 @@
+title: "Example post — duplicate this to start a new article"
+status: "draft"
+publishDate: 2026-01-01
+category: "Design Ideas"
+excerpt: "A draft template showing every block type the blog supports. Drafts are never published, whatever their date, so this stays invisible to visitors."
+metaTitle: ""
+readTime: "5 min read"
+author: "Sky Window Design & More"
+body:
+  - type: "p"
+    text: "Open this post in the CMS, duplicate it, and replace the content. Set Status to Published and pick a publish date — a future date schedules the post, and it appears on its own when that date arrives."
+    items: []
+  - type: "h2"
+    text: "A section heading"
+    items: []
+  - type: "p"
+    text: "Paragraphs are plain text. Write the way you would speak to a customer standing in their living room, and avoid pricing or manufacturer claims that have not been confirmed."
+    items: []
+  - type: "h3"
+    text: "A subheading"
+    items: []
+  - type: "ul"
+    text: ""
+    items:
+      - "Bulleted lists work well for things a homeowner should check"
+      - "Keep each item to one idea"
+      - "Three to six items reads best"
+  - type: "p"
+    text: "Close with a clear next step, such as booking an in-home consultation."
+    items: []

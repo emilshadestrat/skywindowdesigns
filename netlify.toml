@@ -1,8 +1,13 @@
-# Static hosting configuration for Sky Window Design & More.
-# The project is a Next.js static export; `pnpm build` writes deployable files to dist/.
+# Hosting configuration for Sky Window Design & More.
+#
+# This was a Next.js static export publishing a copied dist/. The blog's CMS
+# needs a dynamic page and a route handler (/keystatic and
+# /api/keystatic/[...params]), neither of which a static export can serve, so
+# the site now deploys through Netlify's Next runtime and publishes .next —
+# the same setup as the rest of the portfolio. Pages are still prerendered.
 [build]
   command = "pnpm build"
-  publish = "dist"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
@@ -10,3 +15,6 @@
 
 [functions]
   directory = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
