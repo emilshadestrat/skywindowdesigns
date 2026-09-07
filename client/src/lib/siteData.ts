@@ -1,18 +1,20 @@
 // Shared site data for Sky Window Design & More
 // All copy is VERBATIM from the approved copy doc. Do not alter.
 
-const PROJECT_ASSET_ORIGIN = "https://skywindesign-8rzxlz7n.manus.space";
+// Images are served from this repo (public/media). They previously came from
+// the Manus project origin, which was outside our control and held the only
+// copy of these files.
 
 export const IMAGES = {
-  logo: `${PROJECT_ASSET_ORIGIN}/manus-storage/sky-logo_37be9c31.png`,
-  skyWatermark: `${PROJECT_ASSET_ORIGIN}/manus-storage/SkyLogo(3)_979db2e4.png`,
-  hero: `${PROJECT_ASSET_ORIGIN}/manus-storage/hero-coastal-room_f1470a36.jpg`,
-  rollerShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-roller-shades_e386e217.jpg`,
-  draperies: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-draperies_93c27b60.jpg`,
-  plantationShutters: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-plantation-shutters_d5eff664.jpg`,
-  cellularShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-cellular-shades_4d3f568c.jpg`,
-  romanShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-roman-shades_4565cf07.jpg`,
-  motorizedShades: `${PROJECT_ASSET_ORIGIN}/manus-storage/card-motorized-shades_464047a0.jpg`,
+  logo: "/media/sky-logo_37be9c31.png",
+  skyWatermark: "/media/SkyLogo(3)_979db2e4.png",
+  hero: "/media/hero-coastal-room_f1470a36.jpg",
+  rollerShades: "/media/card-roller-shades_e386e217.jpg",
+  draperies: "/media/card-draperies_93c27b60.jpg",
+  plantationShutters: "/media/card-plantation-shutters_d5eff664.jpg",
+  cellularShades: "/media/card-cellular-shades_4d3f568c.jpg",
+  romanShades: "/media/card-roman-shades_4565cf07.jpg",
+  motorizedShades: "/media/card-motorized-shades_464047a0.jpg",
 };
 
 export const CONTACT = {
