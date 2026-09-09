@@ -16,5 +16,13 @@
 [functions]
   directory = "netlify/functions"
 
+# The old asset paths were emitted into page JSON-LD. Redirect rather than
+# 404 now that the bytes live in public/media.
+[[redirects]]
+  from = "/manus-storage/*"
+  to = "/media/:splat"
+  status = 301
+  force = true
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
