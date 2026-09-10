@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "./_components/GoogleAnalytics";
 import { JsonLd } from "./_components/JsonLd";
 import { localBusinessSchema, websiteSchema } from "./_lib/seo";
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <JsonLd data={[localBusinessSchema, websiteSchema]} />
         {children}
+        <GoogleAnalytics />
       </body>
     </html>
   );
