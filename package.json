@@ -9,7 +9,9 @@
     "start": "NODE_ENV=production next start",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
-    "blog:sync": "node scripts/sync-blog-content.mjs"
+    "blog:sync": "node scripts/sync-blog-content.mjs",
+    "assets:sync": "node scripts/sync-assets-to-r2.mjs",
+    "assets:check": "node scripts/sync-assets-to-r2.mjs --check"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

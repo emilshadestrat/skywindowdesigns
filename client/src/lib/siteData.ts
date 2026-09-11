@@ -4,17 +4,24 @@
 // Images are served from this repo (public/media). They previously came from
 // the Manus project origin, which was outside our control and held the only
 // copy of these files.
+//
+// The repo stays authoritative; the same files are mirrored to Cloudflare R2.
+// assetUrl() returns these paths unchanged unless NEXT_PUBLIC_ASSET_BASE_URL
+// is set, so clearing that variable in Netlify rolls every image back onto
+// this repo without a code change. See ASSETS.md.
+
+import { assetUrl } from "./assetUrl";
 
 export const IMAGES = {
-  logo: "/media/sky-logo_37be9c31.png",
-  skyWatermark: "/media/SkyLogo(3)_979db2e4.png",
-  hero: "/media/hero-coastal-room_f1470a36.jpg",
-  rollerShades: "/media/card-roller-shades_e386e217.jpg",
-  draperies: "/media/card-draperies_93c27b60.jpg",
-  plantationShutters: "/media/card-plantation-shutters_d5eff664.jpg",
-  cellularShades: "/media/card-cellular-shades_4d3f568c.jpg",
-  romanShades: "/media/card-roman-shades_4565cf07.jpg",
-  motorizedShades: "/media/card-motorized-shades_464047a0.jpg",
+  logo: assetUrl("/media/sky-logo_37be9c31.png"),
+  skyWatermark: assetUrl("/media/SkyLogo(3)_979db2e4.png"),
+  hero: assetUrl("/media/hero-coastal-room_f1470a36.jpg"),
+  rollerShades: assetUrl("/media/card-roller-shades_e386e217.jpg"),
+  draperies: assetUrl("/media/card-draperies_93c27b60.jpg"),
+  plantationShutters: assetUrl("/media/card-plantation-shutters_d5eff664.jpg"),
+  cellularShades: assetUrl("/media/card-cellular-shades_4d3f568c.jpg"),
+  romanShades: assetUrl("/media/card-roman-shades_4565cf07.jpg"),
+  motorizedShades: assetUrl("/media/card-motorized-shades_464047a0.jpg"),
 };
 
 export const CONTACT = {
