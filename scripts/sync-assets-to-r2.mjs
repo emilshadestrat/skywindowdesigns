@@ -78,26 +78,44 @@ const BY_EXTENSION = {
 };
 
 function sniff(file) {
+  // 12 bytes is enough for every binary signature above, but not to tell an SVG
+  // from any other XML document: both open `<?xml version="1.0"`, and 12 bytes
+  // holds only `<?xml versio` — not even the closing `?>`. A declaration-strip
+  // built on that read can never match, so every SVG carrying a prologue falls
+  // through to "not an image" and is skipped instead of mirrored. 4 KB clears a
+  // declaration, a DOCTYPE and an editor's generator comment with room to spare.
   const fd = openSync(file, "r");
-  const head = Buffer.alloc(12);
+  const head = Buffer.alloc(4096);
+  let read = 0;
   try {
-    readSync(fd, head, 0, 12, 0);
+    read = readSync(fd, head, 0, 4096, 0);
   } finally {
     closeSync(fd);
   }
-  for (const [type, matches] of SIGNATURES) if (matches(head)) return type;
-  const text = head.toString("latin1").trim().toLowerCase();
+  const magic = head.subarray(0, 12);
+  for (const [type, matches] of SIGNATURES) if (matches(magic)) return type;
+  let text = head.subarray(0, read).toString("latin1").trim().toLowerCase();
   // SVG is text, so it has no magic number worth trusting — which makes it the
   // easy thing for a non-image to be mistaken for. An S3 error response is XML
-  // too: one repo had a 111-byte <Error><Code>AccessDenied</Code></Error>
-  // saved with a .webp name and serving as its JSON-LD logo. Look past the
-  // declaration before agreeing that something is an SVG.
-  const withoutDeclaration = text.replace(/^<\?xml[^>]*\?>\s*/, "");
-  if (withoutDeclaration.startsWith("<svg")) return "image/svg+xml";
-  if (withoutDeclaration.startsWith("<error") || withoutDeclaration.startsWith("<?xml")) return null;
-  if (text.startsWith("<?xml")) return null;
-  if (text.startsWith("<!doctype") || text.startsWith("<html")) return null;
-  return null;
+  // too: beacon-blinds-rebuild had a 111-byte
+  // <Error><Code>AccessDenied</Code></Error> saved with a .webp name, and a
+  // check that accepted any XML called it a valid image.
+  //
+  // So skip only what may legitimately precede a root element — the XML
+  // declaration, a DOCTYPE, comments — and then require that the root itself is
+  // <svg>. Searching for "<svg" anywhere in the head would reopen the same hole
+  // from the other side, since plenty of HTML error pages embed an inline SVG
+  // icon well within the first few KB.
+  for (;;) {
+    const before = text;
+    text = text
+      .replace(/^\s+/, "")
+      .replace(/^<\?xml[^>]*\?>/, "")
+      .replace(/^<!--[\s\S]*?-->/, "")
+      .replace(/^<!doctype[^>]*>/, "");
+    if (text === before) break;
+  }
+  return text.startsWith("<svg") ? "image/svg+xml" : null;
 }
 
 /**
