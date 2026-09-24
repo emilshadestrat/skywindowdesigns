@@ -1,5 +1,5 @@
 // Static App Router SEO helpers. Approved titles and descriptions come from the existing production data and components.
-import { CITY_PAGES, CONTACT, HOMEPAGE_FAQS, IMAGES, PAGES, type CityPageData, type PageData } from "@/lib/siteData";
+import { CITY_PAGES, CONTACT, DESIGN_SERVICE_SLUGS, HOMEPAGE_FAQS, IMAGES, PAGES, type CityPageData, type PageData } from "@/lib/siteData";
 
 export const SITE_URL = "https://skywindowdesign.com";
 
@@ -68,8 +68,28 @@ export function serviceSchema(page: PageData) {
   };
 }
 
+function breadcrumb(trail: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((step, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: step.name,
+      item: `${SITE_URL}${step.path}`,
+    })),
+  };
+}
+
 export function citySchema(page: CityPageData) {
   return [
+    // The CityPage component builds a BreadcrumbList of its own, but it passes it
+    // to <Seo>, which returns null -- so city pages shipped without one.
+    breadcrumb([
+      { name: "Home", path: "/" },
+      { name: "Service Areas", path: "/service-areas" },
+      { name: page.area, path: `/locations/${page.slug}` },
+    ]),
     {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -97,14 +117,10 @@ export function citySchema(page: CityPageData) {
 export function serviceAreasSchema() {
   const url = `${SITE_URL}/service-areas`;
   return [
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "Service Areas", item: url },
-      ],
-    },
+    breadcrumb([
+      { name: "Home", path: "/" },
+      { name: "Service Areas", path: "/service-areas" },
+    ]),
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -114,6 +130,31 @@ export function serviceAreasSchema() {
         "@type": "ListItem",
         position: i + 1,
         name: page.area,
+        url: page.canonical,
+      })),
+    },
+  ];
+}
+
+// /design-services has the same no-op <Seo> problem /service-areas had, so it
+// also shipped with no structured data. Derived from DESIGN_SERVICE_SLUGS and
+// the pages' own names, so the list cannot drift from the page it describes.
+export function designServicesSchema() {
+  const pages = DESIGN_SERVICE_SLUGS.map((slug) => PAGES[slug]).filter(Boolean);
+  return [
+    breadcrumb([
+      { name: "Home", path: "/" },
+      { name: "Design Services", path: "/design-services" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Sky Window Design Design Services",
+      url: `${SITE_URL}/design-services`,
+      itemListElement: pages.map((page, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: page.schemaName,
         url: page.canonical,
       })),
     },

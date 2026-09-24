@@ -1,6 +1,8 @@
 // Design philosophy: route wrapper preserves the existing luxury editorial design services page.
 import type { Metadata } from "next";
 import { DesignServicesClient } from "../_components/LegacyPageClients";
+import { JsonLd } from "../_components/JsonLd";
+import { designServicesSchema } from "../_lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Design Services | Sky Window Design & More" },
@@ -9,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function DesignServicesRoute() {
-  return <DesignServicesClient />;
+  return <><JsonLd data={designServicesSchema()} /><DesignServicesClient /></>;
 }

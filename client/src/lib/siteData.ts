@@ -557,7 +557,7 @@ export const PAGES: Record<string, PageData> = {
       { label: "Window Treatments", href: "/window-treatments" },
     ],
     schemaType: "WebPage",
-    schemaName: "Residential Window Treatments",
+    schemaName: "Window Treatment Visualizer",
   },
   "window-treatment-repairs": {
     slug: "window-treatment-repairs",
@@ -580,6 +580,14 @@ export const PAGES: Record<string, PageData> = {
     schemaName: "Window Treatment Repairs",
   },
 };
+
+// Shared so the /design-services page and its structured data cannot drift apart.
+export const DESIGN_SERVICE_SLUGS = [
+  "wallpaper-interior-design",
+  "commercial-window-treatments",
+  "visualizer",
+  "window-treatment-repairs",
+];
 
 export interface CityPageData {
   slug: string;

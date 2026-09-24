@@ -4,15 +4,9 @@
 import { Link } from "wouter";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
-import { PAGES, CONTACT, IMAGES } from "@/lib/siteData";
+import { PAGES, CONTACT, DESIGN_SERVICE_SLUGS, IMAGES } from "@/lib/siteData";
 import { ChevronRight, Phone, Paintbrush, Building2, Eye, Wrench } from "lucide-react";
 
-const DESIGN_SERVICE_SLUGS = [
-  "wallpaper-interior-design",
-  "commercial-window-treatments",
-  "visualizer",
-  "window-treatment-repairs",
-];
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   "wallpaper-interior-design": <Paintbrush size={20} />,
@@ -24,27 +18,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 export default function DesignServices() {
   const pages = DESIGN_SERVICE_SLUGS.map((slug) => PAGES[slug]).filter(Boolean);
 
-  const schema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://skywindowdesign.com/" },
-        { "@type": "ListItem", position: 2, name: "Design Services", item: "https://skywindowdesign.com/design-services" },
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "Sky Window Design Design Services",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Wallpaper & Interior Design", url: "https://skywindowdesign.com/wallpaper-interior-design" },
-        { "@type": "ListItem", position: 2, name: "Commercial Window Treatments", url: "https://skywindowdesign.com/commercial-window-treatments" },
-        { "@type": "ListItem", position: 3, name: "Residential Window Treatments", url: "https://skywindowdesign.com/visualizer" },
-        { "@type": "ListItem", position: 4, name: "Window Treatment Repairs", url: "https://skywindowdesign.com/window-treatment-repairs" },
-      ],
-    },
-  ];
+  // Structured data for this route is emitted server-side by app/design-services/page.tsx.
+  // The <Seo> component below is a no-op, so a schema array here would never render.
 
   return (
     <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: "Design Services" }]}>
@@ -52,7 +27,6 @@ export default function DesignServices() {
         title="Design Services | Sky Window Design & More"
         description="Wallpaper, interior design, commercial window treatments, visualizer, and repair services from Sky Window Design & More in Orange Beach, Alabama."
         canonical="https://skywindowdesign.com/design-services"
-        schema={schema}
         ogImage={IMAGES.draperies}
       />
 

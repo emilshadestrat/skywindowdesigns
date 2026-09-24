@@ -16,49 +16,12 @@ export function CityPage({ pageKey }: { pageKey: string }) {
   const data: CityPageData | undefined = CITY_PAGES[pageKey];
   if (!data) return null;
 
-  const schema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: `Window Treatments in ${data.area}`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: "Sky Window Design & More",
-        telephone: "+12512067319",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "25405 Perdido Beach Blvd., Suite 7A",
-          addressLocality: "Orange Beach",
-          addressRegion: "AL",
-          postalCode: "36561",
-          addressCountry: "US",
-        },
-      },
-      areaServed: data.area,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://skywindowdesign.com/" },
-        { "@type": "ListItem", position: 2, name: "Service Areas", item: "https://skywindowdesign.com/service-areas" },
-        { "@type": "ListItem", position: 3, name: data.area, item: data.canonical },
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: data.faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ];
+  // Structured data for this route is emitted server-side by app/locations/[slug]/page.tsx
+  // via citySchema(). The <Seo> component below is a no-op, so an array here never renders.
 
   return (
     <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: "Service Areas", url: "/service-areas" }, { label: data.area }]}>
-      <Seo title={data.title} description={data.meta} canonical={data.canonical} schema={schema} />
+      <Seo title={data.title} description={data.meta} canonical={data.canonical} />
 
       {/* ── City Hero ── */}
       <section
