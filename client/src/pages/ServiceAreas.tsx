@@ -11,29 +11,8 @@ import { ChevronRight, MapPin, Phone } from "lucide-react";
 export default function ServiceAreas() {
   const cityKeys = Object.keys(CITY_PAGES);
 
-  const schema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://skywindowdesign.com/" },
-        { "@type": "ListItem", position: 2, name: "Service Areas", item: "https://skywindowdesign.com/service-areas" },
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "Sky Window Design Service Areas",
-      // Derived from CITY_PAGES so a new city page cannot be omitted here the way
-      // Orange Beach was while this list was maintained by hand.
-      itemListElement: cityKeys.map((key, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: CITY_PAGES[key].area,
-        url: CITY_PAGES[key].canonical,
-      })),
-    },
-  ];
+  // Structured data for this route is emitted server-side by app/service-areas/page.tsx.
+  // The <Seo> component below is a no-op, so a schema array here would never render.
 
   return (
     <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: "Service Areas" }]}>
@@ -41,7 +20,6 @@ export default function ServiceAreas() {
         title="Service Areas | Sky Window Design & More"
         description="Sky Window Design & More serves Orange Beach, AL and the surrounding Gulf Coast. View all service areas for custom window treatments."
         canonical="https://skywindowdesign.com/service-areas"
-        schema={schema}
       />
 
       {/* ── Hero ── */}

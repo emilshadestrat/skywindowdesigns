@@ -91,6 +91,35 @@ export function citySchema(page: CityPageData) {
   ];
 }
 
+// /service-areas renders through the legacy ServiceAreas component, whose <Seo>
+// wrapper is a no-op — so this route had no structured data at all until now.
+// Derived from CITY_PAGES so a new city page cannot be left out of it.
+export function serviceAreasSchema() {
+  const url = `${SITE_URL}/service-areas`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Service Areas", item: url },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Sky Window Design Service Areas",
+      url,
+      itemListElement: Object.values(CITY_PAGES).map((page, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: page.area,
+        url: page.canonical,
+      })),
+    },
+  ];
+}
+
 export const crawlableRoutes = [
   "/",
   ...Object.keys(PAGES).map((slug) => `/${slug}`),
