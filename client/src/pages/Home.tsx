@@ -73,9 +73,11 @@ const schema = [
       "https://www.facebook.com/skywindowdesign",
       "https://www.instagram.com/skywindowdesign",
     ],
+    // Monday to Friday only (client-confirmed 2026-09-24). This array is not
+    // rendered -- <Seo> is a no-op -- but it is kept correct so it cannot be
+    // wired up later carrying the wrong hours.
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "17:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "10:00", closes: "15:00" },
     ],
   },
   {

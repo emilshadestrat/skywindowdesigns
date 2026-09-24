@@ -33,9 +33,10 @@ export const localBusinessSchema = {
   geo: { "@type": "GeoCoordinates", latitude: 30.2658, longitude: -87.5833 },
   hasMap: "https://www.google.com/maps/search/?api=1&query=25405+Perdido+Beach+Blvd+Suite+7A+Orange+Beach+AL+36561",
   sameAs: ["https://www.facebook.com/skywindowdesign", "https://www.instagram.com/skywindowdesign"],
+  // Monday to Friday only, confirmed by the client 2026-09-24 and matching the
+  // Google Business Profile. Saturday 10:00-15:00 was published here in error.
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "17:00" },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "10:00", closes: "15:00" },
   ],
 };
 

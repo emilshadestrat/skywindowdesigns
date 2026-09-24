@@ -35,10 +35,12 @@ export const CONTACT = {
     zip: "36561",
     full: "25405 Perdido Beach Blvd., Suite 7A, Orange Beach, AL 36561",
   },
+  // Confirmed by the client 2026-09-24: Monday to Friday only, closed at
+  // weekends. This matches the Google Business Profile; the site previously
+  // published Saturday 10:00-15:00, which was wrong.
   hours: [
     { day: "Monday–Friday", time: "10:00 a.m.–5:00 p.m." },
-    { day: "Saturday", time: "10:00 a.m.–3:00 p.m." },
-    { day: "Sunday", time: "Closed" },
+    { day: "Saturday–Sunday", time: "Closed" },
   ],
 };
 
