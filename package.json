@@ -8,6 +8,7 @@
     "build": "node scripts/sync-blog-content.mjs && NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "check": "tsc --noEmit",
+    "test": "vitest run",
     "format": "prettier --write .",
     "blog:sync": "node scripts/sync-blog-content.mjs",
     "assets:sync": "node scripts/sync-assets-to-r2.mjs",

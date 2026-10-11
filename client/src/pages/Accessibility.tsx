@@ -8,7 +8,7 @@ export default function Accessibility() {
       <Seo
         title="Accessibility Statement | Sky Window Design and More"
         description="Accessibility statement for Sky Window Design and More, Orange Beach, Alabama."
-        canonical="https://skywindowdesign.com/accessibility/"
+        canonical="https://skywindowdesign.com/accessibility"
       />
       <section className="pt-8 pb-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container max-w-[760px]">

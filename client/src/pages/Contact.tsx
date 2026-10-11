@@ -96,7 +96,7 @@ export default function ContactPage() {
       <Seo
         title="Contact Sky Window Design and More | Orange Beach, AL"
         description="Contact Sky Window Design and More in Orange Beach, Alabama, to discuss custom window treatments, motorized shades, draperies and more."
-        canonical="https://skywindowdesign.com/contact/"
+        canonical="https://skywindowdesign.com/contact"
         schema={schema}
       />
 
