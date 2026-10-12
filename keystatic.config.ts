@@ -66,11 +66,15 @@ export default config({
         }),
         excerpt: fields.text({
           label: "Excerpt",
-          description: "Shown on the blog index and used as the meta description.",
+          description: "Shown on the blog index and used as the meta description. 70-160 characters.",
           multiline: true,
-          validation: { isRequired: true },
+          validation: { isRequired: true, length: { min: 70, max: 160 } },
         }),
-        metaTitle: fields.text({ label: "SEO title", description: "Falls back to the title." }),
+        metaTitle: fields.text({
+          label: "SEO title",
+          description: "Falls back to the title. 60 characters or fewer.",
+          validation: { length: { max: 60 } },
+        }),
         readTime: fields.text({ label: "Read time", defaultValue: "5 min read" }),
         author: fields.text({ label: "Author", defaultValue: "Sky Window Design & More" }),
         body: fields.array(

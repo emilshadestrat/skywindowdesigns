@@ -7,8 +7,8 @@ export default function Privacy() {
     <Layout breadcrumb={[{ label: "Home", url: "/" }, { label: "Privacy Policy" }]}>
       <Seo
         title="Privacy Policy | Sky Window Design and More"
-        description="Privacy policy for Sky Window Design and More, Orange Beach, Alabama."
-        canonical="https://skywindowdesign.com/privacy/"
+        description="How Sky Window Design and More in Orange Beach, AL collects and uses your information. We do not sell or rent your personal data."
+        canonical="https://skywindowdesign.com/privacy"
       />
       <section className="pt-8 pb-16" style={{ backgroundColor: "oklch(0.97 0.007 255)" }}>
         <div className="container max-w-[760px]">

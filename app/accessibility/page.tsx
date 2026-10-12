@@ -5,7 +5,7 @@ import { AccessibilityClient } from "../_components/LegacyPageClients";
 export const metadata: Metadata = {
   title: { absolute: "Accessibility Statement | Sky Window Design and More" },
   description: "Accessibility statement for Sky Window Design and More, Orange Beach, Alabama.",
-  alternates: { canonical: "/accessibility/" },
+  alternates: { canonical: "/accessibility" },
 };
 
 export default function AccessibilityRoute() {

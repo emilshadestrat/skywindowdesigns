@@ -7,7 +7,7 @@ import { localBusinessSchema } from "../_lib/seo";
 export const metadata: Metadata = {
   title: { absolute: "Contact Sky Window Design and More | Orange Beach, AL" },
   description: "Contact Sky Window Design and More in Orange Beach, Alabama, to discuss custom window treatments, motorized shades, draperies and more.",
-  alternates: { canonical: "/contact/" },
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactRoute() {
