@@ -54,6 +54,8 @@ interface LeadPayload {
   sourcePage?: string;
   _gotcha?: string;
   formLoadedAt?: number;
+  smsTransactionalOptIn?: unknown;
+  smsMarketingOptIn?: unknown;
 }
 
 export const handler = async (event: FunctionEvent): Promise<FunctionResponse> => {
@@ -96,6 +98,10 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
   const email = data.email?.trim();
   const project = data.project?.trim();
   const sourcePage = data.sourcePage?.trim() || "unknown";
+  // Only a literal true is consent: a missing or malformed value never opts
+  // anyone in to texts.
+  const smsTransactional = data.smsTransactionalOptIn === true;
+  const smsMarketing = data.smsMarketingOptIn === true;
 
   if (!firstName || !lastName || !phone) {
     return { statusCode: 400, body: JSON.stringify({ error: "Missing required fields" }) };
@@ -126,7 +132,12 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
         phone,
         ...(email ? { email } : {}),
         source: "Website Form",
-        tags: ["website-lead", `source:${sourcePage}`],
+        tags: [
+          "website-lead",
+          `source:${sourcePage}`,
+          ...(smsTransactional ? ["sms-transactional-opt-in"] : []),
+          ...(smsMarketing ? ["sms-marketing-opt-in"] : []),
+        ],
       }),
     });
 
@@ -139,11 +150,20 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
 
     const contactId = upsertResult?.contact?.id;
 
-    if (contactId && project) {
+    // A note on every lead, not only those with project details: it is the
+    // dated record of what the visitor chose for each SMS checkbox, which A2P
+    // reviewers and carriers can ask for. Tags alone show only the yeses.
+    if (contactId) {
+      const note = [
+        `Website form submitted ${new Date().toISOString()} from ${sourcePage}`,
+        `Service SMS opt-in: ${smsTransactional ? "Yes" : "No"}`,
+        `Promotional SMS opt-in: ${smsMarketing ? "Yes" : "No"}`,
+        project ? `Project details: ${project}` : "",
+      ].filter(Boolean).join("\n");
       await fetch(`${GHL_API_BASE}/contacts/${contactId}/notes`, {
         method: "POST",
         headers: ghlHeaders,
-        body: JSON.stringify({ body: `Project details (submitted from ${sourcePage}): ${project}` }),
+        body: JSON.stringify({ body: note }),
       }).catch((err) => console.error("submit-lead: failed to attach note", err));
     }
 

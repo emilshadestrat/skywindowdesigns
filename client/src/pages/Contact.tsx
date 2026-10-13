@@ -7,6 +7,8 @@ import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { CONTACT } from "@/lib/siteData";
 import { submitLead } from "@/lib/submitLead";
+import { smsChoices } from "@/lib/smsConsent";
+import { SmsConsent } from "@/components/SmsConsent";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 
 const schema = {
@@ -82,6 +84,7 @@ export default function ContactPage() {
         project: (fd.get("project") as string)?.trim() || undefined,
         sourcePage: "/contact",
         formLoadedAt,
+        ...smsChoices(fd),
       });
       setSubmitted(true);
     } catch {
@@ -281,6 +284,7 @@ export default function ContactPage() {
                         placeholder="Tell us about the room, the windows, and what you'd like to improve."
                       />
                     </div>
+                    <SmsConsent disabled={submitting} />
                     {/* Honeypot — do not remove */}
                     <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                     <button

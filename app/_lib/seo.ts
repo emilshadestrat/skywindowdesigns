@@ -171,5 +171,7 @@ export const crawlableRoutes = [
   "/service-areas",
   "/blog",
   "/privacy",
+  "/terms-of-service",
+  "/sms-consent",
   "/accessibility",
 ];

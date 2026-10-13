@@ -9,6 +9,8 @@ import { Seo } from "@/components/Seo";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, CITY_PAGES, type PageData } from "@/lib/siteData";
 import { submitLead } from "@/lib/submitLead";
+import { smsChoices } from "@/lib/smsConsent";
+import { SmsConsent } from "@/components/SmsConsent";
 import {
   Phone, ChevronRight, CheckCircle2, Star, Award, Ruler, Wrench, MapPin,
   Sun, EyeOff, Layers, Zap, Shield, Home,
@@ -212,6 +214,7 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
         project: (fd.get("project") as string)?.trim() || undefined,
         sourcePage,
         formLoadedAt,
+        ...smsChoices(fd),
       });
       setSubmitted(true);
     } catch {
@@ -263,6 +266,7 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
               <label className={labelCls} htmlFor="sc-project">Project Details</label>
               <textarea id="sc-project" name="project" rows={3} className={inputCls} placeholder="Tell us about the room and what you'd like to improve." />
             </div>
+            <SmsConsent compact disabled={submitting} />
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
             <button type="submit" disabled={submitting} className="btn-primary w-full justify-center !text-[14px] !py-3 disabled:opacity-60 disabled:cursor-not-allowed">

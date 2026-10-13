@@ -1,13 +1,13 @@
 // Design philosophy: route wrapper preserves the existing readable legal-page presentation.
 import type { Metadata } from "next";
-import { PrivacyClient } from "../_components/LegacyPageClients";
+import { LegalPageClient } from "../_components/LegacyPageClients";
 
 export const metadata: Metadata = {
   title: { absolute: "Privacy Policy | Sky Window Design and More" },
-  description: "How Sky Window Design and More in Orange Beach, AL collects and uses your information. We do not sell or rent your personal data.",
+  description: "How Sky Window Design and More collects and uses your information, including SMS consent. Mobile information is never shared for marketing.",
   alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyRoute() {
-  return <PrivacyClient />;
+  return <LegalPageClient kind="privacy" />;
 }

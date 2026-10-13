@@ -395,8 +395,10 @@ export function Layout({ children, breadcrumb, heroPage = false }: LayoutProps) 
           {/* Footer bottom bar */}
           <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-slate-500">
             <span>© 2026 Sky Window Design & More, LLC. All rights reserved.</span>
-            <span className="flex gap-4">
+            <span className="flex flex-wrap justify-center gap-x-4 gap-y-2">
               <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+              <Link href="/sms-consent" className="hover:text-slate-300 transition-colors">SMS Consent</Link>
               <Link href="/accessibility" className="hover:text-slate-300 transition-colors">Accessibility</Link>
             </span>
           </div>
