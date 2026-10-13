@@ -6,6 +6,8 @@
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { submitLead } from "@/lib/submitLead";
+import { smsChoices } from "@/lib/smsConsent";
+import { SmsConsent } from "@/components/SmsConsent";
 
 export function ConsultCard() {
   const [submitted, setSubmitted] = useState(false);
@@ -51,6 +53,7 @@ export function ConsultCard() {
         project: (fd.get("project") as string)?.trim() || undefined,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
         formLoadedAt,
+        ...smsChoices(fd),
       });
       setSubmitted(true);
     } catch {
@@ -102,6 +105,7 @@ export function ConsultCard() {
               <label className={labelCls} htmlFor="sc-project">Project Details</label>
               <textarea id="sc-project" name="project" rows={3} className={inputCls} placeholder="Tell us about the room and what you'd like to improve." />
             </div>
+            <SmsConsent compact disabled={submitting} />
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
             <button type="submit" disabled={submitting} className="btn-primary w-full justify-center !text-[14px] !py-3 disabled:opacity-60 disabled:cursor-not-allowed">

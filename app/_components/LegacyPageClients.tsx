@@ -2,12 +2,13 @@
 
 // Design philosophy: preserve the existing premium editorial presentation while App Router handles route generation.
 import { CityPage } from "@/components/CityPage";
+import { LegalPage } from "@/components/LegalPage";
 import { StandardPage } from "@/components/StandardPage";
+import type { LegalKind } from "@/lib/legal";
 import Accessibility from "@/pages/Accessibility";
 import Blog from "@/pages/Blog";
 import ContactPage from "@/pages/Contact";
 import DesignServices from "@/pages/DesignServices";
-import Privacy from "@/pages/Privacy";
 import ServiceAreas from "@/pages/ServiceAreas";
 
 export function StandardPageClient({ pageKey }: { pageKey: string }) {
@@ -34,8 +35,9 @@ export function BlogClient() {
   return <Blog />;
 }
 
-export function PrivacyClient() {
-  return <Privacy />;
+// Privacy Policy, Terms of Service and SMS consent (content in lib/legal.tsx).
+export function LegalPageClient({ kind }: { kind: LegalKind }) {
+  return <LegalPage kind={kind} />;
 }
 
 export function AccessibilityClient() {

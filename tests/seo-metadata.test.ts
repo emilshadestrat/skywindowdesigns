@@ -26,6 +26,8 @@ const STATIC_ROUTES: Record<string, () => Promise<{ metadata: Metadata }>> = {
   "/": () => import("../app/page"),
   "/contact": () => import("../app/contact/page"),
   "/privacy": () => import("../app/privacy/page"),
+  "/terms-of-service": () => import("../app/terms-of-service/page"),
+  "/sms-consent": () => import("../app/sms-consent/page"),
   "/accessibility": () => import("../app/accessibility/page"),
   "/blog": () => import("../app/blog/page"),
   "/service-areas": () => import("../app/service-areas/page"),

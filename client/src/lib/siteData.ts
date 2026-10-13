@@ -25,6 +25,9 @@ export const IMAGES = {
 };
 
 export const CONTACT = {
+  // The sender named in the SMS opt-in, the legal pages and the A2P campaign.
+  // It must match the legal name on the A2P brand registration exactly.
+  legalName: "Sky Window Design & More, LLC",
   phone: "(251) 206-7319",
   phoneHref: "tel:+12512067319",
   email: "lance@skywindowdesign.com",

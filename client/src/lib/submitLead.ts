@@ -9,6 +9,10 @@ export interface LeadPayload {
   project?: string;
   sourcePage: string;
   formLoadedAt: number;
+  // The two optional SMS checkboxes (see lib/smsConsent.ts). Stored on the
+  // GoHighLevel contact as tags and in the submission note.
+  smsTransactionalOptIn: boolean;
+  smsMarketingOptIn: boolean;
 }
 
 export async function submitLead(payload: LeadPayload): Promise<void> {
