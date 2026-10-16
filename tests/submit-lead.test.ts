@@ -72,3 +72,15 @@ describe("submit-lead SMS consent", () => {
     expect(note()).toContain("Project details: Three bedroom windows");
   });
 });
+
+describe("submit-lead Project Details custom field", () => {
+  it("fills the GHL project_details field with what the visitor wrote", async () => {
+    await post({ project: "  Motorized shades for the living room  " });
+    expect(upsert().customFields).toEqual([{ key: "project_details", field_value: "Motorized shades for the living room" }]);
+  });
+
+  it("leaves the field alone when the box is empty, so a returning contact keeps theirs", async () => {
+    await post({ project: "   " });
+    expect(upsert()).not.toHaveProperty("customFields");
+  });
+});
