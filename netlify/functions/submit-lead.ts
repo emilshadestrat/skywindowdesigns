@@ -16,6 +16,11 @@ type FunctionResponse = {
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
 
+// The "Project Details" contact custom field in Sky's GHL location
+// ({{contact.project_details}}). GHL matches custom fields by key, so no
+// field id is needed here.
+const GHL_PROJECT_DETAILS_KEY = "project_details";
+
 // Minimum time (ms) that must elapse between the form rendering and it being
 // submitted. Submissions faster than this are almost certainly bots filling
 // the form programmatically rather than a person typing.
@@ -132,6 +137,9 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
         phone,
         ...(email ? { email } : {}),
         source: "Website Form",
+        // Only when the visitor wrote something: an empty value would wipe
+        // what a returning contact told us last time.
+        ...(project ? { customFields: [{ key: GHL_PROJECT_DETAILS_KEY, field_value: project }] } : {}),
         tags: [
           "website-lead",
           `source:${sourcePage}`,
