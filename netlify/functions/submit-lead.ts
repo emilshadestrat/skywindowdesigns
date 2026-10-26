@@ -175,7 +175,9 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
       }).catch((err) => console.error("submit-lead: failed to attach note", err));
     }
 
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    // `delivered` tells the browser this lead reached GHL, so it can report it to
+    // GA4. The honeypot and timing replies above leave it out on purpose.
+    return { statusCode: 200, body: JSON.stringify({ ok: true, delivered: true }) };
   } catch (err) {
     console.error("submit-lead: GHL request error", err);
     return { statusCode: 502, body: JSON.stringify({ error: "Failed to submit lead" }) };
