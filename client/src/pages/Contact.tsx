@@ -85,7 +85,7 @@ export default function ContactPage() {
         sourcePage: "/contact",
         formLoadedAt,
         ...smsChoices(fd),
-      });
+      }, "Contact page form");
       setSubmitted(true);
     } catch {
       setSubmitError(`Something went wrong. Please call us at ${CONTACT.phone} instead.`);

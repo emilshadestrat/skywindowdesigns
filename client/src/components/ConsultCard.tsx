@@ -54,7 +54,7 @@ export function ConsultCard() {
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
         formLoadedAt,
         ...smsChoices(fd),
-      });
+      }, "Consultation card form");
       setSubmitted(true);
     } catch {
       setSubmitError("Something went wrong. Please call us instead.");
