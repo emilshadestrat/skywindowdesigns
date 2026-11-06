@@ -21,6 +21,21 @@ export interface LeadPayload {
   // GoHighLevel contact as tags and in the submission note.
   smsTransactionalOptIn: boolean;
   smsMarketingOptIn: boolean;
+  /** Cloudflare Turnstile token; "" when the check couldn't run (the function decides). */
+  "cf-turnstile-response"?: string;
+}
+
+/** A refused submission, carrying the function's HTTP status and message (403 = failed human check). */
+export class LeadError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+    this.name = "LeadError";
+  }
+}
+
+/** The function's own message for a failed human check (it includes the phone number), else null. */
+export function humanCheckMessage(error: unknown): string | null {
+  return error instanceof LeadError && error.status === 403 ? error.message : null;
 }
 
 /**
@@ -51,7 +66,8 @@ export async function submitLead(payload: LeadPayload, formName: string): Promis
   });
 
   if (!res.ok) {
-    throw new Error(`Lead submission failed with status ${res.status}`);
+    const body = (await res.json().catch(() => ({}))) as { message?: unknown };
+    throw new LeadError(typeof body.message === "string" ? body.message : `Lead submission failed with status ${res.status}`, res.status);
   }
 
   // The function answers bot submissions (timing check) with the same 200, so the

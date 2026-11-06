@@ -1,6 +1,8 @@
 // Receives consultation-form submissions from the static site and forwards them to GoHighLevel.
 // Keeps GHL_PRIVATE_TOKEN server-side only — never expose it to the client bundle.
 
+import { TURNSTILE_FIELD, verifyTurnstile } from "../lib/turnstile";
+
 type FunctionEvent = {
   httpMethod: string;
   body: string | null;
@@ -14,6 +16,8 @@ type FunctionResponse = {
 };
 
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
+// CONTACT.phone in client/src/lib/siteData.ts.
+const PHONE = "(251) 206-7319";
 const GHL_API_VERSION = "2021-07-28";
 
 // The "Project Details" contact custom field in Sky's GHL location
@@ -78,8 +82,13 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
   }
 
   let data: LeadPayload;
+  let turnstileToken: unknown;
   try {
-    data = JSON.parse(event.body || "{}");
+    const parsed = JSON.parse(event.body || "{}") as LeadPayload & { [TURNSTILE_FIELD]?: unknown };
+    // Copy the answers without the single-use Turnstile token, so it never reaches GHL or logs.
+    const { [TURNSTILE_FIELD]: token, ...answers } = parsed && typeof parsed === "object" ? parsed : ({} as typeof parsed);
+    turnstileToken = token;
+    data = answers;
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid request body" }) };
   }
@@ -110,6 +119,15 @@ export const handler = async (event: FunctionEvent): Promise<FunctionResponse> =
 
   if (!firstName || !lastName || !phone) {
     return { statusCode: 400, body: JSON.stringify({ error: "Missing required fields" }) };
+  }
+
+  // Cloudflare Turnstile human check, before anything reaches GHL. Off until
+  // TURNSTILE_SECRET_KEY is set; lets the lead through if Cloudflare can't be reached.
+  if (!(await verifyTurnstile(turnstileToken, clientIp))) {
+    return {
+      statusCode: 403,
+      body: JSON.stringify({ ok: false, message: `We couldn’t confirm this request came from a person. Please try again, or call us at ${PHONE}.` }),
+    };
   }
 
   const locationId = process.env.GHL_LOCATION_ID;
