@@ -33,6 +33,23 @@ export type BlogPost = {
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
 
+// The article's <h1> is always the post title. Its <title> is the Keystatic
+// meta title (or the post title), plus " | Sky Window Design" when that fits in
+// 60 characters, the suffix the location pages already use. Before this a post
+// whose meta title matched its title shipped a <title> identical to its <h1>,
+// which Semrush flags as "Duplicate content in h1 and title" (2026-11-07 crawl,
+// /blog/how-solar-shades-work-bright-rooms). A meta title too long for the
+// suffix must differ from the post title; tests/seo-metadata.test.ts checks
+// every post, scheduled ones included.
+export const BLOG_BRAND_SUFFIX = " | Sky Window Design";
+export const BLOG_TITLE_MAX = 60;
+
+export function blogDocumentTitle(metaTitle: string): string {
+  if (/sky window/i.test(metaTitle)) return metaTitle;
+  const branded = `${metaTitle}${BLOG_BRAND_SUFFIX}`;
+  return branded.length <= BLOG_TITLE_MAX ? branded : metaTitle;
+}
+
 function readAll(): BlogPost[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
   return fs
@@ -49,7 +66,7 @@ function readAll(): BlogPost[] {
       return {
         slug,
         title,
-        metaTitle: (d.metaTitle as string) || title,
+        metaTitle: blogDocumentTitle(String(d.metaTitle ?? "").trim() || title),
         excerpt: String(d.excerpt ?? ""),
         category: String(d.category ?? "Design Ideas"),
         readTime: String(d.readTime ?? "5 min read"),

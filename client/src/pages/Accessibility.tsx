@@ -19,7 +19,7 @@ export default function Accessibility() {
           >
             Accessibility Statement
           </h1>
-          <p className="text-[13px] text-slate-500 mb-2">Last updated: January 2026</p>
+          <p className="text-[13px] text-slate-500 mb-2">Last updated: November 2026</p>
         </div>
       </section>
 
@@ -48,6 +48,16 @@ export default function Accessibility() {
               </h2>
               <p className="text-[1.0625rem] leading-relaxed text-slate-600">
                 If you encounter an accessibility barrier on our site, please contact us at {CONTACT.email} or {CONTACT.phone}. We will work to address the issue promptly.
+              </p>
+            </div>
+            {/* Semrush flagged /accessibility for a low word count (2026-11-07
+                crawl). Business facts only, from CONTACT. */}
+            <div>
+              <h2 className="font-[Fraunces,Georgia,serif] font-bold text-[1.375rem] text-slate-900 mb-3">
+                Other Ways to Reach Us
+              </h2>
+              <p className="text-[1.0625rem] leading-relaxed text-slate-600">
+                You do not need to use this website to get help with window treatments. Call us at {CONTACT.phone} or email {CONTACT.email} ({CONTACT.hours[0].day}, {CONTACT.hours[0].time}), or visit our showroom at {CONTACT.address.full}. When you report a problem, please tell us which page you were on and what you were trying to do so we can look into it. Our team can also talk you through product options, measuring and professional installation by phone or at the showroom, so nothing on this site is the only way to get that information.
               </p>
             </div>
             <div>

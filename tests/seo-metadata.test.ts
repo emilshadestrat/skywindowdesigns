@@ -11,7 +11,7 @@ import { describe, expect, it, vi } from "vitest";
 import nextConfig from "../next.config";
 import { crawlableRoutes, SITE_URL } from "../app/_lib/seo";
 import { CITY_PAGES, PAGES } from "../client/src/lib/siteData";
-import { allPosts } from "../lib/blog";
+import { allPosts, blogDocumentTitle, BLOG_BRAND_SUFFIX } from "../lib/blog";
 
 // Route modules are imported only for their `metadata` export; the legacy
 // visual components they render are irrelevant here.
@@ -87,6 +87,34 @@ describe("titles and descriptions", async () => {
     for (const e of entries) {
       expect(seen.get(e.title), `"${e.title}" on ${e.route}`).toBeUndefined();
       seen.set(e.title, e.route);
+    }
+  });
+});
+
+// Semrush "Duplicate content in h1 and title" (2026-11-07 crawl): a blog post
+// whose meta title matched its post title shipped a <title> equal to its <h1>.
+describe("<title> differs from <h1>", () => {
+  const same = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
+  it("brands a blog title only when it fits in 60 characters", () => {
+    expect(blogDocumentTitle("How Solar Shades Work in Bright Rooms")).toBe(
+      `How Solar Shades Work in Bright Rooms${BLOG_BRAND_SUFFIX}`,
+    );
+    const long = "Window Treatments for Gulf Coast Sunlight in Orange Beach";
+    expect(blogDocumentTitle(long)).toBe(long);
+    expect(blogDocumentTitle("Visit Sky Window Design")).toBe("Visit Sky Window Design");
+  });
+
+  it("every blog post, drafts and scheduled ones included (the <h1> is post.title)", () => {
+    // content/blog/_example-post is the copy-me template, a permanent draft.
+    for (const post of allPosts().filter((p) => !p.slug.startsWith("_"))) {
+      expect(same(post.metaTitle, post.title), `${post.slug}: "${post.metaTitle}"`).toBe(false);
+    }
+  });
+
+  it("every service and location page", () => {
+    for (const [slug, page] of [...Object.entries(PAGES), ...Object.entries(CITY_PAGES)]) {
+      expect(same(page.title, page.h1), `${slug}: "${page.title}"`).toBe(false);
     }
   });
 });

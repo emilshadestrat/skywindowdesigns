@@ -43,6 +43,15 @@ deliberately — a draft has no date commitment and should not hold a route.
 The sitemap lists only posts whose date has passed, so a scheduled post never
 appears there before the page exists.
 
+## SEO title vs. heading
+
+The post title is the article's `<h1>`. The `<title>` is the SEO title
+(`metaTitle`, falling back to the title) plus " | Sky Window Design" when that
+fits in 60 characters (`blogDocumentTitle()` in `lib/blog.ts`). Semrush flags a
+`<title>` identical to the `<h1>`, so an SEO title too long for the suffix must
+differ from the post title. `tests/seo-metadata.test.ts` checks every post,
+scheduled and draft ones included.
+
 ## `content/blog/_example-post`
 
 A draft template covering every block type, kept for editors to duplicate.

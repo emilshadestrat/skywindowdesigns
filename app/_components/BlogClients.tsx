@@ -26,9 +26,19 @@ export function BlogIndexClient({ posts }: { posts: Card[] }) {
           >
             Window Treatment Tips &amp; Design Ideas
           </h1>
-          <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[600px]">
+          <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-4 max-w-[600px]">
             Practical guides on choosing the right window treatments, caring for your shades and
             shutters, and making the most of your Gulf Coast home&rsquo;s natural light.
+          </p>
+          {/* Semrush flagged /blog for a low word count (2026-11-07 crawl).
+              Facts only: the product range, showroom address and service area
+              already published in siteData. */}
+          <p className="text-[1.0625rem] leading-relaxed text-slate-600 mb-8 max-w-[600px]">
+            The articles cover the products we offer, including roller and solar shades, cellular
+            and Roman shades, plantation shutters, draperies and motorized shades, along with light
+            control, privacy and planning for different rooms. To compare options in person, visit
+            our Orange Beach showroom at {CONTACT.address.full}. We also serve Gulf Shores, Foley,
+            Fairhope, Pensacola, Gulf Breeze and Navarre.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/contact" className="btn-primary">Get Quote</Link>
