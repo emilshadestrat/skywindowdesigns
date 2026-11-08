@@ -72,7 +72,7 @@ export default config({
         }),
         metaTitle: fields.text({
           label: "SEO title",
-          description: "Falls back to the title. 60 characters or fewer.",
+          description: "Falls back to the title. 60 characters or fewer. The page adds \" | Sky Window Design\" when it fits; a longer one must differ from the title, which is the on-page heading.",
           validation: { length: { max: 60 } },
         }),
         readTime: fields.text({ label: "Read time", defaultValue: "5 min read" }),
