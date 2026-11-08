@@ -390,7 +390,11 @@ export default function Home() {
             <span className="eyebrow justify-center">Where We Work</span>
             <h2 className="section-heading mb-5">Proudly Serving the Alabama Gulf Coast</h2>
             <p className="lead-text mb-10 max-w-[600px] mx-auto">
-              Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region.
+              Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region, from Gulf-front condos and rentals to{" "}
+              <Link href="/locations/foley-al" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
+                window treatments for year-round homes in Foley
+              </Link>
+              .
             </p>
           </RevealDiv>
           <RevealDiv delay={60} className="flex flex-wrap gap-2 sm:gap-3 justify-center">

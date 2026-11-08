@@ -67,6 +67,21 @@ export function CityPage({ pageKey }: { pageKey: string }) {
                   <p className="lead-text mb-3">
                     {section.body}
                   </p>
+                  {section.links && section.links.length > 0 && (
+                    <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                      {section.links.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            href={link.href}
+                            className="inline-flex items-center gap-1 text-[14.5px] font-semibold text-blue-700 hover:text-blue-900 hover:underline transition-colors"
+                          >
+                            {link.label}
+                            <ChevronRight size={14} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
 
