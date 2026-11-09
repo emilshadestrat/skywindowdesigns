@@ -42,3 +42,11 @@ The release is live. The Netlify deployment record identifies this deployment as
 On August 21, 2026, the GitHub API confirmed that `emilshadestrat/skywindowdesigns` `main` points to `a4da931deac4120fe69981b69dfc76bf3fae3b9f`. Netlify deployment `6a84f1e1cf6f54e6c7e23586` was rechecked and remains `ready` at `https://skywindowdesigns.netlify.app`, with no reported deployment error.
 
 The final reconciliation record was committed and pushed to GitHub `main` at `6bf2af6`. The production homepage was fetched after that synchronization and returned the Sky Window Design & More homepage successfully. The deployment remains the same ready production upload because the final GitHub changes were release documentation only; no generated site files changed.
+
+## Cloudflare Turnstile
+
+Every consultation form (`ConsultCard`, the `StandardPage` quote card and the `/contact` form) has an invisible Cloudflare Turnstile human check just above its submit button (`client/src/hooks/useTurnstile.ts`, logic in `client/src/lib/turnstileWidget.ts`). Visitors only see a checkbox if Cloudflare wants one. `netlify/functions/submit-lead.ts` checks the token in `netlify/lib/turnstile.ts` before anything reaches GoHighLevel and answers a missing or refused token with a 403 whose message carries the phone number. If Cloudflare can't be reached, the lead goes through rather than being lost. A token older than 270 s (or reported expired) is refreshed before sending, since tokens expire after 300 s.
+
+- Widget: "Sky Window Designs lead forms" in the gbp@shadestrategy.com Cloudflare account (Managed mode).
+- Site key `0x4AAAAAAF2pw9zxkd7G5Gh0` (public), used only on `skywindowdesign.com` and `www.skywindowdesign.com`. Every other host (deploy previews, localhost) uses Cloudflare's always-pass test key and needs no secret.
+- Secret: Netlify variable `TURNSTILE_SECRET_KEY` (Production context, Functions scope, marked secret). Without it the check is off. Netlify functions read it at deploy time, so redeploy after setting it.

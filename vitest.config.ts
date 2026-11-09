@@ -14,6 +14,9 @@ export default defineConfig({
   esbuild: { jsx: "automatic" },
   test: {
     environment: "node",
+    // Tests never use a real Turnstile secret, even where the build has one;
+    // tests that need the check on stub their own.
+    env: { TURNSTILE_SECRET_KEY: "" },
     include: ["tests/**/*.test.ts"],
   },
 });

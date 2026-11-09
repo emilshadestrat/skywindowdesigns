@@ -8,7 +8,8 @@ import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PAGES, CONTACT, PRODUCT_CARDS, IMAGES, PROCESS_STEPS, CITY_PAGES, type PageData } from "@/lib/siteData";
-import { submitLead } from "@/lib/submitLead";
+import { humanCheckMessage, submitLead } from "@/lib/submitLead";
+import { TURNSTILE_TICK_MESSAGE, useTurnstile } from "@/hooks/useTurnstile";
 import { smsChoices } from "@/lib/smsConsent";
 import { SmsConsent } from "@/components/SmsConsent";
 import {
@@ -175,6 +176,7 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const turnstile = useTurnstile();
   // Captured once at mount — used server-side as a bot-timing signal alongside the honeypot.
   const [formLoadedAt] = useState<number>(() => Date.now());
   const inputCls = "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow";
@@ -199,14 +201,24 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // A second submit while the human check or the send is running does nothing.
+    if (submitting) return;
     const form = e.target as HTMLFormElement;
     if (!validate(form)) return;
     const fd = new FormData(form);
     if (fd.get("_gotcha")) return;
     setSubmitting(true);
     setSubmitError(null);
+    // Read the token now (refreshed first if it is stale).
+    const turnstileToken = await turnstile.getToken();
+    if (turnstileToken === null) {
+      setSubmitting(false);
+      setSubmitError(TURNSTILE_TICK_MESSAGE);
+      return;
+    }
     try {
       await submitLead({
+        "cf-turnstile-response": turnstileToken,
         firstName: (fd.get("firstName") as string).trim(),
         lastName: (fd.get("lastName") as string).trim(),
         phone: (fd.get("phone") as string).trim(),
@@ -217,10 +229,12 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
         ...smsChoices(fd),
       }, "Consultation card form");
       setSubmitted(true);
-    } catch {
-      setSubmitError("Something went wrong. Please call us instead.");
+    } catch (error) {
+      // A refused human check carries its own message (with the phone number).
+      setSubmitError(humanCheckMessage(error) ?? "Something went wrong. Please call us instead.");
     } finally {
       setSubmitting(false);
+      turnstile.reset();
     }
   }
 
@@ -269,6 +283,8 @@ function ConsultCard({ sourcePage }: { sourcePage: string }) {
             <SmsConsent compact disabled={submitting} />
             {/* Honeypot */}
             <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+            {/* Cloudflare Turnstile: invisible unless Cloudflare asks for a tick */}
+            <div ref={turnstile.containerRef} />
             <button type="submit" disabled={submitting} className="btn-primary w-full justify-center !text-[14px] !py-3 disabled:opacity-60 disabled:cursor-not-allowed">
               {submitting ? "Sending…" : "Get Quote"}
             </button>

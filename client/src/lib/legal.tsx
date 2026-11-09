@@ -45,7 +45,7 @@ const PRIVACY: LegalDoc = {
       heading: "How We Use Information",
       body: <>
         <p>We use your information to respond to inquiries, schedule consultations, provide quotes, coordinate installations, communicate about your project, keep records of requests, and improve our website. We may also send occasional updates about products and promotions if you have opted in to receive them.</p>
-        <p>We use service providers for website hosting, analytics, form handling, customer relationship management, and message delivery. They process information on our behalf, only to perform those services for us.</p>
+        <p>We use service providers for website hosting, analytics, form handling, customer relationship management, and message delivery. They process information on our behalf, only to perform those services for us. Our forms use Cloudflare Turnstile to check for automated submissions.</p>
       </>,
     },
     {

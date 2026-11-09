@@ -6,7 +6,8 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { CONTACT } from "@/lib/siteData";
-import { submitLead } from "@/lib/submitLead";
+import { humanCheckMessage, submitLead } from "@/lib/submitLead";
+import { TURNSTILE_TICK_MESSAGE, useTurnstile } from "@/hooks/useTurnstile";
 import { smsChoices } from "@/lib/smsConsent";
 import { SmsConsent } from "@/components/SmsConsent";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
@@ -46,6 +47,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const turnstile = useTurnstile();
   // Captured once at mount — used server-side as a bot-timing signal alongside the honeypot.
   const [formLoadedAt] = useState<number>(() => Date.now());
   const errCls = "text-[12.5px] text-red-600 mt-1";
@@ -69,14 +71,24 @@ export default function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // A second submit while the human check or the send is running does nothing.
+    if (submitting) return;
     const form = e.target as HTMLFormElement;
     if (!validate(form)) return;
     const fd = new FormData(form);
     if (fd.get("_gotcha")) return;
     setSubmitting(true);
     setSubmitError(null);
+    // Read the token now (refreshed first if it is stale).
+    const turnstileToken = await turnstile.getToken();
+    if (turnstileToken === null) {
+      setSubmitting(false);
+      setSubmitError(TURNSTILE_TICK_MESSAGE);
+      return;
+    }
     try {
       await submitLead({
+        "cf-turnstile-response": turnstileToken,
         firstName: (fd.get("firstName") as string).trim(),
         lastName: (fd.get("lastName") as string).trim(),
         phone: (fd.get("phone") as string).trim(),
@@ -87,10 +99,12 @@ export default function ContactPage() {
         ...smsChoices(fd),
       }, "Contact page form");
       setSubmitted(true);
-    } catch {
-      setSubmitError(`Something went wrong. Please call us at ${CONTACT.phone} instead.`);
+    } catch (error) {
+      // A refused human check carries its own message (with the phone number).
+      setSubmitError(humanCheckMessage(error) ?? `Something went wrong. Please call us at ${CONTACT.phone} instead.`);
     } finally {
       setSubmitting(false);
+      turnstile.reset();
     }
   }
 
@@ -287,6 +301,8 @@ export default function ContactPage() {
                     <SmsConsent disabled={submitting} />
                     {/* Honeypot — do not remove */}
                     <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+                    {/* Cloudflare Turnstile: invisible unless Cloudflare asks for a tick */}
+                    <div ref={turnstile.containerRef} />
                     <button
                       type="submit"
                       disabled={submitting}
