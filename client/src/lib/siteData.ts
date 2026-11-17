@@ -77,6 +77,7 @@ export const NAV_LINKS = [
     href: null,
     dropdown: [
       { label: "All Service Areas", href: "/service-areas" },
+      { label: "Orange Beach, AL", href: "/locations/orange-beach-al" },
       { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
       { label: "Foley, AL", href: "/locations/foley-al" },
       { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -117,6 +118,7 @@ export const MOBILE_NAV_GROUPS = [
     label: "Service Areas",
     items: [
       { label: "All Service Areas", href: "/service-areas" },
+      { label: "Orange Beach, AL", href: "/locations/orange-beach-al" },
       { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
       { label: "Foley, AL", href: "/locations/foley-al" },
       { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -156,6 +158,7 @@ export const FOOTER_LINKS = {
   ],
   serviceArea: [
     { label: "All Service Areas", href: "/service-areas" },
+    { label: "Orange Beach, AL", href: "/locations/orange-beach-al" },
     { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
     { label: "Foley, AL", href: "/locations/foley-al" },
     { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -293,11 +296,11 @@ export interface PageData {
 export const PAGES: Record<string, PageData> = {
   "window-treatments": {
     slug: "window-treatments",
-    title: "Window Treatments Orange Beach, AL | Custom Options",
-    meta: "Explore custom window treatments in Orange Beach, Alabama, from roller shades and shutters to draperies, blinds, cellular shades and automation.",
+    title: "Window Treatment Types: Shades, Blinds, Shutters & Drapes",
+    meta: "Compare custom window treatment types: roller and solar shades, cellular and Roman shades, blinds, plantation shutters, draperies and motorized options.",
     canonical: "https://skywindowdesign.com/window-treatments",
     breadcrumb: [{ label: "Home", url: "/" }, { label: "Window Treatments" }],
-    h1: "Window Treatments for Orange Beach, Alabama Homes and Businesses",
+    h1: "Custom Window Treatments: Shades, Blinds, Shutters and Draperies",
     sections: [
       { heading: "Choose the Right Window Treatment", body: "Every room has different needs. A bedroom may need privacy and a softer level of light. A living area may need glare management without losing the feeling of an open view. A tall or hard-to-reach window may be easier to operate with motorization. A business may need a consistent look across several rooms.\n\nWe help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The goal is a window treatment that looks right and works well for the space." },
       { heading: "Roller and Solar Shades", body: "Roller shades offer a clean profile with choices for filtered light, privacy, glare management, room darkening and motorized operation. Solar shades reduce glare without blocking the view." },
@@ -707,40 +710,85 @@ export const CITY_PAGES: Record<string, CityPageData> = {
       { q: "When is the showroom open?", a: "Monday to Friday; it is closed at weekends. Contact us before travelling to confirm current hours and consultation availability." },
     ],
   },
+  // Fairhope and Pensacola were rebuilt on the Foley / Gulf Shores pattern
+  // (keyword-cluster pass, 2026-11-18). Each leans on what is actually different
+  // about the town, and Daphne is deliberately not named: it has no page of its own.
   "fairhope-al": {
     slug: "fairhope-al",
-    title: "Window Treatments in Fairhope, AL | Sky Window Design",
-    meta: "Find custom window treatments in Fairhope, Alabama, including shades, blinds, shutters, draperies, motorized options and consultation support.",
+    title: "Blinds & Curtains in Fairhope, AL | Sky Window Design",
+    meta: "Custom blinds, curtains, draperies and cellular shades for Fairhope, Alabama homes, with free in-home consultation, measuring and installation.",
     canonical: "https://skywindowdesign.com/locations/fairhope-al",
     area: "Fairhope, AL",
-    h1: "Window Treatments in Fairhope, Alabama",
+    h1: "Blinds, Curtains and Window Treatments in Fairhope, Alabama",
     sections: [
-      { heading: "Designed Around Fairhope, Alabama Rooms", body: "Custom window treatments in Fairhope, Alabama, can make a room feel more comfortable, private and finished. Homeowners can compare shades, blinds, shutters, draperies and motorized options for the way each space is used. Cellular shades may support a more comfortable-feeling room, depending on the product and installation." },
-      { heading: "Coordinate the Details", body: "We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. The final plan depends on the window and room." },
-      { heading: "Consultation Support for Fairhope, Alabama", body: "Consultations are available from the Orange Beach showroom. Schedule a consultation to discuss the room, compare options and confirm the project details. Confirm service availability and travel details before planning a visit." },
+      { heading: "Serving Fairhope From the Orange Beach Showroom", body: "Sky Window Design & More is based at 25405 Perdido Beach Blvd., Suite 7A in Orange Beach, about 25 miles from Fairhope across Baldwin County. Fairhope is a regular part of our service area, and free in-home consultations are available there, along with professional measuring and installation.\n\nMost Fairhope projects start at home rather than in the showroom. We bring samples to the consultation, so you can hold a fabric, louver or lining against your own windows in your own light, which is the most reliable way to judge it. If you would like to see the wider range first, the showroom is open Monday to Friday." },
+      { heading: "West-Facing Light Over Mobile Bay", body: "Fairhope sits on the eastern shore of Mobile Bay, so homes on or near the bay look west, across the water, into the afternoon and evening sun. That is a different problem from the Gulf beaches. The strongest light arrives late in the day, low and straight into the room, often with glare reflected off the bay.\n\nThat shapes which options are worth comparing. Solar and roller shades come up first on water-facing glass, because the openness of the fabric decides the balance between cutting glare and keeping the view. West-facing bedrooms are where room-darkening fabrics earn their place, and motorized shades that run on a schedule can lower themselves before the sun reaches the room." },
+      { heading: "Cottages, Porches and Traditional Homes", body: "The older streets around downtown Fairhope are lined with cottages and traditional homes, many with porches, painted trim and divided windows. Newer neighborhoods tend toward larger and taller glass. The two ask for different things.\n\nIn an older home, the treatment should suit the architecture rather than fight it. Plantation shutters give an architectural look with adjustable louvers that fits a traditional facade, and an inside mount keeps original trim on show where the window has the depth for it. In a newer home with tall openings, reach and operation matter more, which is where cordless and motorized options are worth comparing. Either way, custom treatments are made to the measured opening, so an older window that is not quite square still gets a product built for it.", links: [
+        { label: "Plantation shutters", href: "/plantation-shutters" },
+        { label: "Motorized shades", href: "/motorized-shades" },
+      ] },
+      { heading: "Custom Curtains and Draperies in Fairhope", body: "Custom draperies and curtains add softness, texture and pattern, from tailored panels to relaxed looks. Fabric, lining, hardware and fullness are coordinated with the rest of the room and chosen around your light and privacy goals, because fabric weight and lining type decide how much light comes through. For a west-facing bedroom that needs to go properly dark, that usually means a lined drapery; in a living room, it may mean a lighter fabric layered over a shade or shutter.\n\nRoman shades bring the same fabric-led look in a tailored form, in light-filtering, privacy and room-darkening configurations with manual or motorized operation. Both can be coordinated with wallpaper when a room is being planned as a whole.", links: [
+        { label: "Custom draperies and curtains", href: "/draperies-curtains" },
+        { label: "Roman shades", href: "/roman-shades" },
+        { label: "Wallpaper and interior design", href: "/wallpaper-interior-design" },
+      ] },
+      { heading: "Cellular Shades and Room-Darkening Options", body: "Cellular shades use a honeycomb construction that can support a more comfortable-feeling room, which makes them worth a look for rooms that take the full afternoon sun. Light-filtering and room-darkening fabrics are both available, and top-down, bottom-up configurations let you keep privacy at street level while daylight still comes in over the top.\n\nActual room-darkening performance depends on the fabric, how much of the window is covered and how the shade is installed, so we look at the window before recommending one.", links: [
+        { label: "Cellular shades", href: "/cellular-honeycomb-shades" },
+        { label: "Roller and solar shades", href: "/roller-shades" },
+      ] },
+      { heading: "Custom Blinds for Fairhope Homes", body: "Custom blinds are available in wood, composite and metal-look materials. Adjustable louvers let you tilt for light direction and privacy, or raise the blind for a clear window. The right material depends on the room, the moisture level and how much maintenance you want, so bathrooms and kitchens are often a different choice from the living areas. Cordless and motorized operating systems may be available for selected blinds, depending on the product and control system.\n\nIf you already have blinds or shades that have stopped working, repair services are available too. We review the product and the problem first, then confirm the scope and fees before any work.", links: [
+        { label: "Custom blinds", href: "/blinds" },
+        { label: "Window treatment repairs", href: "/window-treatment-repairs" },
+      ] },
+      { heading: "Booking a Fairhope Consultation", body: "Free in-home consultations are available in Fairhope, along with professional measuring and installation. Custom treatments are made to the measured opening, so accurate measuring is what keeps the finished product fitting the window.\n\nCall 251-206-7319 or use the contact form to arrange a visit. The showroom in Orange Beach is open Monday to Friday and closed at weekends, so plan a showroom trip on a weekday and confirm current hours before you travel." },
     ],
     faqs: [
-      { q: "What window treatment options are available?", a: "We offer custom shades, blinds, shutters, draperies, curtains, motorized options, wallpaper and related interior design solutions. Available styles depend on the project and selected product." },
-      { q: "Can I schedule a consultation?", a: "Yes. Contact Sky Window Design & More to schedule a consultation. Confirm service availability before planning a visit." },
-      { q: "Are motorized options available?", a: "Motorized options may be available for selected shades and window-treatment systems. Compatibility depends on the selected shade, motor, hub and control platform." },
+      { q: "Do you serve Fairhope from Orange Beach?", a: "Yes. Fairhope is a regular service area. Free in-home consultations, professional measuring and installation are all available there, and we bring samples to the consultation so you do not have to make the trip to the showroom." },
+      { q: "What works on west-facing windows that look over the bay?", a: "Solar and roller shades are usually compared first, because the openness of the fabric controls the balance between cutting glare and keeping the view. Room-darkening fabrics are common for west-facing bedrooms, and motorized shades on a schedule can close before the late-day sun reaches the room." },
+      { q: "Do you make custom curtains and drapes for Fairhope homes?", a: "Yes. Custom draperies, curtains and Roman shades are available, with fabric, lining, hardware and fullness coordinated to the room. Lining type and fabric weight decide how much light comes through, so a lined drapery is the usual choice for a bedroom that needs to go dark." },
+      { q: "Are cellular shades available in room-darkening fabrics?", a: "Yes. Cellular shades come in light-filtering and room-darkening options, and top-down, bottom-up configurations are available. How dark the room gets depends on the fabric, the window coverage and the installation." },
+      { q: "Can you fit windows in an older Fairhope cottage?", a: "Yes. Every treatment is made to the measured opening, so a window that is out of square or an unusual size gets a product built for it. Where the window has enough depth, an inside mount keeps the original trim visible." },
+      { q: "Do you repair blinds and shades in Fairhope?", a: "Repair services are available within our service area, which includes Fairhope. We review the product and the problem first, covering cord replacement, mechanism repair, fabric replacement and hardware adjustments, and confirm the fees and scope before any work. Availability depends on the product and the parts." },
+      { q: "When is the showroom open?", a: "Monday to Friday; it is closed at weekends. Contact us before travelling to confirm current hours and consultation availability." },
     ],
   },
   "pensacola-fl": {
     slug: "pensacola-fl",
-    title: "Window Treatments in Pensacola, FL | Sky Window Design",
-    meta: "Find custom window treatments in Pensacola, Florida, including shades, blinds, shutters, draperies, motorized options and consultation support.",
+    title: "Window Blinds & Shades in Pensacola, FL | Sky Window Design",
+    meta: "Custom blinds, shades, shutters and draperies for Pensacola, Florida homes and businesses, with free in-home consultation, measuring and installation.",
     canonical: "https://skywindowdesign.com/locations/pensacola-fl",
     area: "Pensacola, FL",
-    h1: "Window Treatments in Pensacola, Florida",
+    h1: "Blinds, Shades and Window Treatments in Pensacola, Florida",
     sections: [
-      { heading: "Custom Options for Pensacola, Florida Properties", body: "Custom window treatments in Pensacola, Florida, can make a room feel more comfortable, private and finished. Homeowners and businesses can compare shades, blinds, shutters, draperies and motorized options for the way each space is used. Roller or solar-style shades may help manage glare. The right solution depends on the window, the fabric, the room and the control system." },
-      { heading: "A Clearer Way to Compare Products", body: "We help you compare the details that matter, including light control, privacy, fabric, material, operation, maintenance and overall style. Cordless and motorized choices may be available for selected products." },
-      { heading: "Serving Pensacola, Florida From Orange Beach", body: "Consultations are available from the Orange Beach showroom. Schedule a consultation to discuss the room, compare options and confirm the project details. Confirm service availability, travel details and current showroom information before planning a visit." },
+      { heading: "Serving Pensacola From the Orange Beach Showroom", body: "Sky Window Design & More is based at 25405 Perdido Beach Blvd., Suite 7A in Orange Beach, Alabama, about 25 miles west of Pensacola across the state line. Pensacola is a regular part of our service area, and free in-home consultations are available there, along with professional measuring and installation.\n\nBecause the showroom is a drive away, most Pensacola projects start at home. We bring samples to the consultation, so you can hold a fabric or louver against your own windows in your own light, which is the most reliable way to judge it. If you would rather see the full range first, the showroom is open Monday to Friday; plan the trip on a weekday and confirm hours before you set out." },
+      { heading: "Historic Homes and Older Window Openings", body: "Pensacola has some of the oldest housing on this coast. Neighborhoods such as North Hill and East Hill are full of early twentieth-century houses and bungalows, with tall windows, deep trim and openings that are often no longer perfectly square.\n\nThat is where custom work earns its keep. Every treatment is made to the measured opening, so an out-of-square or unusually tall window gets a product built for it rather than the nearest stock size. Inside or outside mount becomes a real decision: an inside mount keeps original trim on show where the window has enough depth, while an outside mount can cover an opening that is irregular. Plantation shutters are worth comparing in these homes, because their architectural look suits the period, and custom draperies can frame a tall window without hiding the trim.", links: [
+        { label: "Plantation shutters", href: "/plantation-shutters" },
+        { label: "Custom draperies and curtains", href: "/draperies-curtains" },
+      ] },
+      { heading: "Bay Light and Florida Humidity", body: "Homes along Pensacola Bay and the city's bayous take reflected light off the water in much the same way beach houses take it off the Gulf. On water-facing glass, solar and roller shades come up first, because the openness of the fabric decides the balance between cutting glare and keeping the view.\n\nAway from the water, the bigger everyday issue is humidity. In bathrooms, kitchens and laundry rooms, the material matters more than the style, so we compare options that suit moisture-prone rooms and the amount of upkeep you want.", links: [
+        { label: "Roller and solar shades", href: "/roller-shades" },
+      ] },
+      { heading: "Custom Window Blinds in Pensacola", body: "Custom blinds are available in wood, composite and metal-look materials. Adjustable louvers let you tilt for light direction and privacy, or raise the blind for a clear window. The right material depends on the room, the moisture level and your maintenance preferences, which is why a Pensacola bathroom and a Pensacola living room often end up with different blinds.\n\nCordless and motorized operating systems may be available for selected blinds, depending on the product and control system. Where a whole house is being done, related colors and louver sizes can keep the rooms consistent even when the material changes.", links: [
+        { label: "Custom blinds", href: "/blinds" },
+      ] },
+      { heading: "Roman Shades, Cellular Shades and Draperies", body: "Roman shades bring fabric and tailored style to the window, in light-filtering, privacy and room-darkening configurations with manual or motorized operation. Cellular shades use a honeycomb construction that can support a more comfortable-feeling room, with top-down, bottom-up options that keep privacy at street level while daylight still comes in. Custom draperies and curtains add softness and pattern, with lining, hardware and fullness coordinated to the room, and can be layered over a shade or blind for added control.\n\nWhat decides the outcome is the same list every time: light control, privacy, fabric, material, operation, maintenance and overall style.", links: [
+        { label: "Roman shades", href: "/roman-shades" },
+        { label: "Cellular shades", href: "/cellular-honeycomb-shades" },
+      ] },
+      { heading: "Pensacola Businesses, Rentals and Offices", body: "Our commercial services cover offices, hospitality spaces, restaurants and vacation rentals. In a business setting, the priority is usually a consistent look and dependable light control across many windows or units, with materials chosen for daily use rather than one room at a time." , links: [
+        { label: "Commercial window treatments", href: "/commercial-window-treatments" },
+      ] },
+      { heading: "Planning a Pensacola Project", body: "If you want to narrow things down before anyone visits, the online visualizer lets you explore styles, fabrics and operating options first. Final fabric, color and configuration are confirmed against physical samples at the consultation.\n\nFree in-home consultations are available in Pensacola, along with professional measuring and installation. Call 251-206-7319 or use the contact form to arrange a visit. The showroom is open Monday to Friday and closed at weekends.", links: [
+        { label: "Window treatment visualizer", href: "/visualizer" },
+      ] },
     ],
     faqs: [
-      { q: "What window treatment options are available?", a: "We offer custom shades, blinds, shutters, draperies, curtains, motorized options, wallpaper and related interior design solutions. Available styles depend on the project and selected product." },
-      { q: "Can I schedule a consultation?", a: "Yes. Contact Sky Window Design & More to schedule a consultation. Confirm service availability before planning a visit." },
-      { q: "Are motorized options available?", a: "Motorized options may be available for selected shades and window-treatment systems. Compatibility depends on the selected shade, motor, hub and control platform." },
+      { q: "Do you serve Pensacola from Alabama?", a: "Yes. Pensacola is a regular service area. The showroom is in Orange Beach, about 25 miles west, and free in-home consultations, professional measuring and installation are all available in Pensacola." },
+      { q: "Do I need to visit the showroom in Orange Beach?", a: "No. We bring samples to the in-home consultation, so most Pensacola customers compare options at home. The showroom is open Monday to Friday if you would like to see the wider range in person." },
+      { q: "Can you fit blinds or shutters in an older Pensacola home?", a: "Yes. Every treatment is made to the measured opening, so tall, unusual or out-of-square windows get a product built for them. Where the window has enough depth, an inside mount keeps the original trim visible." },
+      { q: "What blinds work in a humid bathroom?", a: "Material matters most in moisture-prone rooms. Custom blinds come in wood, composite and metal-look materials, and we compare the options that suit the room and the upkeep you want before recommending one." },
+      { q: "Do you work with Pensacola businesses and rentals?", a: "Yes. Our commercial services cover offices, hospitality spaces, restaurants and vacation rentals, with the focus on a consistent look and dependable daily operation across many windows." },
+      { q: "Are motorized blinds and shades available in Pensacola?", a: "Motorized options may be available for selected shades, blinds and window-treatment systems. Compatibility depends on the selected product, motor, hub and control platform, so it is confirmed during the consultation rather than assumed." },
     ],
   },
   "gulf-breeze-fl": {
