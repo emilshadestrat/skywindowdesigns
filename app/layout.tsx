@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { GoogleAnalytics } from "./_components/GoogleAnalytics";
 import { JsonLd } from "./_components/JsonLd";
-import { localBusinessSchema, websiteSchema } from "./_lib/seo";
+import { BASE_OPEN_GRAPH, localBusinessSchema, websiteSchema } from "./_lib/seo";
 
 const siteUrl = "https://skywindowdesign.com";
 
@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   description:
     "Sky Window Design and More is a local Orange Beach showroom for custom shades, blinds, shutters, draperies, motorized options, wallpaper and interior design.",
   alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    siteName: "Sky Window Design & More",
-    locale: "en_US",
-  },
+  openGraph: { type: "website", ...BASE_OPEN_GRAPH },
   twitter: { card: "summary_large_image" },
 };
 

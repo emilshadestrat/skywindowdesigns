@@ -3,6 +3,18 @@ import { CITY_PAGES, CONTACT, DESIGN_SERVICE_SLUGS, HOMEPAGE_FAQS, IMAGES, PAGES
 
 export const SITE_URL = "https://skywindowdesign.com";
 
+// The exact name on the Google Business Profile. Keep it identical everywhere
+// (schema, og:site_name) so Google ties the site to the profile.
+export const SITE_NAME = "Sky Window Design & More";
+
+// Other ways people write the brand: the domain's own short form, "and" spelled
+// out (as the page copy does), and the plural the repo name uses.
+export const SITE_ALTERNATE_NAMES = ["Sky Window Design", "Sky Window Design and More", "Sky Window Designs"];
+
+// Page-level `openGraph` replaces the layout's whole object in Next, so every
+// page that sets its own must spread this back in or it loses og:site_name.
+export const BASE_OPEN_GRAPH = { siteName: SITE_NAME, locale: "en_US" } as const;
+
 const absoluteAssetUrl = (asset: string) => asset.startsWith("http") ? asset : `${SITE_URL}${asset}`;
 
 const businessReference = { "@id": `${SITE_URL}/#business` };
@@ -11,7 +23,8 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${SITE_URL}/#business`,
-  name: "Sky Window Design & More",
+  name: SITE_NAME,
+  alternateName: SITE_ALTERNATE_NAMES,
   legalName: "Sky Window Design & More, LLC",
   description: "Custom window treatments for Orange Beach, Alabama and the Gulf Coast. Roller shades, plantation shutters, motorized shades, draperies, and more.",
   url: `${SITE_URL}/`,
@@ -43,7 +56,8 @@ export const localBusinessSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Sky Window Design & More",
+  name: SITE_NAME,
+  alternateName: SITE_ALTERNATE_NAMES,
   url: `${SITE_URL}/`,
 };
 

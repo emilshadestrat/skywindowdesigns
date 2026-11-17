@@ -144,3 +144,34 @@ describe("one URL form: no trailing slash", async () => {
     }
   });
 });
+
+// The brand search "sky window design" is answered by the Google Business
+// Profile ("Sky Window Design & More"). The site must publish the same name, and
+// a page that sets its own `openGraph` replaces the layout's, so it must carry
+// og:site_name itself. The homepage once dropped it this way.
+describe("brand name matches the Google Business Profile", async () => {
+  const { SITE_NAME, SITE_ALTERNATE_NAMES, localBusinessSchema, websiteSchema } = await import("../app/_lib/seo");
+
+  it("schema uses the profile name and lists the alternate spellings", () => {
+    expect(SITE_NAME).toBe("Sky Window Design & More");
+    for (const schema of [localBusinessSchema, websiteSchema]) {
+      expect(schema.name).toBe(SITE_NAME);
+      expect(schema.alternateName).toEqual(SITE_ALTERNATE_NAMES);
+    }
+    expect(SITE_ALTERNATE_NAMES).toContain("Sky Window Design");
+  });
+
+  it("the homepage keeps og:site_name", async () => {
+    const { metadata } = await import("../app/page");
+    expect((metadata.openGraph as { siteName?: string }).siteName).toBe(SITE_NAME);
+  });
+
+  it("blog posts keep og:site_name", async () => {
+    const { generateMetadata } = await import("../app/blog/[slug]/page");
+    const { postBySlug, routableSlugs } = await import("../lib/blog");
+    const slug = routableSlugs().find((s) => postBySlug(s));
+    expect(slug).toBeDefined();
+    const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
+    expect((metadata.openGraph as { siteName?: string } | undefined)?.siteName).toBe(SITE_NAME);
+  });
+});
