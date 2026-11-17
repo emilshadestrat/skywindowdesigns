@@ -390,7 +390,15 @@ export default function Home() {
             <span className="eyebrow justify-center">Where We Work</span>
             <h2 className="section-heading mb-5">Proudly Serving the Alabama Gulf Coast</h2>
             <p className="lead-text mb-10 max-w-[600px] mx-auto">
-              Based in Orange Beach, we serve homeowners and businesses throughout the Gulf Coast region, from Gulf-front condos and rentals to{" "}
+              Based at our Orange Beach showroom, we handle{" "}
+              <Link href="/locations/orange-beach-al" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
+                window treatments in Orange Beach
+              </Link>{" "}
+              and serve homeowners and businesses throughout the Gulf Coast region, from{" "}
+              <Link href="/locations/gulf-shores-al" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
+                Gulf Shores condos and rentals
+              </Link>{" "}
+              to{" "}
               <Link href="/locations/foley-al" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
                 window treatments for year-round homes in Foley
               </Link>
@@ -399,7 +407,7 @@ export default function Home() {
           </RevealDiv>
           <RevealDiv delay={60} className="flex flex-wrap gap-2 sm:gap-3 justify-center">
             {[
-              { label: "Orange Beach, AL", href: "" },
+              { label: "Orange Beach, AL", href: "/locations/orange-beach-al" },
               { label: "Gulf Shores, AL", href: "/locations/gulf-shores-al" },
               { label: "Foley, AL", href: "/locations/foley-al" },
               { label: "Fairhope, AL", href: "/locations/fairhope-al" },
@@ -407,23 +415,13 @@ export default function Home() {
               { label: "Gulf Breeze, FL", href: "/locations/gulf-breeze-fl" },
               { label: "Navarre, FL", href: "/locations/navarre-fl" },
             ].map((city) => (
-              city.href ? (
-                <Link
-                  key={city.label}
-                  href={city.href}
-                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 text-[13px] sm:text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
-                >
-                  {city.label}
-                </Link>
-              ) : (
-                <span
-                  key={city.label}
-                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 text-[13px] sm:text-[14px] font-semibold text-slate-400 cursor-default"
-                  title="Our home base — no separate page"
-                >
-                  {city.label}
-                </span>
-              )
+              <Link
+                key={city.label}
+                href={city.href}
+                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 text-[13px] sm:text-[14px] font-semibold text-slate-700 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
+              >
+                {city.label}
+              </Link>
             ))}
           </RevealDiv>
         </div>
