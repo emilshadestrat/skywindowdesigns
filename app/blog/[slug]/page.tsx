@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogArticleClient } from "../../_components/BlogClients";
 import { JsonLd } from "../../_components/JsonLd";
+import { BASE_OPEN_GRAPH } from "../../_lib/seo";
 import { postBySlug, routableSlugs } from "../../../lib/blog";
 
 export const revalidate = 3600;
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
+      ...BASE_OPEN_GRAPH,
       title: post.metaTitle,
       description: post.excerpt,
       url: `${SITE}/blog/${post.slug}`,

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd } from "./_components/JsonLd";
-import { homeFaqSchema } from "./_lib/seo";
+import { BASE_OPEN_GRAPH, homeFaqSchema } from "./_lib/seo";
 import { IMAGES } from "@/lib/siteData";
 import Home from "@/pages/Home";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: { absolute: "Window Treatments Orange Beach & Gulf Shores, Alabama" },
   description: "Custom shades, blinds, shutters and draperies from our Orange Beach showroom. Serving Gulf Shores, Foley and the Alabama Gulf Coast. Free consultation.",
   alternates: { canonical: "/" },
-  openGraph: { url: "/", images: [IMAGES.hero] },
+  openGraph: { type: "website", ...BASE_OPEN_GRAPH, url: "/", images: [IMAGES.hero] },
 };
 
 export default function HomePage() {
