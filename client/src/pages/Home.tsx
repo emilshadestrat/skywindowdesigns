@@ -382,6 +382,35 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
+          BLINDS & SHUTTERS IN ORANGE BEACH
+          Added 2026-11-27 (not from the approved copy doc): the homepage sits
+          at 13.5 for "blinds orange beach" and never said "blinds" near the
+          town. Every fact below is already on /blinds and /plantation-shutters.
+          ═══════════════════════════════════════════ */}
+      <section className="py-12 sm:py-20" style={{ backgroundColor: "oklch(0.97 0.008 260)" }}>
+        <div className="container">
+          <RevealDiv className="max-w-[720px] mx-auto text-center">
+            <span className="eyebrow justify-center">Blinds &amp; Shutters</span>
+            <h2 className="section-heading mb-5">Blinds &amp; Shutters in Orange Beach</h2>
+            <p className="lead-text mb-4">
+              Shopping for blinds in Orange Beach? Our showroom carries{" "}
+              <Link href="/blinds" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
+                custom blinds
+              </Link>{" "}
+              in wood, composite and metal-look materials, with adjustable louvers to control light direction and privacy. Cordless and motorized operation may be available for selected blinds.
+            </p>
+            <p className="lead-text">
+              For a more architectural look,{" "}
+              <Link href="/plantation-shutters" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">
+                plantation shutters
+              </Link>{" "}
+              give you adjustable louvers for light, privacy and airflow, a structured answer to bright coastal light. Compare blind and shutter materials side by side in the showroom; custom measuring and professional installation are included.
+            </p>
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
           SERVICE AREAS STRIP
           ═══════════════════════════════════════════ */}
       <section className="py-12 sm:py-20 bg-white border-b border-slate-100">

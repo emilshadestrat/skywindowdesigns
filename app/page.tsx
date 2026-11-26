@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   // cut, so the towns were the part being truncated away. Swag Window Designs
   // wins all three town searches with a 52-character title naming two towns.
   title: { absolute: "Window Treatments Orange Beach & Gulf Shores, Alabama" },
-  description: "Custom shades, blinds, shutters and draperies from our Orange Beach showroom. Serving Gulf Shores, Foley and the Alabama Gulf Coast. Free consultation.",
+  description: "Custom blinds, shutters, shades and draperies from our Orange Beach, AL showroom. Serving Gulf Shores, Foley and the Alabama Gulf Coast. Free consultation.",
   alternates: { canonical: "/" },
   openGraph: { type: "website", ...BASE_OPEN_GRAPH, url: "/", images: [IMAGES.hero] },
 };
